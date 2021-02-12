@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:chewie/chewie.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
@@ -6,8 +8,9 @@ class VideoViewer extends StatefulWidget {
   final String url;
   final String fileName;
   final double aspectRatio;
+  final String path;
   
-  VideoViewer({Key key, this.fileName,this.url,this.aspectRatio});
+  VideoViewer({Key key, this.fileName,this.url,this.aspectRatio,this.path});
 
   @override
   _VideoViewerState createState() => _VideoViewerState();
@@ -24,7 +27,7 @@ class _VideoViewerState extends State<VideoViewer> {
   }
 
   Future<void> initializePlayer() async {
-    _videoPlayerController = VideoPlayerController.network(widget.url);
+    _videoPlayerController = VideoPlayerController.file(File(widget.path));
     await _videoPlayerController.initialize();
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,

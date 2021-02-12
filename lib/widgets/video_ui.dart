@@ -100,12 +100,13 @@ class _VideoState extends State<Video> {
           : MainAxisAlignment.start,
       children: [
         GestureDetector(
-          onTap: () {
+          onTap: isDownloading?(){}:() {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return VideoViewer(
                 url: widget.url,
                 fileName: widget.fileName,
                 aspectRatio: aspectRatio,
+                path: widget.path,
               );
             }));
           },
