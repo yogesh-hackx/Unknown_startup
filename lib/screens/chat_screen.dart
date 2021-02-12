@@ -40,7 +40,10 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMixin{
+
+  bool get wantKeepAlive => true;
+
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
@@ -564,21 +567,21 @@ class _ChatScreenState extends State<ChatScreen> {
 
   sendVideo() async {
     FilePickerResult pickedFile =
-        await FilePicker.platform.pickFiles(type: FileType.video);
+        await FilePicker.platform.pickFiles(type: FileType.video,allowCompression: true);
     print(pickedFile.files.first.path);
 
     PlatformFile pFile = pickedFile.files.first;
 
-    String fileName = pFile.name;
-
-    File file = File(pFile.path);
+    print(pFile.size);
 
     MediaInfo mediaInfo = await VideoCompress.compressVideo(
       pFile.path,
       quality: VideoQuality.LowQuality,
       );
 
-    return await sendVideoMessage(mediaInfo.file, fileName);
+    print(await mediaInfo.file.length());
+
+    return await sendVideoMessage(mediaInfo.file, basename(mediaInfo.file.path));
   }
 
   sendMessageGifs(String gifUrl) {
@@ -642,7 +645,7 @@ class _ChatScreenState extends State<ChatScreen> {
         .getTypingIndicator(widget.chatRoomId)
         .listen((DocumentSnapshot ds) {
       if (ds.exists) {
-        if (ds.data() != null) {
+        if (ds.data()[widget.peerId] != null) {
           if (ds.data()[widget.peerId]["isTyping"] == true) {
             setState(() {
               isTyping = true;
@@ -699,11 +702,14 @@ class _ChatScreenState extends State<ChatScreen> {
   void dispose() {
     onEnd();
     messageController.dispose();
+    typing.cancel();
+    online.cancel();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return UnseenMessage(
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,

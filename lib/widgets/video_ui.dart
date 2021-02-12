@@ -22,10 +22,14 @@ class Video extends StatefulWidget {
   _VideoState createState() => _VideoState();
 }
 
-class _VideoState extends State<Video> {
+class _VideoState extends State<Video> with AutomaticKeepAliveClientMixin{
+
+  bool get wantKeepAlive => true;
+
   String filePath;
   double aspectRatio;
   bool isDownloading= false;
+  String tempFile;
 
   FirebaseAuth auth = FirebaseMethods().auth;
 
@@ -39,27 +43,31 @@ class _VideoState extends State<Video> {
   }
 
   checkIfExistsAndDownload() async {
-    //print(widget.url);
-    var tempFile = await getExternalStorageDirectory();
-    print(tempFile.path + "/${widget.fileName}");
-    String imagePath = tempFile.path + "/${widget.fileName}";
-    if (await File(widget.path).exists()) {
+    Directory dir = await getExternalStorageDirectory();
+    String tempPath = dir.path;
+    String tempF = dir.path + "/${widget.fileName}";
+    setState(() {
+      tempFile = tempF;
+    });
+    if (await File(tempF).exists()) {
       print("exists!!");
-      await getThumnail(widget.path);
+      print(tempPath);
+      await getThumnail(tempF);
       return;
     } else {
+      print("Donwloading bro!!!");
       setState(() {
         isDownloading = true;
       });
       String id = await FlutterDownloader.enqueue(
-          url: widget.url, savedDir: tempFile.path, fileName: widget.fileName);
+          url: widget.url, savedDir:tempPath, fileName: widget.fileName);
       final result = await ImageGallerySaver.saveFile(
-          tempFile.path + "/${widget.fileName}");
+          tempPath);
       print(result);
       setState(() {
         isDownloading = false;
       });
-      await getThumnail(tempFile.path + "/${widget.fileName}");
+      await getThumnail(tempPath);
       }
   }
 
@@ -70,9 +78,7 @@ class _VideoState extends State<Video> {
     if (auth.currentUser.uid != widget.senderUid) {
       checkIfExistsAndDownload();
     }
-    else{
-      getThumnail(widget.path);
-    }
+    getThumnail(widget.path);
   }
 
   getThumnail(String path) async {
@@ -83,6 +89,7 @@ class _VideoState extends State<Video> {
         quality: 75);
 
     File file = File(filepath);
+    print("Thumbnail path is : ${file.path}");
     var decodedImage = await decodeImageFromList(file.readAsBytesSync());
 
     double aspectratio = decodedImage.width / decodedImage.height;
@@ -91,9 +98,11 @@ class _VideoState extends State<Video> {
       filePath = filepath;
       aspectRatio = aspectratio;
     });
+    
   }
 
   Widget build(BuildContext context) {
+    super.build(context);
     return Row(
       mainAxisAlignment: auth.currentUser.uid == widget.senderUid
           ? MainAxisAlignment.end
@@ -106,7 +115,7 @@ class _VideoState extends State<Video> {
                 url: widget.url,
                 fileName: widget.fileName,
                 aspectRatio: aspectRatio,
-                path: widget.path,
+                path: auth.currentUser.uid == widget.senderUid ? widget.path:tempFile,
               );
             }));
           },
@@ -117,22 +126,6 @@ class _VideoState extends State<Video> {
                 height: 190,
                 margin: EdgeInsets.only(top: 10),
                 padding: EdgeInsets.all(4),
-                decoration: BoxDecoration(
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.white.withOpacity(0.8),
-                      offset: Offset(-6.0, -6.0),
-                      blurRadius: 16.0,
-                    ),
-                    BoxShadow(
-                      color: Colors.black.withOpacity(0.1),
-                      offset: Offset(6.0, 6.0),
-                      blurRadius: 16.0,
-                    ),
-                  ],
-                  borderRadius: BorderRadius.circular(5),
-                  color: Colors.amber[400],
-                ),
                 child: ClipRRect(
                     child: auth.currentUser.uid == widget.senderUid?
                     filePath == null?Image.asset("assets/images/videoLoadingError.jpg")
@@ -143,8 +136,8 @@ class _VideoState extends State<Video> {
               ),
               Positioned(
                 child: Container(
-                  child: Icon(
-                    isDownloading?CircularProgressIndicator():Icons.play_circle_fill_rounded,
+                  child: isDownloading?CircularProgressIndicator():Icon(
+                    Icons.play_circle_fill_rounded,
                     color: Colors.white,
                     size: 40,
                   ),
