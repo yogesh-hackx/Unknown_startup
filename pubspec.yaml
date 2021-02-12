@@ -50,6 +50,7 @@ dependencies:
   flutter_image_compress: ^0.7.0
   dio: ^3.0.10
   image_gallery_saver: '^1.6.7'
+  video_compress: ^2.1.1
 
   
 dev_dependencies:

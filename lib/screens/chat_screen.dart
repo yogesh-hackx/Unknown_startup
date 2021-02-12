@@ -23,6 +23,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:video_compress/video_compress.dart';
 
 class ChatScreen extends StatefulWidget {
   final String peerUsername, peerphoneNumber, peerId, chatRoomId;
@@ -425,6 +426,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   url: ds["downloadUrl"],
                   fileName: ds["fileName"],
                   senderUid: ds["sentBy"],
+                  path:ds["path"]
                 );
               }
             },
@@ -571,7 +573,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
     File file = File(pFile.path);
 
-    return await sendVideoMessage(file, fileName);
+    MediaInfo mediaInfo = await VideoCompress.compressVideo(
+      pFile.path,
+      quality: VideoQuality.LowQuality,
+      );
+
+    return await sendVideoMessage(mediaInfo.file, fileName);
   }
 
   sendMessageGifs(String gifUrl) {

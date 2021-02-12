@@ -2,17 +2,21 @@ import 'dart:io';
 
 import 'package:application_unknown/screens/video_viewer.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:image_gallery_saver/image_gallery_saver.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 
 class Video extends StatefulWidget {
   final String url;
   final String fileName;
   final String senderUid;
+  final String path;
 
-  Video({Key key, this.url, this.fileName, this.senderUid});
+  Video({Key key, this.url, this.fileName, this.senderUid,this.path});
 
   @override
   _VideoState createState() => _VideoState();
@@ -21,10 +25,59 @@ class Video extends StatefulWidget {
 class _VideoState extends State<Video> {
   String filePath;
   double aspectRatio;
+  bool isDownloading= false;
 
-  getThumnail() async {
+  FirebaseAuth auth = FirebaseMethods().auth;
+
+  _requestPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.storage,
+    ].request();
+
+    final info = statuses[Permission.storage].toString();
+    print(info);
+  }
+
+  checkIfExistsAndDownload() async {
+    //print(widget.url);
+    var tempFile = await getExternalStorageDirectory();
+    print(tempFile.path + "/${widget.fileName}");
+    String imagePath = tempFile.path + "/${widget.fileName}";
+    if (await File(widget.path).exists()) {
+      print("exists!!");
+      await getThumnail(widget.path);
+      return;
+    } else {
+      setState(() {
+        isDownloading = true;
+      });
+      String id = await FlutterDownloader.enqueue(
+          url: widget.url, savedDir: tempFile.path, fileName: widget.fileName);
+      final result = await ImageGallerySaver.saveFile(
+          tempFile.path + "/${widget.fileName}");
+      print(result);
+      setState(() {
+        isDownloading = false;
+      });
+      await getThumnail(tempFile.path + "/${widget.fileName}");
+      }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _requestPermission();
+    if (auth.currentUser.uid != widget.senderUid) {
+      checkIfExistsAndDownload();
+    }
+    else{
+      getThumnail(widget.path);
+    }
+  }
+
+  getThumnail(String path) async {
     String filepath = await VideoThumbnail.thumbnailFile(
-        video: widget.url,
+        video: path,
         thumbnailPath: (await getTemporaryDirectory()).path,
         maxHeight: 250,
         quality: 75);
@@ -40,17 +93,9 @@ class _VideoState extends State<Video> {
     });
   }
 
-  FirebaseAuth _auth = FirebaseMethods().auth;
-  @override
-  @override
-  void initState() {
-    super.initState();
-    getThumnail();
-  }
-
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: _auth.currentUser.uid == widget.senderUid
+      mainAxisAlignment: auth.currentUser.uid == widget.senderUid
           ? MainAxisAlignment.end
           : MainAxisAlignment.start,
       children: [
@@ -88,14 +133,17 @@ class _VideoState extends State<Video> {
                   color: Colors.amber[400],
                 ),
                 child: ClipRRect(
-                    child: filePath == null
-                        ? Image.asset("assets/images/videoLoadingError.jpg")
-                        : Image.file(File(filePath))),
+                    child: auth.currentUser.uid == widget.senderUid?
+                    filePath == null?Image.asset("assets/images/videoLoadingError.jpg")
+                    :Image.file(File(filePath))
+                    : filePath == null?
+                    Image.asset("assets/images/videoLoadingError.jpg")
+                    :Image.file(File(filePath)))
               ),
               Positioned(
                 child: Container(
                   child: Icon(
-                    Icons.play_circle_fill_rounded,
+                    isDownloading?CircularProgressIndicator():Icons.play_circle_fill_rounded,
                     color: Colors.white,
                     size: 40,
                   ),
