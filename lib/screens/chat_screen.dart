@@ -40,8 +40,8 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMixin{
-
+class _ChatScreenState extends State<ChatScreen>
+    with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
 
   firebase_storage.FirebaseStorage storage =
@@ -103,7 +103,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                       child: Text(
                         "More options",
                         style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w900, fontSize: 19),
+                            fontWeight: FontWeight.w900, fontSize: 22),
                       ),
                     ),
                     Container(
@@ -144,6 +144,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                               child: Text(
                                 "Favourites",
                                 style: GoogleFonts.nunito(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -175,6 +176,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                               child: Text(
                                 "Delete",
                                 style: GoogleFonts.nunito(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -201,6 +203,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                               child: Text(
                                 "Forward",
                                 style: GoogleFonts.nunito(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -227,6 +230,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                               child: Text(
                                 "Copy",
                                 style: GoogleFonts.nunito(
+                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -426,11 +430,10 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                 return Gif1(url: ds["url"]);
               } else if (ds["type"] == "video") {
                 return Video(
-                  url: ds["downloadUrl"],
-                  fileName: ds["fileName"],
-                  senderUid: ds["sentBy"],
-                  path:ds["path"]
-                );
+                    url: ds["downloadUrl"],
+                    fileName: ds["fileName"],
+                    senderUid: ds["sentBy"],
+                    path: ds["path"]);
               }
             },
           );
@@ -566,8 +569,8 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
   }
 
   sendVideo() async {
-    FilePickerResult pickedFile =
-        await FilePicker.platform.pickFiles(type: FileType.video,allowCompression: true);
+    FilePickerResult pickedFile = await FilePicker.platform
+        .pickFiles(type: FileType.video, allowCompression: true);
     print(pickedFile.files.first.path);
 
     PlatformFile pFile = pickedFile.files.first;
@@ -577,11 +580,12 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
     MediaInfo mediaInfo = await VideoCompress.compressVideo(
       pFile.path,
       quality: VideoQuality.LowQuality,
-      );
+    );
 
     print(await mediaInfo.file.length());
 
-    return await sendVideoMessage(mediaInfo.file, basename(mediaInfo.file.path));
+    return await sendVideoMessage(
+        mediaInfo.file, basename(mediaInfo.file.path));
   }
 
   sendMessageGifs(String gifUrl) {
@@ -881,16 +885,24 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Container(
-                                          margin: EdgeInsets.all(20),
+                                          margin: EdgeInsets.only(
+                                              left: 30,
+                                              right: 30,
+                                              top: 30,
+                                              bottom: 15),
                                           child: Text(
                                             "Attach Media",
                                             style: GoogleFonts.nunito(
                                                 fontWeight: FontWeight.w900,
-                                                fontSize: 19),
+                                                fontSize: 22),
                                           ),
                                         ),
                                         Container(
-                                          margin: EdgeInsets.only(right: 20),
+                                          margin: EdgeInsets.only(
+                                              left: 30,
+                                              right: 30,
+                                              top: 30,
+                                              bottom: 15),
                                           child: InkWell(
                                               onTap: () {
                                                 Navigator.pop(context);
@@ -904,7 +916,8 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                                     ),
                                     Divider(),
                                     Container(
-                                      margin: const EdgeInsets.all(20),
+                                      margin: const EdgeInsets.only(
+                                          left: 40, right: 40, top: 20),
                                       child: Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
@@ -1018,6 +1031,16 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                                               ],
                                             ),
                                           ),
+                                        ],
+                                      ),
+                                    ),
+                                    Container(
+                                      margin: const EdgeInsets.only(
+                                          left: 40, right: 40, top: 10),
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
                                           Container(
                                             child: Column(
                                               children: [
@@ -1060,43 +1083,88 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                                               ],
                                             ),
                                           ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      child: Column(
-                                        children: [
-                                          GestureDetector(
-                                            onTap: () async {
-                                              await sendVideo();
-                                              Navigator.pop(context);
-                                            },
-                                            child: Container(
-                                              padding: const EdgeInsets.all(20),
-                                              decoration: BoxDecoration(
-                                                borderRadius:
-                                                    BorderRadius.circular(1000),
-                                                color: Colors.lime[200],
-                                              ),
-                                              child: Icon(
-                                                Icons.video_library_rounded,
-                                                color: Colors.lime[900],
-                                              ),
+                                          Container(
+                                            child: Column(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    print("gallery!!!");
+                                                    await sendImage(
+                                                        ImageSource.gallery,
+                                                        context);
+                                                  },
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            20),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000),
+                                                      color: Colors.red[200],
+                                                    ),
+                                                    child: Icon(
+                                                      Icons.contacts_rounded,
+                                                      color: Colors.red[700],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
+                                                  child: Text(
+                                                    "Contacts",
+                                                    style: GoogleFonts.nunito(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
                                           ),
                                           Container(
-                                            margin:
-                                                const EdgeInsets.only(top: 10),
-                                            child: Text(
-                                              "Video Gallery",
-                                              style: GoogleFonts.nunito(
-                                                fontWeight: FontWeight.w800,
-                                              ),
+                                            child: Column(
+                                              children: [
+                                                GestureDetector(
+                                                  onTap: () async {
+                                                    await sendVideo();
+                                                    Navigator.pop(context);
+                                                  },
+                                                  child: Container(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            20),
+                                                    decoration: BoxDecoration(
+                                                      borderRadius:
+                                                          BorderRadius.circular(
+                                                              1000),
+                                                      color: Colors.lime[200],
+                                                    ),
+                                                    child: Icon(
+                                                      Icons
+                                                          .video_library_rounded,
+                                                      color: Colors.lime[900],
+                                                    ),
+                                                  ),
+                                                ),
+                                                Container(
+                                                  margin: const EdgeInsets.only(
+                                                      top: 10),
+                                                  child: Text(
+                                                    "Video Gallery",
+                                                    style: GoogleFonts.nunito(
+                                                      fontWeight:
+                                                          FontWeight.w800,
+                                                    ),
+                                                  ),
+                                                )
+                                              ],
                                             ),
-                                          )
+                                          ),
                                         ],
                                       ),
-                                    ),
+                                    )
                                   ],
                                 ),
                               );

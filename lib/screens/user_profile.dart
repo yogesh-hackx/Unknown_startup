@@ -241,6 +241,7 @@ class _UserProfileState extends State<UserProfile> {
                   child: Text(
                     "More Options",
                     style: GoogleFonts.nunito(
+                      fontSize: 16,
                       fontWeight: FontWeight.w800,
                     ),
                   ),
