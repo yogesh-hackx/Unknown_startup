@@ -755,8 +755,8 @@ class _ChatScreenState extends State<ChatScreen>
                     isTyping
                         ? "typing...."
                         : isOnline
-                            ? "Online"
-                            : "Last seen today at 10:30am",
+                            ? "online"
+                            : "last seen today at 10:30am",
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w800,
@@ -797,14 +797,16 @@ class _ChatScreenState extends State<ChatScreen>
                       padding: const EdgeInsets.all(4),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.grey[400],
+                          color: Colors.grey[300],
                         ),
-                        borderRadius: BorderRadius.circular(10),
+                        borderRadius: BorderRadius.circular(5),
                         color: Colors.white,
                       ),
                       child: TextField(
                         focusNode: focusNode,
                         controller: messageController,
+                        textAlignVertical: TextAlignVertical.center,
+                        style: GoogleFonts.nunito(),
                         onChanged: (String changedMsg) async {
                           if (changedMsg.length > 0) {
                             await updateTypingIndicator(true);
