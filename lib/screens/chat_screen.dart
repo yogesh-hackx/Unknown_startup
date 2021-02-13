@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:io';
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
-import 'package:application_unknown/screens/search_bar.dart';
 import 'package:application_unknown/screens/user_profile.dart';
 import 'package:application_unknown/utilies/unseen_utilities.dart';
 import 'package:application_unknown/widgets/delete_message.dart';

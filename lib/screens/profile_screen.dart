@@ -1,3 +1,4 @@
+import 'package:application_unknown/widgets/edit_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -96,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.black54),
                     ),
                   ),
-                ),
+                )
               ],
             ),
           ),
@@ -105,7 +106,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.indigo,
         child: Icon(Icons.edit_rounded),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return EditProfile();
+          }));
+        },
       ),
     );
   }

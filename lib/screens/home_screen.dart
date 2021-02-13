@@ -1,7 +1,6 @@
 import 'package:application_unknown/call_screens/pickup_layout.dart';
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/screens/profile_screen.dart';
-import 'package:application_unknown/screens/search_bar.dart';
 import 'package:application_unknown/screens/settings_screen.dart';
 import 'package:application_unknown/screens/status_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
