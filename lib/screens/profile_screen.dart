@@ -96,11 +96,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           color: Colors.black54),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
+        child: Icon(Icons.edit_rounded),
+        onPressed: () {},
       ),
     );
   }
