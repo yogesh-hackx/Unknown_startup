@@ -233,30 +233,27 @@ class _OneTimePasswordState extends State<OneTimePassword> {
               ],
             ),
           ),
-          UnconstrainedBox(
-            alignment: Alignment.centerLeft,
-            child: Container(
-              margin: const EdgeInsets.only(left: 30, top: 20),
-              child: RaisedButton(
-                onPressed: () async {
-                  String fullOpt = otp1.text +
-                      otp2.text +
-                      otp3.text +
-                      otp4.text +
-                      otp5.text +
-                      otp6.text;
-                  await FirebaseMethods().verifyOtp(
-                      widget.verificationId, fullOpt.trim(), context);
-                },
-                color: Colors.indigo[700],
-                textColor: Colors.white,
-                padding: EdgeInsets.all(12),
-                child: Text(
-                  "Verify",
-                  style: GoogleFonts.nunito(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  ),
+          Container(
+            margin: const EdgeInsets.only(left: 30, top: 20, right: 45),
+            child: RaisedButton(
+              onPressed: () async {
+                String fullOpt = otp1.text +
+                    otp2.text +
+                    otp3.text +
+                    otp4.text +
+                    otp5.text +
+                    otp6.text;
+                await FirebaseMethods()
+                    .verifyOtp(widget.verificationId, fullOpt.trim(), context);
+              },
+              color: Colors.indigo[700],
+              textColor: Colors.white,
+              padding: EdgeInsets.all(12),
+              child: Text(
+                "Verify",
+                style: GoogleFonts.nunito(
+                  fontSize: 16,
+                  fontWeight: FontWeight.w800,
                 ),
               ),
             ),

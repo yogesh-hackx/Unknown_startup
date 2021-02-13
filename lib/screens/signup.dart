@@ -54,9 +54,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.start,
+      body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.only(left: 30, top: 40),
@@ -84,18 +82,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     fontWeight: FontWeight.w900)),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 30, top: 10),
+            margin: const EdgeInsets.only(left: 30, top: 10, right: 50),
             width: 320,
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(
                 color: Colors.grey[400],
               ),
-              borderRadius: BorderRadius.circular(5),
+              borderRadius: BorderRadius.circular(3),
               color: Colors.white,
             ),
             child: TextField(
-              maxLength: 15,
+              style:
+                  GoogleFonts.nunito(fontWeight: FontWeight.w800, fontSize: 20),
               textAlignVertical: TextAlignVertical.center,
               controller: phoneNumberController,
               keyboardType: TextInputType.phone,
@@ -105,16 +104,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   Icons.call_rounded,
                   color: Colors.indigo[800],
                 ),
-                hintText: "Enter your number here",
-                hintStyle: GoogleFonts.nunito(
-                  fontWeight: FontWeight.w900,
-                ),
                 border: InputBorder.none,
               ),
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 30, top: 20),
+            margin: const EdgeInsets.only(left: 30, top: 20, right: 50),
             child: RaisedButton(
               onPressed: () async {
                 await firebaseMethods.verifyPhoneNumber(

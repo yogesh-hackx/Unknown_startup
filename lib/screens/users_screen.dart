@@ -1,4 +1,5 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
+import 'package:application_unknown/screens/search_bar.dart';
 import 'package:application_unknown/widgets/chat_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -113,6 +114,15 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
               return Container();
             }
           }),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.indigo,
+        child: Icon(Icons.search_rounded),
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) {
+            return SearchBar();
+          }));
+        },
+      ),
     );
   }
 }

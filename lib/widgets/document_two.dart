@@ -14,7 +14,13 @@ class Document2 extends StatefulWidget {
   final String downloadUrl;
   final String senderUid;
   final String path;
-  Document2({Key key, this.fileName, this.chatRoomId, this.downloadUrl,this.senderUid,this.path});
+  Document2(
+      {Key key,
+      this.fileName,
+      this.chatRoomId,
+      this.downloadUrl,
+      this.senderUid,
+      this.path});
 
   @override
   _Document2State createState() => _Document2State();
@@ -35,7 +41,8 @@ class _Document2State extends State<Document2> {
           openFileFromNotification: true);
     }
   }
-  openFile(){
+
+  openFile() {
     OpenFile.open(widget.path);
   }
 
@@ -103,9 +110,13 @@ class _Document2State extends State<Document2> {
             Container(
               margin: EdgeInsets.only(left: 20),
               child: InkWell(
-                onTap: _auth.currentUser.uid == widget.senderUid ? openFile:downloadFileExample,
+                onTap: _auth.currentUser.uid == widget.senderUid
+                    ? openFile
+                    : downloadFileExample,
                 child: Icon(
-                  _auth.currentUser.uid == widget.senderUid ? Icons.folder_open:Icons.arrow_circle_down,
+                  _auth.currentUser.uid == widget.senderUid
+                      ? Icons.folder_open
+                      : Icons.arrow_circle_down,
                   color: Colors.grey[700],
                   size: 30,
                 ),
