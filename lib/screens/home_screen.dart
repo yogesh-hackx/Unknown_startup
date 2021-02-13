@@ -105,15 +105,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
         ),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.indigo,
-          child: Icon(Icons.search_rounded),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return SearchBar();
-            }));
-          },
-        ),
       ),
     );
   }

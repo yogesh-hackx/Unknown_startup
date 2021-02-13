@@ -100,66 +100,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ],
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: ListTile(
-              tileColor: Colors.white,
-              contentPadding: EdgeInsets.all(5),
-              leading: Container(
-                child: const CircleAvatar(
-                  radius: 30,
-                  backgroundImage: const AssetImage(
-                      "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                ),
-              ),
-              title: Text(
-                "Jennifer Cleo",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16,
-                    color: Colors.black87),
-              ),
-              subtitle: Text(
-                "A keen listener",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: Colors.grey),
-              ),
-              trailing: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(1000),
-                        color: Colors.blue[200],
-                      ),
-                      child: Icon(
-                        Icons.call_rounded,
-                        color: Colors.blue[700],
-                      ),
-                    ),
-                  ),
-                  Container(
-                    child: Container(
-                      margin: const EdgeInsets.only(left: 10),
-                      padding: const EdgeInsets.all(5),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(1000),
-                        color: Colors.deepPurple[200],
-                      ),
-                      child: Icon(
-                        Icons.videocam_rounded,
-                        color: Colors.deepPurple[700],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
         ],
       ),
     );
