@@ -429,7 +429,8 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
                   url: ds["downloadUrl"],
                   fileName: ds["fileName"],
                   senderUid: ds["sentBy"],
-                  path:ds["path"]
+                  path:ds["path"],
+                  
                 );
               }
             },
@@ -534,6 +535,9 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
       String url = await imageTask.ref.getDownloadURL();
       String path = videoFile.path;
 
+      Directory thumbnailPath = await getTemporaryDirectory();
+      String thumbnail = thumbnailPath.path + "/$fileName";
+
       Map<String, dynamic> messageInfoMap = {
         "message": "video",
         "sentBy": _auth.currentUser.uid,
@@ -544,6 +548,7 @@ class _ChatScreenState extends State<ChatScreen> with AutomaticKeepAliveClientMi
         "downloadUrl": url,
         "fileName": fileName,
         "path": path,
+        "thumbnailPath":thumbnail
       };
 
       FirebaseMethods()

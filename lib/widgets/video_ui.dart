@@ -80,6 +80,7 @@ class _VideoState extends State<Video> with AutomaticKeepAliveClientMixin{
     }
     getThumnail(widget.path);
   }
+  
 
   getThumnail(String path) async {
     String filepath = await VideoThumbnail.thumbnailFile(
