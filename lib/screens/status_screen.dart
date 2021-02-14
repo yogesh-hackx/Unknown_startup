@@ -62,24 +62,6 @@ class _StatusScreenState extends State<StatusScreen> {
                     ),
                   ),
                 ),
-                Center(
-                  child: Container(
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        gradient: LinearGradient(
-                          colors: [
-                            Color.fromRGBO(67, 127, 199, 1),
-                            Color.fromRGBO(109, 175, 254, 1)
-                          ],
-                        ),
-                        borderRadius: BorderRadius.circular(1000),
-                      ),
-                      margin: const EdgeInsets.only(top: 10),
-                      child: Icon(
-                        Icons.create_rounded,
-                        color: Colors.white,
-                      )),
-                )
               ],
             ),
           ),
