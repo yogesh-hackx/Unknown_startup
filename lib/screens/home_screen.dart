@@ -94,7 +94,7 @@ class _HomeScreenState extends State<HomeScreen> {
             currentIndex: currentIndex,
             onTap: navigation,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Colors.indigo[800],
+            selectedItemColor: Colors.blue,
             unselectedItemColor: Colors.grey[700],
             selectedLabelStyle: GoogleFonts.nunito(
               fontWeight: FontWeight.bold,

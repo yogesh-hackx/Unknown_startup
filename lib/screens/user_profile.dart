@@ -68,8 +68,8 @@ class _UserProfileState extends State<UserProfile> {
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(1000),
-                        border:
-                            Border.all(color: Colors.indigo[300], width: 4)),
+                        border: Border.all(
+                            color: Color.fromRGBO(109, 175, 254, 1), width: 4)),
                     child: const CircleAvatar(
                       radius: 75,
                       backgroundImage: const AssetImage(
@@ -123,11 +123,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.teal[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.chat_bubble,
-                                color: Colors.teal[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -149,11 +154,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.orange[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.call,
-                                color: Colors.orange[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -187,11 +197,16 @@ class _UserProfileState extends State<UserProfile> {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
-                                  color: Colors.deepPurple[200],
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromRGBO(67, 127, 199, 1),
+                                      Color.fromRGBO(109, 175, 254, 1)
+                                    ],
+                                  ),
                                 ),
                                 child: Icon(
                                   Icons.videocam_rounded,
-                                  color: Colors.deepPurple[700],
+                                  color: Colors.white,
                                 ),
                               ),
                               Container(
@@ -258,11 +273,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.amber[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.share_rounded,
-                                color: Colors.amber[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -284,11 +304,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.cyan[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.volume_off_rounded,
-                                color: Colors.cyan[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -310,11 +335,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.red[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.block_rounded,
-                                color: Colors.red[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -336,11 +366,16 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.pink[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.thumb_down_rounded,
-                                color: Colors.pink[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(

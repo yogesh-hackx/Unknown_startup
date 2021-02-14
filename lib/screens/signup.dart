@@ -26,7 +26,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
           flexibleSpace: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.indigo[600],
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(67, 127, 199, 1),
+                  Color.fromRGBO(109, 175, 254, 1)
+                ],
+              ),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -87,14 +92,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Colors.grey[400],
+                color: Color.fromRGBO(231, 233, 240, 1),
               ),
               borderRadius: BorderRadius.circular(3),
-              color: Colors.white,
+              color: Color.fromRGBO(231, 233, 240, 1),
             ),
             child: TextField(
               style:
-                  GoogleFonts.nunito(fontWeight: FontWeight.w800, fontSize: 20),
+                  GoogleFonts.nunito(fontWeight: FontWeight.w800, fontSize: 22),
               textAlignVertical: TextAlignVertical.center,
               controller: phoneNumberController,
               keyboardType: TextInputType.phone,
@@ -102,7 +107,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 counterText: '',
                 prefixIcon: Icon(
                   Icons.call_rounded,
-                  color: Colors.indigo[800],
+                  color: Color.fromRGBO(67, 127, 199, 1),
                 ),
                 border: InputBorder.none,
               ),
@@ -117,9 +122,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3)),
-              color: Colors.indigo[700],
+              color: Color.fromRGBO(109, 175, 254, 1),
               textColor: Colors.white,
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(18),
               child: Text(
                 "Get OTP",
                 style: GoogleFonts.nunito(
@@ -134,7 +139,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
       bottomNavigationBar: Container(
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.indigo[600],
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(67, 127, 199, 1),
+              Color.fromRGBO(109, 175, 254, 1)
+            ],
+          ),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),

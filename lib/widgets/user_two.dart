@@ -28,18 +28,25 @@ class _User2State extends State<User2> {
                   blurRadius: 16.0,
                 ),
                 BoxShadow(
-                  color: Colors.indigo[900].withOpacity(0.3),
+                  color: Color.fromRGBO(109, 175, 254, 0.3),
                   offset: Offset(6.0, 6.0),
                   blurRadius: 16.0,
                 ),
               ],
-              border: Border.all(color: Colors.indigo[400]),
+              border: Border.all(
+                color: Color.fromRGBO(109, 175, 254, 1),
+              ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(8),
                 bottomRight: Radius.circular(8),
                 topRight: Radius.circular(8),
               ),
-              color: Colors.indigo[400],
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(67, 127, 199, 1),
+                  Color.fromRGBO(109, 175, 254, 1)
+                ],
+              ),
             ),
             child: Text(
               widget.msg,

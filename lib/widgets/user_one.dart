@@ -178,7 +178,7 @@ class _UserOneState extends State<UserOne> {
                     ? Icons.check_circle_outline
                     : Icons.check_circle_rounded,
                 size: 15,
-                color: Colors.indigo,
+                color: Color.fromRGBO(67, 127, 199, 1),
               ),
             ),
             Container(
@@ -188,7 +188,6 @@ class _UserOneState extends State<UserOne> {
                 style: GoogleFonts.nunito(
                   fontSize: 12,
                   fontWeight: FontWeight.w800,
-                  color: Colors.teal[300],
                 ),
               ),
             ),

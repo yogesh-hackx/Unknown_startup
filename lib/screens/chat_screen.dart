@@ -91,7 +91,7 @@ class _ChatScreenState extends State<ChatScreen>
         context: context,
         builder: (context) {
           return Container(
-            decoration: BoxDecoration(color: Colors.white),
+            decoration: const BoxDecoration(color: Colors.white),
             height: 250,
             child: Column(
               children: [
@@ -99,7 +99,8 @@ class _ChatScreenState extends State<ChatScreen>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      margin: EdgeInsets.all(20),
+                      margin: EdgeInsets.only(
+                          left: 30, right: 30, top: 30, bottom: 15),
                       child: Text(
                         "More options",
                         style: GoogleFonts.nunito(
@@ -132,11 +133,16 @@ class _ChatScreenState extends State<ChatScreen>
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.teal[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.star,
-                                color: Colors.teal[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -144,7 +150,6 @@ class _ChatScreenState extends State<ChatScreen>
                               child: Text(
                                 "Favourites",
                                 style: GoogleFonts.nunito(
-                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -163,11 +168,16 @@ class _ChatScreenState extends State<ChatScreen>
                                 padding: const EdgeInsets.all(20),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
-                                  color: Colors.orange[200],
+                                  gradient: LinearGradient(
+                                    colors: [
+                                      Color.fromRGBO(67, 127, 199, 1),
+                                      Color.fromRGBO(109, 175, 254, 1)
+                                    ],
+                                  ),
                                 ),
                                 child: Icon(
                                   Icons.delete,
-                                  color: Colors.orange[700],
+                                  color: Colors.white,
                                 ),
                               ),
                             ),
@@ -176,7 +186,6 @@ class _ChatScreenState extends State<ChatScreen>
                               child: Text(
                                 "Delete",
                                 style: GoogleFonts.nunito(
-                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -191,11 +200,16 @@ class _ChatScreenState extends State<ChatScreen>
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.cyan[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.forward,
-                                color: Colors.cyan[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -203,7 +217,6 @@ class _ChatScreenState extends State<ChatScreen>
                               child: Text(
                                 "Forward",
                                 style: GoogleFonts.nunito(
-                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -218,11 +231,16 @@ class _ChatScreenState extends State<ChatScreen>
                               padding: const EdgeInsets.all(20),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                color: Colors.deepPurple[200],
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
                               child: Icon(
                                 Icons.copy_rounded,
-                                color: Colors.deepPurple[700],
+                                color: Colors.white,
                               ),
                             ),
                             Container(
@@ -230,7 +248,6 @@ class _ChatScreenState extends State<ChatScreen>
                               child: Text(
                                 "Copy",
                                 style: GoogleFonts.nunito(
-                                  fontSize: 15,
                                   fontWeight: FontWeight.w800,
                                 ),
                               ),
@@ -433,10 +450,8 @@ class _ChatScreenState extends State<ChatScreen>
                   url: ds["downloadUrl"],
                   fileName: ds["fileName"],
                   senderUid: ds["sentBy"],
-                  path:ds["path"],
-                  
+                  path: ds["path"],
                 );
-
               }
             },
           );
@@ -553,7 +568,7 @@ class _ChatScreenState extends State<ChatScreen>
         "downloadUrl": url,
         "fileName": fileName,
         "path": path,
-        "thumbnailPath":thumbnail
+        "thumbnailPath": thumbnail
       };
 
       FirebaseMethods()
@@ -766,7 +781,7 @@ class _ChatScreenState extends State<ChatScreen>
                             : "last seen today at 10:30am",
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
-                        fontWeight: FontWeight.w800,
+                        fontWeight: FontWeight.w700,
                         fontSize: 14),
                   ),
                 ],
@@ -835,7 +850,7 @@ class _ChatScreenState extends State<ChatScreen>
                             },
                             child: Icon(
                               Icons.emoji_emotions_rounded,
-                              color: Colors.indigo[800],
+                              color: Color.fromRGBO(67, 127, 199, 1),
                             ),
                           ),
                           hintText: "Type your message here..",
@@ -852,7 +867,12 @@ class _ChatScreenState extends State<ChatScreen>
                             const EdgeInsets.only(left: 10, bottom: 15, top: 5),
                         padding: const EdgeInsets.all(13),
                         decoration: BoxDecoration(
-                          color: Colors.indigo[700],
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(67, 127, 199, 1),
+                              Color.fromRGBO(109, 175, 254, 1)
+                            ],
+                          ),
                           borderRadius: BorderRadius.circular(1000),
                         ),
                         child: Icon(
@@ -870,7 +890,12 @@ class _ChatScreenState extends State<ChatScreen>
                             const EdgeInsets.only(left: 10, bottom: 15, top: 5),
                         padding: const EdgeInsets.all(14),
                         decoration: BoxDecoration(
-                          color: Colors.indigo[700],
+                          gradient: LinearGradient(
+                            colors: [
+                              Color.fromRGBO(67, 127, 199, 1),
+                              Color.fromRGBO(109, 175, 254, 1)
+                            ],
+                          ),
                           borderRadius: BorderRadius.circular(1000),
                         ),
                         child: Icon(
@@ -903,7 +928,7 @@ class _ChatScreenState extends State<ChatScreen>
                                             "Attach Media",
                                             style: GoogleFonts.nunito(
                                                 fontWeight: FontWeight.w900,
-                                                fontSize: 22),
+                                                fontSize: 20),
                                           ),
                                         ),
                                         Container(
@@ -947,11 +972,18 @@ class _ChatScreenState extends State<ChatScreen>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               1000),
-                                                      color: Colors.teal[200],
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromRGBO(
+                                                              67, 127, 199, 1),
+                                                          Color.fromRGBO(
+                                                              109, 175, 254, 1)
+                                                        ],
+                                                      ),
                                                     ),
                                                     child: Icon(
                                                       Icons.upload_file,
-                                                      color: Colors.teal[700],
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
@@ -979,11 +1011,18 @@ class _ChatScreenState extends State<ChatScreen>
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             1000),
-                                                    color: Colors.orange[200],
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        Color.fromRGBO(
+                                                            67, 127, 199, 1),
+                                                        Color.fromRGBO(
+                                                            109, 175, 254, 1)
+                                                      ],
+                                                    ),
                                                   ),
                                                   child: Icon(
                                                     Icons.headset_rounded,
-                                                    color: Colors.orange[700],
+                                                    color: Colors.white,
                                                   ),
                                                 ),
                                                 Container(
@@ -1018,11 +1057,18 @@ class _ChatScreenState extends State<ChatScreen>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               1000),
-                                                      color: Colors.cyan[200],
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromRGBO(
+                                                              67, 127, 199, 1),
+                                                          Color.fromRGBO(
+                                                              109, 175, 254, 1)
+                                                        ],
+                                                      ),
                                                     ),
                                                     child: Icon(
                                                       Icons.camera_alt,
-                                                      color: Colors.cyan[700],
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
@@ -1068,13 +1114,18 @@ class _ChatScreenState extends State<ChatScreen>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               1000),
-                                                      color: Colors
-                                                          .deepPurple[200],
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromRGBO(
+                                                              67, 127, 199, 1),
+                                                          Color.fromRGBO(
+                                                              109, 175, 254, 1)
+                                                        ],
+                                                      ),
                                                     ),
                                                     child: Icon(
                                                       Icons.photo_library,
-                                                      color: Colors
-                                                          .deepPurple[700],
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
@@ -1110,11 +1161,18 @@ class _ChatScreenState extends State<ChatScreen>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               1000),
-                                                      color: Colors.red[200],
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromRGBO(
+                                                              67, 127, 199, 1),
+                                                          Color.fromRGBO(
+                                                              109, 175, 254, 1)
+                                                        ],
+                                                      ),
                                                     ),
                                                     child: Icon(
                                                       Icons.contacts_rounded,
-                                                      color: Colors.red[700],
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),
@@ -1148,12 +1206,19 @@ class _ChatScreenState extends State<ChatScreen>
                                                       borderRadius:
                                                           BorderRadius.circular(
                                                               1000),
-                                                      color: Colors.lime[200],
+                                                      gradient: LinearGradient(
+                                                        colors: [
+                                                          Color.fromRGBO(
+                                                              67, 127, 199, 1),
+                                                          Color.fromRGBO(
+                                                              109, 175, 254, 1)
+                                                        ],
+                                                      ),
                                                     ),
                                                     child: Icon(
                                                       Icons
                                                           .video_library_rounded,
-                                                      color: Colors.lime[900],
+                                                      color: Colors.white,
                                                     ),
                                                   ),
                                                 ),

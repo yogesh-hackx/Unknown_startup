@@ -35,7 +35,12 @@ class _OneTimePasswordState extends State<OneTimePassword> {
           flexibleSpace: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Colors.indigo[600],
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(67, 127, 199, 1),
+                  Color.fromRGBO(109, 175, 254, 1)
+                ],
+              ),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -246,9 +251,9 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 await FirebaseMethods()
                     .verifyOtp(widget.verificationId, fullOpt.trim(), context);
               },
-              color: Colors.indigo[700],
+              color: Color.fromRGBO(109, 175, 254, 1),
               textColor: Colors.white,
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(18),
               child: Text(
                 "Verify",
                 style: GoogleFonts.nunito(
@@ -265,7 +270,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 padding: EdgeInsets.all(11),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.grey[200],
+                  color: Color.fromRGBO(231, 233, 240, 1),
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40),
                 child: Text(
@@ -280,7 +285,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 padding: EdgeInsets.all(11),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Colors.grey[200],
+                  color: Color.fromRGBO(231, 233, 240, 1),
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40, right: 20),
                 child: GestureDetector(
@@ -306,7 +311,12 @@ class _OneTimePasswordState extends State<OneTimePassword> {
       bottomNavigationBar: Container(
         height: 50,
         decoration: BoxDecoration(
-          color: Colors.indigo[600],
+          gradient: LinearGradient(
+            colors: [
+              Color.fromRGBO(67, 127, 199, 1),
+              Color.fromRGBO(109, 175, 254, 1)
+            ],
+          ),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),

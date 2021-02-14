@@ -115,7 +115,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
             }
           }),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.indigo,
+        backgroundColor: Color.fromRGBO(109, 175, 254, 1),
         child: Icon(Icons.search_rounded),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {

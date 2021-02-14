@@ -3,12 +3,9 @@ import 'package:application_unknown/helper/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
 
-
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await FlutterDownloader.initialize(
-    debug:true
-  );
+  await FlutterDownloader.initialize(debug: true);
   runApp(MyApp());
 }
 
@@ -17,29 +14,20 @@ class MyApp extends StatefulWidget {
   _MyAppState createState() => _MyAppState();
 }
 
-class _MyAppState extends State<MyApp> with WidgetsBindingObserver{
-
+class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-
-    if(state == AppLifecycleState.resumed){
-      Map<String, bool> onlineIndicatorMap = {
-        "isOnline":true
-      };
+    if (state == AppLifecycleState.resumed) {
+      Map<String, bool> onlineIndicatorMap = {"isOnline": true};
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
-    }
-
-    else{
-      Map<String, bool> onlineIndicatorMap = {
-        "isOnline":false
-      };
+    } else {
+      Map<String, bool> onlineIndicatorMap = {"isOnline": false};
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     }
 
