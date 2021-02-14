@@ -97,7 +97,7 @@ class _StatusScreenState extends State<StatusScreen> {
                           Container(
                             margin: EdgeInsets.only(top: 10),
                             child: Text(
-                              " Text Status",
+                              " Add Text",
                               style: GoogleFonts.nunito(
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15,
@@ -127,7 +127,7 @@ class _StatusScreenState extends State<StatusScreen> {
                           Container(
                             margin: EdgeInsets.only(top: 10),
                             child: Text(
-                              "Media Status",
+                              "Add Media",
                               style: GoogleFonts.nunito(
                                   fontWeight: FontWeight.w800,
                                   fontSize: 15,

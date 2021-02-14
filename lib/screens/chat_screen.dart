@@ -25,7 +25,6 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
 
-
 class ChatScreen extends StatefulWidget {
   final String peerUsername, peerphoneNumber, peerId, chatRoomId;
 
@@ -94,7 +93,7 @@ class _ChatScreenState extends State<ChatScreen>
         builder: (context) {
           return Container(
             decoration: const BoxDecoration(color: Colors.white),
-            height: 250,
+            height: 220,
             child: Column(
               children: [
                 Row(
@@ -132,7 +131,7 @@ class _ChatScreenState extends State<ChatScreen>
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: LinearGradient(
@@ -167,7 +166,7 @@ class _ChatScreenState extends State<ChatScreen>
                                 await deleteMessage(messageUid, context);
                               },
                               child: Container(
-                                padding: const EdgeInsets.all(20),
+                                padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
                                   gradient: LinearGradient(
@@ -199,7 +198,7 @@ class _ChatScreenState extends State<ChatScreen>
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: LinearGradient(
@@ -230,7 +229,7 @@ class _ChatScreenState extends State<ChatScreen>
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(20),
+                              padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: LinearGradient(
@@ -305,7 +304,6 @@ class _ChatScreenState extends State<ChatScreen>
         "lastMessageSendTimeDate": lastMessageTs,
         "lastMessageSendBy": _auth.currentUser.uid,
         "chatRoomId": chatRoomId,
-        
       };
       msgController.jumpTo(msgController.position.minScrollExtent);
 
@@ -421,7 +419,7 @@ class _ChatScreenState extends State<ChatScreen>
                       )
                     : User2(
                         msg: ds["message"],
-                        timeSent:(ds["DateTime"] as Timestamp).toDate(),
+                        timeSent: (ds["DateTime"] as Timestamp).toDate(),
                       );
               } else if (ds["type"] == "doc") {
                 return _auth.currentUser.uid == ds["sentBy"]
@@ -743,7 +741,10 @@ class _ChatScreenState extends State<ChatScreen>
   Widget build(BuildContext context) {
     super.build(context);
 
-    print(widget.chatRoomId + widget.peerId + widget.peerUsername +widget.peerphoneNumber);
+    print(widget.chatRoomId +
+        widget.peerId +
+        widget.peerUsername +
+        widget.peerphoneNumber);
     return UnseenMessage(
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,
@@ -783,10 +784,10 @@ class _ChatScreenState extends State<ChatScreen>
                   ),
                   Text(
                     isTyping
-                        ? "typing...."
+                        ? "typing.."
                         : isOnline
-                            ? "online"
-                            : lastSeen??"",
+                            ? "Online"
+                            : "last seen at" + lastSeen ?? "",
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w700,
@@ -975,7 +976,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   child: Container(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            20),
+                                                            15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -1014,7 +1015,7 @@ class _ChatScreenState extends State<ChatScreen>
                                               children: [
                                                 Container(
                                                   padding:
-                                                      const EdgeInsets.all(20),
+                                                      const EdgeInsets.all(15),
                                                   decoration: BoxDecoration(
                                                     borderRadius:
                                                         BorderRadius.circular(
@@ -1060,7 +1061,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   child: Container(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            20),
+                                                            15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -1117,7 +1118,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   child: Container(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            20),
+                                                            15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -1141,7 +1142,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   margin: const EdgeInsets.only(
                                                       top: 10),
                                                   child: Text(
-                                                    "Image Gallery",
+                                                    "Image",
                                                     style: GoogleFonts.nunito(
                                                       fontWeight:
                                                           FontWeight.w800,
@@ -1164,7 +1165,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   child: Container(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            20),
+                                                            15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -1209,7 +1210,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   child: Container(
                                                     padding:
                                                         const EdgeInsets.all(
-                                                            20),
+                                                            15),
                                                     decoration: BoxDecoration(
                                                       borderRadius:
                                                           BorderRadius.circular(
@@ -1234,7 +1235,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                   margin: const EdgeInsets.only(
                                                       top: 10),
                                                   child: Text(
-                                                    "Video Gallery",
+                                                    "Video",
                                                     style: GoogleFonts.nunito(
                                                       fontWeight:
                                                           FontWeight.w800,
