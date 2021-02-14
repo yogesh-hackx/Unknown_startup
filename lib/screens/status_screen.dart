@@ -1,3 +1,4 @@
+import 'package:application_unknown/widgets/image_status.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -108,20 +109,28 @@ class _StatusScreenState extends State<StatusScreen> {
                       ),
                       Column(
                         children: [
-                          Container(
-                            padding: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              gradient: LinearGradient(
-                                colors: [
-                                  Color.fromRGBO(67, 127, 199, 1),
-                                  Color.fromRGBO(109, 175, 254, 1)
-                                ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.push(context,
+                                  MaterialPageRoute(builder: (context) {
+                                return ImageStatus();
+                              }));
+                            },
+                            child: Container(
+                              padding: EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1000),
+                                gradient: LinearGradient(
+                                  colors: [
+                                    Color.fromRGBO(67, 127, 199, 1),
+                                    Color.fromRGBO(109, 175, 254, 1)
+                                  ],
+                                ),
                               ),
-                            ),
-                            child: Icon(
-                              Icons.camera_alt_rounded,
-                              color: Colors.white,
+                              child: Icon(
+                                Icons.camera_alt_rounded,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                           Container(
