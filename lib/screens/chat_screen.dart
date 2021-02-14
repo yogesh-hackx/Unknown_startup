@@ -787,7 +787,7 @@ class _ChatScreenState extends State<ChatScreen>
                         ? "typing.."
                         : isOnline
                             ? "Online"
-                            : "last seen at" + lastSeen ?? "",
+                            : "last seen at ${lastSeen ?? ""}",
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w700,
