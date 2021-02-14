@@ -31,7 +31,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     }
 
-    // TODO: implement didChangeAppLifecycleState
     super.didChangeAppLifecycleState(state);
   }
 

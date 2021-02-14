@@ -31,7 +31,7 @@ class _EditProfileState extends State<EditProfile> {
           Center(
             child: Container(
               decoration: BoxDecoration(),
-              margin: EdgeInsets.only(top: 30),
+              margin: EdgeInsets.only(top: 20),
               padding: const EdgeInsets.all(10),
               child: Stack(
                 children: [
@@ -46,7 +46,12 @@ class _EditProfileState extends State<EditProfile> {
                     child: Container(
                       padding: EdgeInsets.all(12),
                       decoration: BoxDecoration(
-                        color: Colors.cyan,
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(67, 127, 199, 1),
+                            Color.fromRGBO(109, 175, 254, 1)
+                          ],
+                        ),
                         borderRadius: BorderRadius.circular(1000),
                       ),
                       child: Icon(
@@ -59,54 +64,102 @@ class _EditProfileState extends State<EditProfile> {
               ),
             ),
           ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                style: GoogleFonts.nunito(),
-                maxLines: 1,
-                decoration: InputDecoration(
-                  labelText: "Edit name",
-                  labelStyle: GoogleFonts.nunito(fontWeight: FontWeight.bold),
-                ),
-              ),
-            ),
+          Container(
+            margin: EdgeInsets.only(left: 30, top: 20),
+            child: Text("Your Name:",
+                style: GoogleFonts.nunito(
+                    color: Colors.black87,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900)),
           ),
           Center(
             child: Container(
-              margin: EdgeInsets.all(30),
-              child: TextField(
-                style: GoogleFonts.nunito(),
-                maxLines: 1,
-                decoration: InputDecoration(
-                  labelText: "Edit about",
-                  labelStyle: GoogleFonts.nunito(fontWeight: FontWeight.bold),
+              margin: EdgeInsets.only(left: 30, right: 30),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromRGBO(231, 233, 240, 1),
                 ),
+                borderRadius: BorderRadius.circular(3),
+                color: Color.fromRGBO(231, 233, 240, 1),
               ),
-            ),
-          ),
-          Center(
-            child: Container(
-              margin: EdgeInsets.all(30),
               child: TextField(
-                style: GoogleFonts.nunito(),
-                maxLines: 1,
+                style: GoogleFonts.nunito(fontSize: 20),
+                textAlignVertical: TextAlignVertical.center,
                 decoration: InputDecoration(
-                  labelText: "Edit speciality",
-                  labelStyle: GoogleFonts.nunito(fontWeight: FontWeight.bold),
+                  counterText: '',
+                  border: InputBorder.none,
                 ),
               ),
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 30),
+            margin: EdgeInsets.only(left: 30, top: 20),
+            child: Text("Your About:",
+                style: GoogleFonts.nunito(
+                    color: Colors.black87,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900)),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(left: 30, right: 30),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromRGBO(231, 233, 240, 1),
+                ),
+                borderRadius: BorderRadius.circular(3),
+                color: Color.fromRGBO(231, 233, 240, 1),
+              ),
+              child: TextField(
+                style: GoogleFonts.nunito(fontSize: 20),
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  counterText: '',
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(left: 30, top: 20),
+            child: Text("Your Speciality:",
+                style: GoogleFonts.nunito(
+                    color: Colors.black87,
+                    fontSize: 17,
+                    fontWeight: FontWeight.w900)),
+          ),
+          Center(
+            child: Container(
+              margin: EdgeInsets.only(left: 30, right: 30),
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: Color.fromRGBO(231, 233, 240, 1),
+                ),
+                borderRadius: BorderRadius.circular(3),
+                color: Color.fromRGBO(231, 233, 240, 1),
+              ),
+              child: TextField(
+                style: GoogleFonts.nunito(fontSize: 20),
+                textAlignVertical: TextAlignVertical.center,
+                decoration: InputDecoration(
+                  counterText: '',
+                  border: InputBorder.none,
+                ),
+              ),
+            ),
+          ),
+          Container(
+            margin: EdgeInsets.only(top: 30, left: 30, right: 30),
             child: RaisedButton(
               onPressed: () async {},
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3)),
-              color: Colors.indigo[700],
+              color: Color.fromRGBO(109, 175, 254, 1),
               textColor: Colors.white,
-              padding: EdgeInsets.all(12),
+              padding: EdgeInsets.all(18),
               child: Text(
                 "Save Changes",
                 style: GoogleFonts.nunito(
