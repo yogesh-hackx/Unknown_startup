@@ -146,10 +146,16 @@ class _StatusScreenState extends State<StatusScreen> {
             margin: const EdgeInsets.symmetric(horizontal: 20),
             child: ListTile(
               tileColor: Colors.white,
-              contentPadding: EdgeInsets.all(5),
+              contentPadding: EdgeInsets.all(8),
               leading: Container(
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(1000),
+                  border: Border.all(
+                      color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                ),
                 child: const CircleAvatar(
-                  radius: 30,
+                  radius: 20,
                   backgroundImage: const AssetImage(
                       "assets/images/pexels-sindre-strøm-1040880.jpg"),
                 ),
@@ -170,32 +176,6 @@ class _StatusScreenState extends State<StatusScreen> {
               ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-            child: ListTile(
-              tileColor: Colors.white,
-              contentPadding: const EdgeInsets.all(5),
-              leading: const CircleAvatar(
-                radius: 30,
-                backgroundImage: const AssetImage(
-                    "assets/images/pexels-sindre-strøm-1040880.jpg"),
-              ),
-              title: Text(
-                "Jennifer Cleo",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16,
-                    color: Colors.black87),
-              ),
-              subtitle: Text(
-                "Yesterday at 12:30pm",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: Colors.grey),
-              ),
-            ),
-          )
         ],
       ),
     );
