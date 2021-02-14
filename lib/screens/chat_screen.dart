@@ -24,7 +24,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
-import 'package:intl/intl.dart';
 
 
 class ChatScreen extends StatefulWidget {
@@ -743,6 +742,8 @@ class _ChatScreenState extends State<ChatScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
+
+    print(widget.chatRoomId + widget.peerId + widget.peerUsername +widget.peerphoneNumber);
     return UnseenMessage(
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,
@@ -785,7 +786,7 @@ class _ChatScreenState extends State<ChatScreen>
                         ? "typing...."
                         : isOnline
                             ? "online"
-                            : lastSeen,
+                            : lastSeen??"",
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w700,
