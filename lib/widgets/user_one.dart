@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:swipe_to/swipe_to.dart';
+import 'package:intl/intl.dart';
 
 class UserOne extends StatefulWidget {
   final String msg;
@@ -13,7 +14,7 @@ class UserOne extends StatefulWidget {
   final String messageUid;
   final Function deleteMessage;
   final String chatRoomId;
-  final String timeSent;
+  final DateTime timeSent;
 
   UserOne(
       {this.msg,
@@ -32,6 +33,7 @@ class _UserOneState extends State<UserOne> {
   bool isSeen = false;
   StreamSubscription seenOrUnseen;
   bool notSend = false;
+  var dateFormat = DateFormat.jm();
 
   @override
   void initState() {
@@ -186,7 +188,7 @@ class _UserOneState extends State<UserOne> {
             Container(
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Text(
-                widget.timeSent,
+                dateFormat.format(widget.timeSent),
                 style: GoogleFonts.nunito(
                   fontSize: 12,
                   fontWeight: FontWeight.w800,

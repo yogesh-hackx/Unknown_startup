@@ -2,6 +2,7 @@ import 'package:application_unknown/screens/chat_screen.dart';
 import 'package:application_unknown/widgets/delete_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
+import 'package:intl/intl.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ChatListTile extends StatefulWidget {
@@ -11,7 +12,7 @@ class ChatListTile extends StatefulWidget {
   final String peerUid;
   final String peerphoneNumber;
   final String unseenMessagesCount;
-  final String lastMessageTime;
+  final DateTime lastMessageTime;
 
   ChatListTile(
       {Key key,
@@ -29,6 +30,8 @@ class ChatListTile extends StatefulWidget {
 
 class _ChatListTileState extends State<ChatListTile> {
   bool islongPress = false;
+  var dateFormat = DateFormat.jm();
+
   @override
   void initState() {
     super.initState();
@@ -121,7 +124,7 @@ class _ChatListTileState extends State<ChatListTile> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      widget.lastMessageTime,
+                      dateFormat.format(widget.lastMessageTime),
                       style: GoogleFonts.ubuntu(
                           fontWeight: FontWeight.w900, color: Colors.black45),
                     ),

@@ -288,14 +288,13 @@ class _ChatScreenState extends State<ChatScreen>
       String message = messageController.text.trim();
       messageController.text = "";
       var lastMessageTs = DateTime.now();
-      var dateFormatter = DateFormat.jm().format(lastMessageTs);
 
       String chatRoomId = getChatThreadId(_auth.currentUser.uid, widget.peerId);
 
       Map<String, dynamic> messageInfoMap = {
         "message": message,
         "sentBy": _auth.currentUser.uid,
-        "DateTime": dateFormatter,
+        "DateTime": lastMessageTs,
         "isSeen": false,
         "receiverId": widget.peerId,
         "type": "text"
@@ -304,7 +303,7 @@ class _ChatScreenState extends State<ChatScreen>
       FirebaseMethods().sendMessage(chatRoomId, messageInfoMap);
       Map<String, dynamic> lastMessageInfoMap = {
         "lastMessage": message,
-        "lastMessageSendTimeDate": dateFormatter,
+        "lastMessageSendTimeDate": lastMessageTs,
         "lastMessageSendBy": _auth.currentUser.uid,
         "chatRoomId": chatRoomId,
         
