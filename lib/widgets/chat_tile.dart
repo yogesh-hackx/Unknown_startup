@@ -11,6 +11,7 @@ class ChatListTile extends StatefulWidget {
   final String peerUid;
   final String peerphoneNumber;
   final String unseenMessagesCount;
+  final String lastMessageTime;
 
   ChatListTile(
       {Key key,
@@ -19,7 +20,8 @@ class ChatListTile extends StatefulWidget {
       this.peerUsername,
       this.peerUid,
       this.peerphoneNumber,
-      this.unseenMessagesCount});
+      this.unseenMessagesCount,
+      this.lastMessageTime});
 
   @override
   _ChatListTileState createState() => _ChatListTileState();
@@ -119,7 +121,7 @@ class _ChatListTileState extends State<ChatListTile> {
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Text(
-                      "7h",
+                      widget.lastMessageTime,
                       style: GoogleFonts.ubuntu(
                           fontWeight: FontWeight.w900, color: Colors.black45),
                     ),
