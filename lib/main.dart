@@ -2,6 +2,7 @@ import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/helper/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:intl/intl.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +28,8 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       Map<String, bool> onlineIndicatorMap = {"isOnline": true};
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     } else {
-      Map<String, bool> onlineIndicatorMap = {"isOnline": false};
+      var dateFormatter = DateFormat.jm().format(DateTime.now());
+      Map<String, dynamic> onlineIndicatorMap = {"isOnline": false,"lastSeen":dateFormatter};
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     }
 

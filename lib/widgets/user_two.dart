@@ -3,7 +3,9 @@ import 'package:google_fonts/google_fonts.dart';
 
 class User2 extends StatefulWidget {
   final String msg;
-  User2({Key key, this.msg});
+  final String timeSent;
+
+  User2({Key key, this.msg,this.timeSent});
 
   @override
   _User2State createState() => _User2State();
@@ -59,7 +61,7 @@ class _User2State extends State<User2> {
           ),
           Container(
               margin: EdgeInsets.only(bottom: 5, top: 5),
-              child: Text("10:30pm",
+              child: Text(widget.timeSent,
                   style: GoogleFonts.nunito(
                       fontSize: 12, fontWeight: FontWeight.w800))),
         ],

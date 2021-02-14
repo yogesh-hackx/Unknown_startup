@@ -24,6 +24,8 @@ import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:video_compress/video_compress.dart';
+import 'package:intl/intl.dart';
+
 
 class ChatScreen extends StatefulWidget {
   final String peerUsername, peerphoneNumber, peerId, chatRoomId;
@@ -57,6 +59,7 @@ class _ChatScreenState extends State<ChatScreen>
   bool isTyping = false;
   StreamSubscription typing;
   StreamSubscription online;
+  String lastSeen;
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -285,13 +288,14 @@ class _ChatScreenState extends State<ChatScreen>
       String message = messageController.text.trim();
       messageController.text = "";
       var lastMessageTs = DateTime.now();
+      var dateFormatter = DateFormat.jm().format(lastMessageTs);
 
       String chatRoomId = getChatThreadId(_auth.currentUser.uid, widget.peerId);
 
       Map<String, dynamic> messageInfoMap = {
         "message": message,
         "sentBy": _auth.currentUser.uid,
-        "DateTime": lastMessageTs,
+        "DateTime": dateFormatter,
         "isSeen": false,
         "receiverId": widget.peerId,
         "type": "text"
@@ -300,9 +304,10 @@ class _ChatScreenState extends State<ChatScreen>
       FirebaseMethods().sendMessage(chatRoomId, messageInfoMap);
       Map<String, dynamic> lastMessageInfoMap = {
         "lastMessage": message,
-        "lastMessageSendTimeDate": lastMessageTs,
+        "lastMessageSendTimeDate": dateFormatter,
         "lastMessageSendBy": _auth.currentUser.uid,
         "chatRoomId": chatRoomId,
+        
       };
       msgController.jumpTo(msgController.position.minScrollExtent);
 
@@ -414,9 +419,11 @@ class _ChatScreenState extends State<ChatScreen>
                         messageUid: snapShot.data.docs[index].id,
                         deleteMessage: deleteMessage,
                         chatRoomId: widget.chatRoomId,
+                        timeSent: ds["DateTime"],
                       )
                     : User2(
                         msg: ds["message"],
+                        timeSent: ds["DateTime"],
                       );
               } else if (ds["type"] == "doc") {
                 return _auth.currentUser.uid == ds["sentBy"]
@@ -697,6 +704,7 @@ class _ChatScreenState extends State<ChatScreen>
           } else {
             setState(() {
               isOnline = false;
+              lastSeen = ds.data()["lastSeen"];
             });
           }
         }
@@ -778,7 +786,7 @@ class _ChatScreenState extends State<ChatScreen>
                         ? "typing...."
                         : isOnline
                             ? "online"
-                            : "last seen today at 10:30am",
+                            : lastSeen,
                     style: GoogleFonts.nunito(
                         color: Colors.grey[600],
                         fontWeight: FontWeight.w700,

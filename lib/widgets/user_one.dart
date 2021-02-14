@@ -13,6 +13,7 @@ class UserOne extends StatefulWidget {
   final String messageUid;
   final Function deleteMessage;
   final String chatRoomId;
+  final String timeSent;
 
   UserOne(
       {this.msg,
@@ -20,7 +21,8 @@ class UserOne extends StatefulWidget {
       this.swipeleft,
       this.messageUid,
       this.deleteMessage,
-      this.chatRoomId});
+      this.chatRoomId,
+      this.timeSent});
 
   @override
   _UserOneState createState() => _UserOneState();
@@ -184,7 +186,7 @@ class _UserOneState extends State<UserOne> {
             Container(
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Text(
-                "10:30pm",
+                widget.timeSent,
                 style: GoogleFonts.nunito(
                   fontSize: 12,
                   fontWeight: FontWeight.w800,

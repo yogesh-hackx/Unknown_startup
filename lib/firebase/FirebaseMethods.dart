@@ -212,9 +212,9 @@ Stream<DocumentSnapshot> getTypingIndicator(String chatRoomId){
 
 }
 
-updateOnlineIndicator(Map<String,dynamic> onlineIndicatorMap)async{
+updateOnlineIndicator(Map<String,dynamic> onlineIndicatorMap){
 
-  return await firestore
+  return firestore
   .collection("users")
   .doc(auth.currentUser.uid)
   .update(onlineIndicatorMap);
