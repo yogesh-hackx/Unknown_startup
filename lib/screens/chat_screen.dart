@@ -418,11 +418,11 @@ class _ChatScreenState extends State<ChatScreen>
                         messageUid: snapShot.data.docs[index].id,
                         deleteMessage: deleteMessage,
                         chatRoomId: widget.chatRoomId,
-                        timeSent: ds["DateTime"],
+                        timeSent: (ds["DateTime"] as Timestamp).toDate(),
                       )
                     : User2(
                         msg: ds["message"],
-                        timeSent: ds["DateTime"],
+                        timeSent:(ds["DateTime"] as Timestamp).toDate(),
                       );
               } else if (ds["type"] == "doc") {
                 return _auth.currentUser.uid == ds["sentBy"]
