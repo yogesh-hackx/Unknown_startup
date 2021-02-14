@@ -29,7 +29,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     } else {
       var dateFormatter = DateFormat.jm().format(DateTime.now());
-      Map<String, dynamic> onlineIndicatorMap = {"isOnline": false,"lastSeen":dateFormatter};
+      Map<String, dynamic> onlineIndicatorMap = {
+        "isOnline": false,
+        "lastSeen": dateFormatter
+      };
       FirebaseMethods().updateOnlineIndicator(onlineIndicatorMap);
     }
 
