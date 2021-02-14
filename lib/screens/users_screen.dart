@@ -95,7 +95,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
                                     peerUid: userData["Id"],
                                     peerphoneNumber: userData["phoneNumber"],
                                     unseenMessagesCount: "$unseenCount",
-                                    lastMessageTime:ds["lastMessageSendTimeDate"]
+                                    lastMessageTime:(ds["lastMessageSendTimeDate"] as Timestamp).toDate()
                                   );
                                 }
                                 return Container(

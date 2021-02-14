@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
 
 class User2 extends StatefulWidget {
   final String msg;
-  final String timeSent;
+  final DateTime timeSent;
 
   User2({Key key, this.msg,this.timeSent});
 
@@ -12,6 +13,9 @@ class User2 extends StatefulWidget {
 }
 
 class _User2State extends State<User2> {
+
+  var dateFormat = DateFormat.jm();
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -61,7 +65,7 @@ class _User2State extends State<User2> {
           ),
           Container(
               margin: EdgeInsets.only(bottom: 5, top: 5),
-              child: Text(widget.timeSent,
+              child: Text(dateFormat.format(widget.timeSent),
                   style: GoogleFonts.nunito(
                       fontSize: 12, fontWeight: FontWeight.w800))),
         ],
