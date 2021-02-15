@@ -94,7 +94,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               border: Border.all(
                 color: Color.fromRGBO(231, 233, 240, 1),
               ),
-              borderRadius: BorderRadius.circular(3),
+              borderRadius: BorderRadius.circular(15),
               color: Color.fromRGBO(231, 233, 240, 1),
             ),
             child: TextField(

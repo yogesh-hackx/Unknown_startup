@@ -830,14 +830,16 @@ class _ChatScreenState extends State<ChatScreen>
                         border: Border.all(
                           color: Colors.grey[300],
                         ),
-                        borderRadius: BorderRadius.circular(5),
+                        borderRadius: BorderRadius.circular(15),
                         color: Colors.white,
                       ),
                       child: TextField(
                         focusNode: focusNode,
                         controller: messageController,
                         textAlignVertical: TextAlignVertical.center,
-                        style: GoogleFonts.nunito(),
+                        style: GoogleFonts.nunito(
+                          fontWeight: FontWeight.bold,
+                        ),
                         onChanged: (String changedMsg) async {
                           if (changedMsg.length > 0) {
                             await updateTypingIndicator(true);

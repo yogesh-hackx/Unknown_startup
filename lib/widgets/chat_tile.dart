@@ -40,7 +40,7 @@ class _ChatListTileState extends State<ChatListTile> {
   @override
   Widget build(BuildContext context) {
     //print(widget.peerUsername);
-    
+
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 7),
       child: Container(
@@ -127,7 +127,7 @@ class _ChatListTileState extends State<ChatListTile> {
                     Text(
                       dateFormat.format(widget.lastMessageTime),
                       style: GoogleFonts.ubuntu(
-                          fontWeight: FontWeight.w900, color: Colors.black45),
+                          fontWeight: FontWeight.w800, color: Colors.black54),
                     ),
                     if (widget.unseenMessagesCount != "0")
                       Badge(
