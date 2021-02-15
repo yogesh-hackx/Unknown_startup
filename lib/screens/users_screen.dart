@@ -89,14 +89,16 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
                                       unseenSnapShot.data.docs.length;
                                   print(unseenSnapShot.data.docs);
                                   return ChatListTile(
-                                    chatRoomId: ds["chatRoomId"],
-                                    lastMessage: ds["lastMessage"],
-                                    peerUsername: userData["Username"],
-                                    peerUid: userData["Id"],
-                                    peerphoneNumber: userData["phoneNumber"],
-                                    unseenMessagesCount: "$unseenCount",
-                                    lastMessageTime:(ds["lastMessageSendTimeDate"] as Timestamp).toDate()
-                                  );
+                                      chatRoomId: ds["chatRoomId"],
+                                      lastMessage: ds["lastMessage"],
+                                      peerUsername: userData["Username"],
+                                      peerUid: userData["Id"],
+                                      peerphoneNumber: userData["phoneNumber"],
+                                      unseenMessagesCount: "$unseenCount",
+                                      lastMessageTime:
+                                          (ds["lastMessageSendTimeDate"]
+                                                  as Timestamp)
+                                              .toDate());
                                 }
                                 return Container(
                                   height: 0,
@@ -116,8 +118,10 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
             }
           }),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromRGBO(109, 175, 254, 1),
-        child: Icon(Icons.search_rounded),
+        child: Icon(
+          Icons.search_rounded,
+          color: Colors.white,
+        ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
             return SearchBar();

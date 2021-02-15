@@ -122,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3)),
-              color: Color.fromRGBO(109, 175, 254, 1),
+              color: Theme.of(context).buttonColor,
               textColor: Colors.white,
               padding: EdgeInsets.all(18),
               child: Text(

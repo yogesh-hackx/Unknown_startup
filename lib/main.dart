@@ -2,6 +2,7 @@ import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/helper/helper.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:intl/intl.dart';
 
 void main() async {
@@ -44,6 +45,22 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
+      theme: ThemeData(
+          floatingActionButtonTheme: FloatingActionButtonThemeData(
+            backgroundColor: Color.fromRGBO(109, 175, 254, 1),
+          ),
+          buttonColor: Color.fromRGBO(109, 175, 254, 1),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+            type: BottomNavigationBarType.fixed,
+            selectedItemColor: Colors.blue[800],
+            unselectedItemColor: Colors.grey[700],
+            selectedLabelStyle: GoogleFonts.nunito(
+              fontWeight: FontWeight.bold,
+            ),
+            unselectedLabelStyle: GoogleFonts.nunito(
+              fontWeight: FontWeight.bold,
+            ),
+          )),
       initialRoute: '/',
       routes: {
         '/': (context) => Helper(),
