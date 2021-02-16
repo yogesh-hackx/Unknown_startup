@@ -1,7 +1,5 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-
 import 'signup.dart';
 
 class OneTimePassword extends StatefulWidget {
@@ -35,12 +33,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
           flexibleSpace: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(67, 127, 199, 1),
-                  Color.fromRGBO(109, 175, 254, 1)
-                ],
-              ),
+              color: Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -50,49 +43,35 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 Container(
                   margin: const EdgeInsets.only(left: 30),
                   child: Text("Welcome to",
-                      style: GoogleFonts.nunito(
-                          color: Colors.white70,
-                          fontSize: 35,
-                          fontWeight: FontWeight.w800)),
+                      style: Theme.of(context).textTheme.headline2),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 30),
                   child: Text("Touch",
-                      style: GoogleFonts.nunito(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800)),
+                      style: Theme.of(context).textTheme.headline1),
                 ),
               ],
             ),
           ),
         ),
       ),
+      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.only(left: 30, top: 40),
             child: Text("Verification Code",
-                style: GoogleFonts.nunito(
-                    color: Colors.black87,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900)),
+                style: Theme.of(context).textTheme.headline3),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 20),
             child: Text("Enter the six digit code sent to ",
-                style: GoogleFonts.nunito(
-                    color: Colors.grey[700],
-                    fontSize: 17,
-                    fontWeight: FontWeight.w800)),
+                style: Theme.of(context).textTheme.headline4),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 5),
             child: Text("9919937915",
-                style: GoogleFonts.nunito(
-                    color: Colors.grey[800],
-                    fontSize: 18,
-                    fontWeight: FontWeight.w900)),
+                style: Theme.of(context).textTheme.subtitle1),
           ),
           Container(
             child: Row(
@@ -101,8 +80,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 30, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     textAlign: TextAlign.center,
@@ -110,10 +92,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     cursorHeight: 28,
                     controller: otp1,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -124,8 +103,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 10, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     controller: otp2,
@@ -133,10 +115,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     keyboardType: TextInputType.phone,
                     cursorHeight: 28,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -147,8 +126,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 10, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     controller: otp3,
@@ -156,10 +138,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     keyboardType: TextInputType.phone,
                     cursorHeight: 28,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -170,8 +149,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 10, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     controller: otp4,
@@ -179,10 +161,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     keyboardType: TextInputType.phone,
                     cursorHeight: 28,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -193,8 +172,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 10, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     controller: otp5,
@@ -202,10 +184,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     keyboardType: TextInputType.phone,
                     cursorHeight: 28,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -216,8 +195,11 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   width: 50,
                   margin: EdgeInsets.only(left: 10, top: 30),
                   decoration: BoxDecoration(
+                    color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(color: Colors.grey[500]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                   ),
                   child: TextField(
                     controller: otp6,
@@ -225,10 +207,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     keyboardType: TextInputType.phone,
                     cursorHeight: 28,
                     maxLength: 1,
-                    style: GoogleFonts.nunito(
-                      fontSize: 28,
-                      fontWeight: FontWeight.w900,
-                    ),
+                    style: Theme.of(context).textTheme.headline3,
                     decoration: const InputDecoration(
                       border: InputBorder.none,
                       counterText: "",
@@ -256,10 +235,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
               padding: EdgeInsets.all(18),
               child: Text(
                 "Verify",
-                style: GoogleFonts.nunito(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(context).textTheme.button,
               ),
             ),
           ),
@@ -267,25 +243,20 @@ class _OneTimePasswordState extends State<OneTimePassword> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: EdgeInsets.all(11),
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromRGBO(231, 233, 240, 1),
+                  color: Color.fromRGBO(53, 61, 81, 1),
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40),
-                child: Text(
-                  "Resend OTP",
-                  style: GoogleFonts.nunito(
-                    fontSize: 16,
-                    fontWeight: FontWeight.w800,
-                  ),
-                ),
+                child: Text("Resend OTP",
+                    style: Theme.of(context).textTheme.headline4),
               ),
               Container(
-                padding: EdgeInsets.all(11),
+                padding: EdgeInsets.all(10),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
-                  color: Color.fromRGBO(231, 233, 240, 1),
+                  color: Color.fromRGBO(53, 61, 81, 1),
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40, right: 20),
                 child: GestureDetector(
@@ -295,13 +266,8 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                       return SignUpScreen();
                     }));
                   },
-                  child: Text(
-                    "Wrong Number?",
-                    style: GoogleFonts.nunito(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
-                  ),
+                  child: Text("Wrong Number?",
+                      style: Theme.of(context).textTheme.headline4),
                 ),
               )
             ],
@@ -311,12 +277,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
       bottomNavigationBar: Container(
         height: 50,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(67, 127, 199, 1),
-              Color.fromRGBO(109, 175, 254, 1)
-            ],
-          ),
+          color: Color.fromRGBO(23, 28, 41, 1),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),

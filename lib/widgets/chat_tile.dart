@@ -3,7 +3,6 @@ import 'package:application_unknown/widgets/delete_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:badges/badges.dart';
 import 'package:intl/intl.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatListTile extends StatefulWidget {
   final String lastMessage;
@@ -48,99 +47,93 @@ class _ChatListTileState extends State<ChatListTile> {
           boxShadow: (islongPress
               ? [
                   BoxShadow(
-                    color: Colors.grey[400].withOpacity(0.5),
+                    color: Colors.white.withOpacity(0.1),
                     offset: Offset(-6.0, -6.0),
                     blurRadius: 16.0,
                   ),
                   BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.white.withOpacity(0.1),
                     offset: Offset(6.0, 6.0),
                     blurRadius: 16.0,
                   ),
                 ]
               : []),
         ),
-        child: ListTile(
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ChatScreen(
-                  peerUsername: widget.peerUsername,
-                  peerId: widget.peerUid,
-                  peerphoneNumber: widget.peerphoneNumber,
-                  chatRoomId: widget.chatRoomId,
-                );
-              }),
-            );
-            setState(() {
-              islongPress = false;
-            });
-          },
-          onLongPress: () {
-            setState(() {
-              islongPress = true;
-            });
-          },
-          tileColor: Colors.white,
-          contentPadding: const EdgeInsets.all(10),
-          leading: CircleAvatar(
-            radius: 30.0,
-            backgroundImage:
-                AssetImage("assets/images/pexels-sindre-strøm-1040880.jpg"),
-          ),
-          title: Text(
-            widget.peerUsername,
-            style: GoogleFonts.nunito(
-                fontSize: 17,
-                fontWeight: FontWeight.w900,
-                color: Colors.grey[800]),
-          ),
-          subtitle: Text(
-            widget.lastMessage,
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            style: GoogleFonts.nunito(fontWeight: FontWeight.w700),
-          ),
-          trailing: (islongPress
-              ? InkWell(
-                  onTap: () {
-                    setState(() {
-                      showModalBottomSheet(
-                          context: context,
-                          builder: (context) {
-                            return DeleteModal();
-                          });
-                      islongPress = false;
-                    });
-                  },
-                  child: Icon(
-                    Icons.delete,
-                    color: Colors.red,
-                  ),
-                )
-              : Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Text(
-                      dateFormat.format(widget.lastMessageTime),
-                      style: GoogleFonts.ubuntu(
-                          fontWeight: FontWeight.w800, color: Colors.black54),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(5),
+          child: ListTile(
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ChatScreen(
+                    peerUsername: widget.peerUsername,
+                    peerId: widget.peerUid,
+                    peerphoneNumber: widget.peerphoneNumber,
+                    chatRoomId: widget.chatRoomId,
+                  );
+                }),
+              );
+              setState(() {
+                islongPress = false;
+              });
+            },
+            onLongPress: () {
+              setState(() {
+                islongPress = true;
+              });
+            },
+            tileColor: Color.fromRGBO(53, 61, 81, 1),
+            contentPadding: const EdgeInsets.all(9),
+            leading: CircleAvatar(
+              radius: 30.0,
+              backgroundImage:
+                  AssetImage("assets/images/pexels-sindre-strøm-1040880.jpg"),
+            ),
+            title: Text(
+              widget.peerUsername,
+              style: Theme.of(context).textTheme.headline4,
+            ),
+            subtitle: Text(
+              widget.lastMessage,
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+            trailing: (islongPress
+                ? InkWell(
+                    onTap: () {
+                      setState(() {
+                        showModalBottomSheet(
+                            context: context,
+                            builder: (context) {
+                              return DeleteModal();
+                            });
+                        islongPress = false;
+                      });
+                    },
+                    child: Icon(
+                      Icons.delete,
+                      color: Colors.red,
                     ),
-                    if (widget.unseenMessagesCount != "0")
-                      Badge(
-                        badgeContent: Text(
-                          widget.unseenMessagesCount,
-                          style: GoogleFonts.ubuntu(
-                              fontWeight: FontWeight.w800, color: Colors.white),
-                        ),
-                        badgeColor: Colors.indigo,
-                        padding: const EdgeInsets.all(7),
-                      )
-                  ],
-                )),
+                  )
+                : Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        dateFormat.format(widget.lastMessageTime),
+                        style: Theme.of(context).textTheme.headline6,
+                      ),
+                      if (widget.unseenMessagesCount != "0")
+                        Badge(
+                          badgeContent: Text(widget.unseenMessagesCount,
+                              style: Theme.of(context).textTheme.button),
+                          badgeColor: Color.fromRGBO(23, 28, 41, 1),
+                          padding: const EdgeInsets.all(7),
+                        )
+                    ],
+                  )),
+          ),
         ),
       ),
     );

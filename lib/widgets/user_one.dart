@@ -144,33 +144,19 @@ class _UserOneState extends State<UserOne> {
                   constraints: BoxConstraints(maxWidth: 250),
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.white.withOpacity(0.8),
-                        offset: Offset(-6.0, -6.0),
-                        blurRadius: 16.0,
-                      ),
-                      BoxShadow(
-                        color: Colors.black.withOpacity(0.1),
-                        offset: Offset(6.0, 6.0),
-                        blurRadius: 16.0,
-                      ),
-                    ],
-                    border: Border.all(color: Colors.grey[200]),
+                    border: Border.all(
+                      color: Color.fromRGBO(53, 61, 81, 1),
+                    ),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(8),
                       bottomLeft: Radius.circular(8),
                       topLeft: Radius.circular(8),
                     ),
-                    color: Colors.grey[200],
+                    color: Color.fromRGBO(53, 61, 81, 1),
                   ),
                   child: Text(
                     widget.msg,
-                    style: GoogleFonts.nunito(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.grey[800],
-                      fontSize: 15,
-                    ),
+                    style: Theme.of(context).textTheme.bodyText1,
                   ),
                 ),
               ),
@@ -182,17 +168,14 @@ class _UserOneState extends State<UserOne> {
                     ? Icons.check_circle_outline
                     : Icons.check_circle_rounded,
                 size: 15,
-                color: Color.fromRGBO(67, 127, 199, 1),
+                color: Color.fromRGBO(109, 175, 254, 1),
               ),
             ),
             Container(
               margin: EdgeInsets.only(top: 5, bottom: 5),
               child: Text(
                 dateFormat.format(widget.timeSent),
-                style: GoogleFonts.nunito(
-                  fontSize: 12,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(context).textTheme.bodyText2,
               ),
             ),
           ],

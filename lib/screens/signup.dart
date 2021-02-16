@@ -1,6 +1,5 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -26,12 +25,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           flexibleSpace: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color.fromRGBO(67, 127, 199, 1),
-                  Color.fromRGBO(109, 175, 254, 1)
-                ],
-              ),
+              color: Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -41,50 +35,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 Container(
                   margin: const EdgeInsets.only(left: 30),
                   child: Text("Welcome to",
-                      style: GoogleFonts.nunito(
-                          color: Colors.white70,
-                          fontSize: 35,
-                          fontWeight: FontWeight.w800)),
+                      style: Theme.of(context).textTheme.headline2),
                 ),
                 Container(
                   margin: const EdgeInsets.only(left: 30),
                   child: Text("Touch",
-                      style: GoogleFonts.nunito(
-                          color: Colors.white,
-                          fontSize: 40,
-                          fontWeight: FontWeight.w800)),
+                      style: Theme.of(context).textTheme.headline1),
                 ),
               ],
             ),
           ),
         ),
       ),
+      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.only(left: 30, top: 40),
             child: Text("Phone Verification",
-                style: GoogleFonts.nunito(
-                    color: Colors.black87,
-                    fontSize: 25,
-                    fontWeight: FontWeight.w900)),
+                style: Theme.of(context).textTheme.headline3),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 20),
             child: Text(
                 "A six digit code will be sent to verify your phone number ",
-                style: GoogleFonts.nunito(
-                    color: Colors.grey[700],
-                    fontSize: 17,
-                    fontWeight: FontWeight.w800)),
+                style: Theme.of(context).textTheme.headline4),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 30),
             child: Text("Phone number:",
-                style: GoogleFonts.nunito(
-                    color: Colors.black87,
-                    fontSize: 17,
-                    fontWeight: FontWeight.w900)),
+                style: Theme.of(context).textTheme.headline4),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 10, right: 50),
@@ -92,14 +72,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(231, 233, 240, 1),
+                color: Color.fromRGBO(53, 61, 81, 1),
               ),
-              borderRadius: BorderRadius.circular(15),
-              color: Color.fromRGBO(231, 233, 240, 1),
+              borderRadius: BorderRadius.circular(5),
+              color: Color.fromRGBO(53, 61, 81, 1),
             ),
             child: TextField(
-              style:
-                  GoogleFonts.nunito(fontWeight: FontWeight.w800, fontSize: 22),
+              style: Theme.of(context).textTheme.subtitle1,
               textAlignVertical: TextAlignVertical.center,
               controller: phoneNumberController,
               keyboardType: TextInputType.phone,
@@ -107,7 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 counterText: '',
                 prefixIcon: Icon(
                   Icons.call_rounded,
-                  color: Color.fromRGBO(67, 127, 199, 1),
+                  color: Theme.of(context).buttonColor,
                 ),
                 border: InputBorder.none,
               ),
@@ -127,10 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.all(18),
               child: Text(
                 "Get OTP",
-                style: GoogleFonts.nunito(
-                  fontSize: 15,
-                  fontWeight: FontWeight.w800,
-                ),
+                style: Theme.of(context).textTheme.button,
               ),
             ),
           ),
@@ -139,12 +115,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       bottomNavigationBar: Container(
         height: 50,
         decoration: BoxDecoration(
-          gradient: LinearGradient(
-            colors: [
-              Color.fromRGBO(67, 127, 199, 1),
-              Color.fromRGBO(109, 175, 254, 1)
-            ],
-          ),
+          color: Color.fromRGBO(23, 28, 41, 1),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),

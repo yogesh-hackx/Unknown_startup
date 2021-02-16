@@ -749,6 +749,7 @@ class _ChatScreenState extends State<ChatScreen>
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,
       scaffold: Scaffold(
+        backgroundColor: Colors.black,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: AppBar(
@@ -775,11 +776,7 @@ class _ChatScreenState extends State<ChatScreen>
                     },
                     child: Text(
                       widget.peerUsername,
-                      style: GoogleFonts.nunito(
-                        color: Colors.black87,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: Theme.of(context).textTheme.headline4,
                     ),
                   ),
                   Text(
@@ -796,7 +793,7 @@ class _ChatScreenState extends State<ChatScreen>
                 ],
               ),
             ),
-            backgroundColor: Colors.white,
+            backgroundColor: Color.fromRGBO(23, 28, 41, 1),
             elevation: 0,
             actions: [
               Container(
@@ -825,13 +822,13 @@ class _ChatScreenState extends State<ChatScreen>
                       margin:
                           const EdgeInsets.only(left: 15, bottom: 15, top: 5),
                       width: 270,
-                      padding: const EdgeInsets.all(4),
+                      padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.grey[300],
+                          color: Color.fromRGBO(53, 61, 81, 1),
                         ),
-                        borderRadius: BorderRadius.circular(15),
-                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(5),
+                        color: Color.fromRGBO(53, 61, 81, 1),
                       ),
                       child: TextField(
                         focusNode: focusNode,
@@ -861,13 +858,9 @@ class _ChatScreenState extends State<ChatScreen>
                             },
                             child: Icon(
                               Icons.emoji_emotions_rounded,
-                              color: Color.fromRGBO(67, 127, 199, 1),
+                              color: Color.fromRGBO(109, 175, 254, 1),
                             ),
                           ),
-                          hintText: "Type your message here..",
-                          hintStyle: GoogleFonts.nunito(
-                              fontWeight: FontWeight.w800,
-                              color: Colors.black87),
                           border: InputBorder.none,
                         ),
                       ),

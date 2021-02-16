@@ -4,7 +4,6 @@ import 'package:application_unknown/widgets/chat_tile.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ChatScreenUsers extends StatefulWidget {
   @override
@@ -46,15 +45,11 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
         child: AppBar(
           automaticallyImplyLeading: false,
           titleSpacing: 30,
-          elevation: 0,
           title: Text(
             "Chats",
-            style: GoogleFonts.nunito(
-                color: Colors.grey[600],
-                fontSize: 23,
-                fontWeight: FontWeight.w900),
+            style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: Color.fromRGBO(23, 28, 41, 1),
           actions: [
             IconButton(
               icon: const Icon(Icons.logout),
@@ -64,6 +59,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
           ],
         ),
       ),
+      backgroundColor: Colors.black,
       body: StreamBuilder(
           stream: chatRoomStream,
           builder: (context, snapShot) {
@@ -120,7 +116,6 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
       floatingActionButton: FloatingActionButton(
         child: Icon(
           Icons.search_rounded,
-          color: Colors.white,
         ),
         onPressed: () {
           Navigator.push(context, MaterialPageRoute(builder: (context) {
