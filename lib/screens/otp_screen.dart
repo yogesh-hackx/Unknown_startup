@@ -64,6 +64,12 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 style: Theme.of(context).textTheme.headline3),
           ),
           Container(
+            margin: const EdgeInsets.only(left: 30, right: 40),
+            child: Divider(
+              color: Colors.white,
+            ),
+          ),
+          Container(
             margin: const EdgeInsets.only(left: 30, top: 20),
             child: Text("Enter the six digit code sent to ",
                 style: Theme.of(context).textTheme.headline4),
@@ -250,7 +256,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40),
                 child: Text("Resend OTP",
-                    style: Theme.of(context).textTheme.headline4),
+                    style: Theme.of(context).textTheme.headline5),
               ),
               Container(
                 padding: EdgeInsets.all(10),
@@ -267,7 +273,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     }));
                   },
                   child: Text("Wrong Number?",
-                      style: Theme.of(context).textTheme.headline4),
+                      style: Theme.of(context).textTheme.headline5),
                 ),
               )
             ],

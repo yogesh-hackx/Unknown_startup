@@ -56,6 +56,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: Theme.of(context).textTheme.headline3),
           ),
           Container(
+            margin: const EdgeInsets.only(left: 30, right: 40),
+            child: Divider(
+              color: Colors.white,
+            ),
+          ),
+          Container(
             margin: const EdgeInsets.only(left: 30, top: 20),
             child: Text(
                 "A six digit code will be sent to verify your phone number ",

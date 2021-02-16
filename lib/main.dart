@@ -97,13 +97,13 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             color: Colors.white,
           ),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
-            backgroundColor: Color.fromRGBO(109, 175, 254, 1),
+            backgroundColor: const Color.fromRGBO(109, 175, 254, 1),
           ),
-          buttonColor: Color.fromRGBO(109, 175, 254, 1),
+          buttonColor: const Color.fromRGBO(109, 175, 254, 1),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
             backgroundColor: Colors.black,
             type: BottomNavigationBarType.fixed,
-            selectedItemColor: Color.fromRGBO(109, 175, 254, 1),
+            selectedItemColor: const Color.fromRGBO(109, 175, 254, 1),
             unselectedItemColor: Colors.white,
             selectedLabelStyle: GoogleFonts.nunito(
               fontWeight: FontWeight.bold,
