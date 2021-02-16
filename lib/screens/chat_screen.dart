@@ -395,11 +395,15 @@ class _ChatScreenState extends State<ChatScreen>
   }
 
   Widget chatMessages() {
+    Key key = Key(randomString(5));
     return StreamBuilder(
       stream: messageStream,
       builder: (context, snapShot) {
         if (snapShot.hasData && snapShot.data != null) {
           return ListView.builder(
+            key: key,
+            addAutomaticKeepAlives: false,
+            itemExtent:60,
             padding: const EdgeInsets.all(20),
             controller: msgController,
             reverse: true,

@@ -63,7 +63,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
       body: StreamBuilder(
           stream: chatRoomStream,
           builder: (context, snapShot) {
-            if (snapShot.hasData) {
+            if (snapShot.hasData && snapShot.data != null) {
               return ListView.builder(
                   padding: const EdgeInsets.all(15),
                   itemCount: snapShot.data.docs.length,
