@@ -41,7 +41,7 @@ class _ChatListTileState extends State<ChatListTile> {
     //print(widget.peerUsername);
 
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 2),
+      padding: const EdgeInsets.symmetric(vertical: 3),
       child: Column(
         children: [
           Container(
@@ -87,28 +87,18 @@ class _ChatListTileState extends State<ChatListTile> {
                 },
                 tileColor: const Color.fromRGBO(23, 28, 41, 1),
                 contentPadding: const EdgeInsets.all(9),
-                leading: Stack(
-                  children: [
-                    CircleAvatar(
-                      radius: 30.0,
-                      backgroundImage: AssetImage(
-                          "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                    ),
-                    Positioned(
-                      bottom: 2,
-                      right: 2,
-                      child: Container(
-                        padding: EdgeInsets.all(3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(1000),
-                        ),
-                        child: Badge(
-                          badgeColor: Colors.green,
-                          padding: const EdgeInsets.all(5),
-                        ),
-                      ),
-                    )
-                  ],
+                leading: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1000),
+                    border: Border.all(
+                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                  ),
+                  child: const CircleAvatar(
+                    radius: 20,
+                    backgroundImage: const AssetImage(
+                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                  ),
                 ),
                 title: Text(
                   widget.peerUsername,
@@ -120,7 +110,7 @@ class _ChatListTileState extends State<ChatListTile> {
                   widget.lastMessage,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.subtitle2,
+                  style: Theme.of(context).textTheme.headline6,
                 ),
                 trailing: (islongPress
                     ? InkWell(

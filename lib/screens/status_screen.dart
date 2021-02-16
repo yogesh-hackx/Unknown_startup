@@ -157,7 +157,7 @@ class _StatusScreenState extends State<StatusScreen> {
                   ),
                 ),
                 title: Text(
-                  "Jennifer Cleo",
+                  "Ashutosh Singh",
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 subtitle: Text(

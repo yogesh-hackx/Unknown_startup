@@ -65,7 +65,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             headline6: GoogleFonts.nunito(
               color: Color.fromRGBO(109, 175, 254, 1),
               fontSize: 14,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w800,
             ),
             subtitle1: GoogleFonts.nunito(
                 color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
@@ -99,10 +99,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
           ),
           buttonColor: const Color.fromRGBO(109, 175, 254, 1),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: Color.fromRGBO(23, 28, 41, 1),
+            backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
             type: BottomNavigationBarType.fixed,
             selectedItemColor: const Color.fromRGBO(109, 175, 254, 1),
-            unselectedItemColor: Colors.white,
+            unselectedItemColor: Colors.white70,
             selectedLabelStyle: GoogleFonts.nunito(
               fontWeight: FontWeight.bold,
             ),
