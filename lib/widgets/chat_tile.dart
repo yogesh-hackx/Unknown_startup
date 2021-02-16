@@ -104,7 +104,7 @@ class _ChatListTileState extends State<ChatListTile> {
                         ),
                         child: Badge(
                           badgeColor: Colors.green,
-                          padding: EdgeInsets.all(5),
+                          padding: const EdgeInsets.all(5),
                         ),
                       ),
                     )
@@ -118,7 +118,7 @@ class _ChatListTileState extends State<ChatListTile> {
                   widget.lastMessage,
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
-                  style: Theme.of(context).textTheme.headline6,
+                  style: Theme.of(context).textTheme.subtitle2,
                 ),
                 trailing: (islongPress
                     ? InkWell(
@@ -157,12 +157,6 @@ class _ChatListTileState extends State<ChatListTile> {
               ),
             ),
           ),
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 2),
-            child: Divider(
-              color: Colors.white,
-            ),
-          )
         ],
       ),
     );

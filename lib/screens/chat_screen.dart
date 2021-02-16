@@ -452,8 +452,7 @@ class _ChatScreenState extends State<ChatScreen>
                   chatRoomId: ds["chatRoomId"],
                   uid: ds["uid"],
                 );
-              } 
-              else if (ds["type"] == "deleted") {
+              } else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
                 return Gif1(url: ds["url"]);
@@ -523,19 +522,18 @@ class _ChatScreenState extends State<ChatScreen>
       DateTime messageTime = DateTime.now();
       var uid = randomAlphaNumeric(19);
       var initialMessageInfoMap = {
-        "path":imageFile.path,
-        "type":"image",
-        "isUploading":true,
-        "fileName":fileName,
-        "sentBy":_auth.currentUser.uid,
-        "chatRoomId":widget.chatRoomId,
-        "uid":uid,
-        "DateTime":messageTime
+        "path": imageFile.path,
+        "type": "image",
+        "isUploading": true,
+        "fileName": fileName,
+        "sentBy": _auth.currentUser.uid,
+        "chatRoomId": widget.chatRoomId,
+        "uid": uid,
+        "DateTime": messageTime
       };
 
-      await FirebaseMethods().sendInitialAttachMentMessage(widget.chatRoomId, uid, initialMessageInfoMap);
-
-     
+      await FirebaseMethods().sendInitialAttachMentMessage(
+          widget.chatRoomId, uid, initialMessageInfoMap);
     } catch (e) {
       print(e);
     }
@@ -765,16 +763,16 @@ class _ChatScreenState extends State<ChatScreen>
                     },
                     child: Text(
                       widget.peerUsername,
-                      style: Theme.of(context).textTheme.headline4,
+                      style: Theme.of(context).textTheme.caption,
                     ),
                   ),
                   Text(
                       isTyping
-                          ? "typing.."
+                          ? "typing..."
                           : isOnline
                               ? "Online"
                               : "last seen at ${lastSeen ?? ""}",
-                      style: Theme.of(context).textTheme.subtitle2),
+                      style: Theme.of(context).textTheme.headline6),
                 ],
               ),
             ),
