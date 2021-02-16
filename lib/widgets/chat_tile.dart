@@ -122,7 +122,7 @@ class _ChatListTileState extends State<ChatListTile> {
                     children: [
                       Text(
                         dateFormat.format(widget.lastMessageTime),
-                        style: Theme.of(context).textTheme.subtitle2,
+                        style: Theme.of(context).textTheme.bodyText2,
                       ),
                       if (widget.unseenMessagesCount != "0")
                         Badge(
