@@ -105,6 +105,25 @@ class FirebaseMethods {
         .add(messageInfoMap);
   }
 
+  sendInitialAttachMentMessage(String chatRoomId,String messageUid,Map initialInfoMap)async{
+    return firestore
+      .collection("userChats")
+      .doc(chatRoomId)
+      .collection("chats")
+      .doc(messageUid)
+      .set(initialInfoMap);
+  }
+
+  sendFinalAttachMentMessage(String chatRoomId,String messageUid,Map finalInfoMap)async{
+    return firestore
+      .collection("userChats")
+      .doc(chatRoomId)
+      .collection("chats")
+      .doc(messageUid)
+      .update(finalInfoMap);
+  }
+
+
   updateLastMessageSent(String chatRoomId, Map lastMessageInfoMap) {
     return firestore
         .collection("userChats")

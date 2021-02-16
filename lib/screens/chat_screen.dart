@@ -8,6 +8,7 @@ import 'package:application_unknown/widgets/document_two.dart';
 import 'package:application_unknown/widgets/document_one.dart';
 import 'package:application_unknown/widgets/gif_ui.dart';
 import 'package:application_unknown/widgets/image_ui.dart';
+import 'package:application_unknown/widgets/image_ui_uploading.dart';
 import 'package:application_unknown/widgets/user_one.dart';
 import 'package:application_unknown/widgets/user_two.dart';
 import 'package:application_unknown/widgets/video_ui.dart';
@@ -22,6 +23,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:random_string/random_string.dart';
 import 'package:video_compress/video_compress.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -435,14 +437,23 @@ class _ChatScreenState extends State<ChatScreen>
                         senderUid: ds["sentBy"],
                         path: ds["path"],
                       );
-              } else if (ds["type"] == "image") {
+              } else if (ds["type"] == "image" && ds["isUploading"] == false) {
                 return Images(
                   path: ds["path"],
                   url: ds["downloadUrl"],
                   senderUid: ds["sentBy"],
                   fileName: ds["fileName"],
                 );
-              } else if (ds["type"] == "deleted") {
+              }else if(ds["type"]=="image" && ds["isUploading"] == true){
+                return ImageUploading(
+                  path: ds["path"],
+                  senderUid: ds["sentBy"],
+                  fileName: ds["fileName"],
+                  chatRoomId: ds["chatRoomId"],
+                  uid: ds["uid"],
+                );
+              } 
+              else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
                 return Gif1(url: ds["url"]);
@@ -509,39 +520,22 @@ class _ChatScreenState extends State<ChatScreen>
 
   sendImageMessage(File imageFile, String fileName) async {
     try {
-      DateTime lastMessageTs = DateTime.now();
-      firebase_storage.TaskSnapshot imageTask = await storage
-          .ref(widget.chatRoomId + "/" + fileName)
-          .putFile(imageFile);
-      String url = await imageTask.ref.getDownloadURL();
-      String path = imageFile.path;
-
-      Map<String, dynamic> messageInfoMap = {
-        "message": "image",
-        "sentBy": _auth.currentUser.uid,
-        "DateTime": lastMessageTs,
-        "isSeen": false,
-        "receiverId": widget.peerId,
-        "type": "image",
-        "downloadUrl": url,
-        "fileName": fileName,
-        "path": path,
+      DateTime messageTime = DateTime.now();
+      var uid = randomAlphaNumeric(19);
+      var initialMessageInfoMap = {
+        "path":imageFile.path,
+        "type":"image",
+        "isUploading":true,
+        "fileName":fileName,
+        "sentBy":_auth.currentUser.uid,
+        "chatRoomId":widget.chatRoomId,
+        "uid":uid,
+        "DateTime":messageTime
       };
 
-      FirebaseMethods()
-          .sendMessage(widget.chatRoomId, messageInfoMap)
-          .then((value) {
-        Map<String, dynamic> lastMessageInfoMap = {
-          "lastMessage": "image",
-          "lastMessageSendTimeDate": lastMessageTs,
-          "lastMessageSendBy": _auth.currentUser.uid,
-          "chatRoomId": widget.chatRoomId,
-          "messageId": value
-        };
+      await FirebaseMethods().sendInitialAttachMentMessage(widget.chatRoomId, uid, initialMessageInfoMap);
 
-        FirebaseMethods()
-            .updateLastMessageSent(widget.chatRoomId, lastMessageInfoMap);
-      });
+     
     } catch (e) {
       print(e);
     }
