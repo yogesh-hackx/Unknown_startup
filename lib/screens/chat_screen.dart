@@ -402,7 +402,6 @@ class _ChatScreenState extends State<ChatScreen>
           return ListView.builder(
             padding: const EdgeInsets.all(20),
             controller: msgController,
-            shrinkWrap: true,
             reverse: true,
             itemCount: snapShot.data.docs.length,
             itemBuilder: (context, index) {
@@ -532,7 +531,8 @@ class _ChatScreenState extends State<ChatScreen>
         "sentBy": _auth.currentUser.uid,
         "chatRoomId": widget.chatRoomId,
         "uid": uid,
-        "DateTime": messageTime
+        "DateTime": messageTime,
+        "receiverId":widget.peerId
       };
 
       await FirebaseMethods().sendInitialAttachMentMessage(

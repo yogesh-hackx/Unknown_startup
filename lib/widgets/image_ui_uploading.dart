@@ -69,7 +69,6 @@ class _ImageUploadingState extends State<ImageUploading> {
       "sentBy": auth.currentUser.uid,
       "DateTime": lastMessageTs,
       "isSeen": false,
-      "receiverId": widget.senderUid,
       "type": "image",
       "downloadUrl": url,
       "fileName": widget.fileName,
