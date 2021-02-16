@@ -250,7 +250,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 ),
                 margin: const EdgeInsets.only(left: 30, top: 40),
                 child: Text("Resend OTP",
-                    style: Theme.of(context).textTheme.headline4),
+                    style: Theme.of(context).textTheme.headline5),
               ),
               Container(
                 padding: EdgeInsets.all(10),
@@ -267,7 +267,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                     }));
                   },
                   child: Text("Wrong Number?",
-                      style: Theme.of(context).textTheme.headline4),
+                      style: Theme.of(context).textTheme.headline5),
                 ),
               )
             ],

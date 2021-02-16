@@ -85,10 +85,28 @@ class _ChatListTileState extends State<ChatListTile> {
             },
             tileColor: const Color.fromRGBO(23, 28, 41, 1),
             contentPadding: const EdgeInsets.all(9),
-            leading: CircleAvatar(
-              radius: 30.0,
-              backgroundImage:
-                  AssetImage("assets/images/pexels-sindre-strøm-1040880.jpg"),
+            leading: Stack(
+              children: [
+                CircleAvatar(
+                  radius: 30.0,
+                  backgroundImage: AssetImage(
+                      "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                ),
+                Positioned(
+                  bottom: 2,
+                  right: 2,
+                  child: Container(
+                    padding: EdgeInsets.all(3),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1000),
+                    ),
+                    child: Badge(
+                      badgeColor: Colors.green,
+                      padding: EdgeInsets.all(5),
+                    ),
+                  ),
+                )
+              ],
             ),
             title: Text(
               widget.peerUsername,
@@ -128,7 +146,7 @@ class _ChatListTileState extends State<ChatListTile> {
                         Badge(
                           badgeContent: Text(widget.unseenMessagesCount,
                               style: Theme.of(context).textTheme.button),
-                          badgeColor: Color.fromRGBO(23, 28, 41, 1),
+                          badgeColor: const Color.fromRGBO(109, 175, 254, 1),
                           padding: const EdgeInsets.all(7),
                         )
                     ],
