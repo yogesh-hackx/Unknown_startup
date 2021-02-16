@@ -60,8 +60,7 @@ class _ImageUploadingState extends State<ImageUploading> {
     });
   }
 
-  uploadingDone(
-      Reference imageRef, DateTime lastMessageTs, File imageFile) async {
+  uploadingDone(Reference imageRef, DateTime lastMessageTs, File imageFile) async {
     String url = await imageRef.getDownloadURL();
     String path = imageFile.path;
 
