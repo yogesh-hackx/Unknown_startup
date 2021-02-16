@@ -26,18 +26,6 @@ class _Gif1State extends State<Gif1> {
               margin: EdgeInsets.symmetric(vertical: 5),
               padding: EdgeInsets.all(4),
               decoration: BoxDecoration(
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.white.withOpacity(0.8),
-                    offset: Offset(-6.0, -6.0),
-                    blurRadius: 16.0,
-                  ),
-                  BoxShadow(
-                    color: Colors.black.withOpacity(0.1),
-                    offset: Offset(6.0, 6.0),
-                    blurRadius: 16.0,
-                  ),
-                ],
                 borderRadius: BorderRadius.circular(5),
                 color: Colors.grey[400],
               ),
@@ -48,16 +36,14 @@ class _Gif1State extends State<Gif1> {
               child: Icon(
                 Icons.check_circle_rounded,
                 size: 15,
-                color: Colors.indigo,
+                color: Color.fromRGBO(109, 175, 254, 1),
               ),
             ),
             Container(
-                margin: EdgeInsets.only(top: 5, bottom: 5),
-                child: Text("10:30pm",
-                    style: GoogleFonts.nunito(
-                        fontSize: 12,
-                        fontWeight: FontWeight.w800,
-                        color: Colors.teal[300]))),
+              margin: EdgeInsets.only(top: 5, bottom: 5),
+              child:
+                  Text("10:30pm", style: Theme.of(context).textTheme.bodyText2),
+            ),
           ],
         );
       },

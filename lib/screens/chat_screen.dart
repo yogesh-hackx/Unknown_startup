@@ -404,7 +404,6 @@ class _ChatScreenState extends State<ChatScreen>
           return ListView.builder(
             key: key,
             addAutomaticKeepAlives: false,
-            itemExtent:60,
             padding: const EdgeInsets.all(20),
             controller: msgController,
             reverse: true,

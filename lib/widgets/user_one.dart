@@ -17,7 +17,8 @@ class UserOne extends StatefulWidget {
   final DateTime timeSent;
 
   UserOne(
-      {Key key,this.msg,
+      {Key key,
+      this.msg,
       this.requestfocus,
       this.swipeleft,
       this.messageUid,
@@ -29,10 +30,7 @@ class UserOne extends StatefulWidget {
   _UserOneState createState() => _UserOneState();
 }
 
-class _UserOneState extends State<UserOne>{
-
-  
-
+class _UserOneState extends State<UserOne> {
   bool isSeen = false;
   StreamSubscription seenOrUnseen;
   bool notSend = false;
@@ -188,6 +186,5 @@ class _UserOneState extends State<UserOne>{
   }
 
   @override
-  // TODO: implement wantKeepAlive
   bool get wantKeepAlive => throw UnimplementedError();
 }
