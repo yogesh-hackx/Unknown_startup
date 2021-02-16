@@ -402,6 +402,7 @@ class _ChatScreenState extends State<ChatScreen>
           return ListView.builder(
             padding: const EdgeInsets.all(20),
             controller: msgController,
+            shrinkWrap: true,
             reverse: true,
             itemCount: snapShot.data.docs.length,
             itemBuilder: (context, index) {
@@ -452,7 +453,9 @@ class _ChatScreenState extends State<ChatScreen>
                   chatRoomId: ds["chatRoomId"],
                   uid: ds["uid"],
                 );
-              } else if (ds["type"] == "deleted") {
+              } else if(ds["type"]=="image" && ds["isUploading"] == true && ds["sentBy"]!=_auth.currentUser.uid){
+                return Container(width: 0,height: 0,);
+              }else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
                 return Gif1(url: ds["url"]);
