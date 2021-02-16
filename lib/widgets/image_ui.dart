@@ -97,18 +97,6 @@ class _ImagesState extends State<Images> {
                   padding: EdgeInsets.all(4),
                   margin: EdgeInsets.symmetric(vertical: 5),
                   decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.white.withOpacity(0.8),
-                          offset: Offset(-6.0, -6.0),
-                          blurRadius: 16.0,
-                        ),
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          offset: Offset(6.0, 6.0),
-                          blurRadius: 16.0,
-                        ),
-                      ],
                       borderRadius: BorderRadius.circular(5),
                       color: Colors.grey[400]),
                   child: ClipRRect(
