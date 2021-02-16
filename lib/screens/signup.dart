@@ -68,11 +68,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 style: Theme.of(context).textTheme.headline4),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 30, top: 30),
-            child: Text("Phone number:",
-                style: Theme.of(context).textTheme.headline4),
-          ),
-          Container(
             margin: const EdgeInsets.only(left: 30, top: 10, right: 50),
             width: 320,
             padding: const EdgeInsets.all(4),
