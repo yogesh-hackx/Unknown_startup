@@ -64,6 +64,12 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                 style: Theme.of(context).textTheme.headline3),
           ),
           Container(
+            margin: const EdgeInsets.only(left: 30, right: 40),
+            child: Divider(
+              color: Colors.white,
+            ),
+          ),
+          Container(
             margin: const EdgeInsets.only(left: 30, top: 20),
             child: Text("Enter the six digit code sent to ",
                 style: Theme.of(context).textTheme.headline4),
