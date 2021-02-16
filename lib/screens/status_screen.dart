@@ -1,7 +1,6 @@
 import 'package:application_unknown/widgets/image_status.dart';
 import 'package:application_unknown/widgets/text_status.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class StatusScreen extends StatefulWidget {
   @override
@@ -20,33 +19,19 @@ class _StatusScreenState extends State<StatusScreen> {
           elevation: 0,
           title: Text(
             "Status",
-            style: GoogleFonts.nunito(
-                color: Colors.grey[600],
-                fontSize: 23,
-                fontWeight: FontWeight.w900),
+            style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
+      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(-6.0, -6.0),
-                  blurRadius: 16.0,
-                ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(6.0, 6.0),
-                  blurRadius: 16.0,
-                ),
-              ],
-              color: Colors.white,
+              color: const Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -67,10 +52,7 @@ class _StatusScreenState extends State<StatusScreen> {
                   margin: EdgeInsets.only(top: 10),
                   child: Text(
                     "Your Status",
-                    style: GoogleFonts.nunito(
-                        fontWeight: FontWeight.w900,
-                        fontSize: 20,
-                        color: Colors.black87),
+                    style: Theme.of(context).textTheme.caption,
                   ),
                 ),
                 Container(
@@ -88,7 +70,7 @@ class _StatusScreenState extends State<StatusScreen> {
                               }));
                             },
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: LinearGradient(
@@ -108,10 +90,7 @@ class _StatusScreenState extends State<StatusScreen> {
                             margin: EdgeInsets.only(top: 10),
                             child: Text(
                               " Add Text",
-                              style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 15,
-                                  color: Colors.black87),
+                              style: Theme.of(context).textTheme.button,
                             ),
                           ),
                         ],
@@ -126,10 +105,10 @@ class _StatusScreenState extends State<StatusScreen> {
                               }));
                             },
                             child: Container(
-                              padding: EdgeInsets.all(10),
+                              padding: EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -143,13 +122,10 @@ class _StatusScreenState extends State<StatusScreen> {
                             ),
                           ),
                           Container(
-                            margin: EdgeInsets.only(top: 10),
+                            margin: const EdgeInsets.only(top: 10),
                             child: Text(
                               "Add Media",
-                              style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                  fontSize: 15,
-                                  color: Colors.black87),
+                              style: Theme.of(context).textTheme.button,
                             ),
                           ),
                         ],
@@ -162,35 +138,32 @@ class _StatusScreenState extends State<StatusScreen> {
           ),
           Container(
             margin: const EdgeInsets.symmetric(horizontal: 20),
-            child: ListTile(
-              tileColor: Colors.white,
-              contentPadding: EdgeInsets.all(8),
-              leading: Container(
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(1000),
-                  border: Border.all(
-                      color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(5),
+              child: ListTile(
+                tileColor: const Color.fromRGBO(23, 28, 41, 1),
+                contentPadding: EdgeInsets.all(8),
+                leading: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(1000),
+                    border: Border.all(
+                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                  ),
+                  child: const CircleAvatar(
+                    radius: 20,
+                    backgroundImage: const AssetImage(
+                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                  ),
                 ),
-                child: const CircleAvatar(
-                  radius: 20,
-                  backgroundImage: const AssetImage(
-                      "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                title: Text(
+                  "Jennifer Cleo",
+                  style: Theme.of(context).textTheme.headline5,
                 ),
-              ),
-              title: Text(
-                "Jennifer Cleo",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 16,
-                    color: Colors.black87),
-              ),
-              subtitle: Text(
-                "Yesterday at 12:30pm",
-                style: GoogleFonts.nunito(
-                    fontWeight: FontWeight.w900,
-                    fontSize: 14,
-                    color: Colors.grey),
+                subtitle: Text(
+                  "Yesterday at 12:30pm",
+                  style: Theme.of(context).textTheme.headline6,
+                ),
               ),
             ),
           ),

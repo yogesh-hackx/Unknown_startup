@@ -83,7 +83,7 @@ class _ChatListTileState extends State<ChatListTile> {
                 islongPress = true;
               });
             },
-            tileColor: Color.fromRGBO(53, 61, 81, 1),
+            tileColor: const Color.fromRGBO(23, 28, 41, 1),
             contentPadding: const EdgeInsets.all(9),
             leading: CircleAvatar(
               radius: 30.0,
@@ -92,13 +92,13 @@ class _ChatListTileState extends State<ChatListTile> {
             ),
             title: Text(
               widget.peerUsername,
-              style: Theme.of(context).textTheme.headline4,
+              style: Theme.of(context).textTheme.headline5,
             ),
             subtitle: Text(
               widget.lastMessage,
               overflow: TextOverflow.ellipsis,
               maxLines: 1,
-              style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.headline6,
             ),
             trailing: (islongPress
                 ? InkWell(
@@ -122,7 +122,7 @@ class _ChatListTileState extends State<ChatListTile> {
                     children: [
                       Text(
                         dateFormat.format(widget.lastMessageTime),
-                        style: Theme.of(context).textTheme.headline6,
+                        style: Theme.of(context).textTheme.subtitle2,
                       ),
                       if (widget.unseenMessagesCount != "0")
                         Badge(

@@ -16,7 +16,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:image_cropper/image_cropper.dart';
@@ -92,7 +91,9 @@ class _ChatScreenState extends State<ChatScreen>
         context: context,
         builder: (context) {
           return Container(
-            decoration: const BoxDecoration(color: Colors.white),
+            decoration: const BoxDecoration(
+              color: Color.fromRGBO(23, 28, 41, 1),
+            ),
             height: 220,
             child: Column(
               children: [
@@ -100,30 +101,39 @@ class _ChatScreenState extends State<ChatScreen>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                      margin: EdgeInsets.only(
-                          left: 30, right: 30, top: 30, bottom: 15),
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 30, top: 30, bottom: 15),
                       child: Text(
                         "More options",
-                        style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w900, fontSize: 22),
+                        style: Theme.of(context).textTheme.caption,
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 20),
+                      margin: const EdgeInsets.only(
+                          left: 20, right: 30, top: 30, bottom: 15),
                       child: InkWell(
                           onTap: () {
                             Navigator.pop(context);
                           },
                           child: Icon(
                             Icons.cancel_outlined,
-                            color: Colors.black54,
+                            size: 20,
+                            color: Theme.of(context).iconTheme.color,
                           )),
                     ),
                   ],
                 ),
-                Divider(),
                 Container(
-                  margin: EdgeInsets.all(20),
+                  margin: const EdgeInsets.only(
+                    left: 20,
+                    right: 20,
+                  ),
+                  child: Divider(
+                    color: Theme.of(context).iconTheme.color,
+                  ),
+                ),
+                Container(
+                  margin: const EdgeInsets.all(20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -134,25 +144,21 @@ class _ChatScreenState extends State<ChatScreen>
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.star,
-                                color: Colors.white,
-                              ),
+                              child: Icon(Icons.star,
+                                  color: Theme.of(context).iconTheme.color),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Favourites",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -169,26 +175,22 @@ class _ChatScreenState extends State<ChatScreen>
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                     colors: [
                                       Color.fromRGBO(67, 127, 199, 1),
                                       Color.fromRGBO(109, 175, 254, 1)
                                     ],
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.delete,
-                                  color: Colors.white,
-                                ),
+                                child: Icon(Icons.delete,
+                                    color: Theme.of(context).iconTheme.color),
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Delete",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -210,16 +212,14 @@ class _ChatScreenState extends State<ChatScreen>
                               ),
                               child: Icon(
                                 Icons.forward,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Forward",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -233,7 +233,7 @@ class _ChatScreenState extends State<ChatScreen>
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: LinearGradient(
-                                  colors: [
+                                  colors: const [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
                                   ],
@@ -241,16 +241,14 @@ class _ChatScreenState extends State<ChatScreen>
                               ),
                               child: Icon(
                                 Icons.copy_rounded,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Copy",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -753,9 +751,6 @@ class _ChatScreenState extends State<ChatScreen>
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: AppBar(
-            iconTheme: IconThemeData(
-              color: Colors.black87,
-            ),
             title: Container(
               margin: const EdgeInsets.only(top: 10),
               child: Column(
@@ -780,20 +775,16 @@ class _ChatScreenState extends State<ChatScreen>
                     ),
                   ),
                   Text(
-                    isTyping
-                        ? "typing.."
-                        : isOnline
-                            ? "Online"
-                            : "last seen at ${lastSeen ?? ""}",
-                    style: GoogleFonts.nunito(
-                        color: Colors.grey[600],
-                        fontWeight: FontWeight.w700,
-                        fontSize: 14),
-                  ),
+                      isTyping
+                          ? "typing.."
+                          : isOnline
+                              ? "Online"
+                              : "last seen at ${lastSeen ?? ""}",
+                      style: Theme.of(context).textTheme.subtitle2),
                 ],
               ),
             ),
-            backgroundColor: Color.fromRGBO(23, 28, 41, 1),
+            backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
             elevation: 0,
             actions: [
               Container(
@@ -834,9 +825,7 @@ class _ChatScreenState extends State<ChatScreen>
                         focusNode: focusNode,
                         controller: messageController,
                         textAlignVertical: TextAlignVertical.center,
-                        style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.bold,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         onChanged: (String changedMsg) async {
                           if (changedMsg.length > 0) {
                             await updateTypingIndicator(true);
@@ -913,8 +902,9 @@ class _ChatScreenState extends State<ChatScreen>
                             context: context,
                             builder: (context) {
                               return Container(
-                                decoration:
-                                    const BoxDecoration(color: Colors.white),
+                                decoration: const BoxDecoration(
+                                  color: Color.fromRGBO(23, 28, 41, 1),
+                                ),
                                 height: 320,
                                 child: Column(
                                   children: [
@@ -930,9 +920,9 @@ class _ChatScreenState extends State<ChatScreen>
                                               bottom: 15),
                                           child: Text(
                                             "Attach Media",
-                                            style: GoogleFonts.nunito(
-                                                fontWeight: FontWeight.w900,
-                                                fontSize: 20),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .caption,
                                           ),
                                         ),
                                         Container(
@@ -947,12 +937,22 @@ class _ChatScreenState extends State<ChatScreen>
                                               },
                                               child: Icon(
                                                 Icons.cancel_outlined,
-                                                color: Colors.black54,
+                                                color: Theme.of(context)
+                                                    .iconTheme
+                                                    .color,
                                               )),
                                         ),
                                       ],
                                     ),
-                                    Divider(),
+                                    Container(
+                                        margin: EdgeInsets.only(
+                                          left: 30,
+                                          right: 30,
+                                        ),
+                                        child: Divider(
+                                          color:
+                                              Theme.of(context).iconTheme.color,
+                                        )),
                                     Container(
                                       margin: const EdgeInsets.only(
                                           left: 40, right: 40, top: 20),
@@ -987,7 +987,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                     ),
                                                     child: Icon(
                                                       Icons.upload_file,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context)
+                                                          .iconTheme
+                                                          .color,
                                                     ),
                                                   ),
                                                 ),
@@ -996,10 +998,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Documents",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],
@@ -1026,7 +1027,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                   ),
                                                   child: Icon(
                                                     Icons.headset_rounded,
-                                                    color: Colors.white,
+                                                    color: Theme.of(context)
+                                                        .iconTheme
+                                                        .color,
                                                   ),
                                                 ),
                                                 Container(
@@ -1034,10 +1037,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Audio",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],
@@ -1072,7 +1074,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                     ),
                                                     child: Icon(
                                                       Icons.camera_alt,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context)
+                                                          .iconTheme
+                                                          .color,
                                                     ),
                                                   ),
                                                 ),
@@ -1081,10 +1085,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Camera",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],
@@ -1129,7 +1132,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                     ),
                                                     child: Icon(
                                                       Icons.photo_library,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context)
+                                                          .iconTheme
+                                                          .color,
                                                     ),
                                                   ),
                                                 ),
@@ -1138,10 +1143,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Image",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],
@@ -1176,7 +1180,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                     ),
                                                     child: Icon(
                                                       Icons.contacts_rounded,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context)
+                                                          .iconTheme
+                                                          .color,
                                                     ),
                                                   ),
                                                 ),
@@ -1185,10 +1191,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Contacts",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],
@@ -1222,7 +1227,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                     child: Icon(
                                                       Icons
                                                           .video_library_rounded,
-                                                      color: Colors.white,
+                                                      color: Theme.of(context)
+                                                          .iconTheme
+                                                          .color,
                                                     ),
                                                   ),
                                                 ),
@@ -1231,10 +1238,9 @@ class _ChatScreenState extends State<ChatScreen>
                                                       top: 10),
                                                   child: Text(
                                                     "Video",
-                                                    style: GoogleFonts.nunito(
-                                                      fontWeight:
-                                                          FontWeight.w800,
-                                                    ),
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .subtitle2,
                                                   ),
                                                 )
                                               ],

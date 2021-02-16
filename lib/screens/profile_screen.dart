@@ -1,6 +1,5 @@
 import 'package:application_unknown/widgets/edit_profile.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class ProfileScreen extends StatefulWidget {
   @override
@@ -19,33 +18,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
           elevation: 0,
           title: Text(
             "Profile",
-            style: GoogleFonts.nunito(
-                color: Colors.grey[600],
-                fontSize: 23,
-                fontWeight: FontWeight.w900),
+            style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
+      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(-6.0, -6.0),
-                  blurRadius: 16.0,
-                ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(6.0, 6.0),
-                  blurRadius: 16.0,
-                ),
-              ],
-              color: Colors.white,
+              color: const Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -55,8 +40,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(1000),
-                        border:
-                            Border.all(color: Colors.indigo[200], width: 4)),
+                        border: Border.all(
+                            color: Color.fromRGBO(109, 175, 254, 1), width: 4)),
                     child: const CircleAvatar(
                       radius: 75,
                       backgroundImage: const AssetImage(
@@ -67,11 +52,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
-                    child: Text("Mark Spencer",
-                        style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20,
-                            color: Colors.black87)),
+                    child: Text(
+                      "Mark Spencer",
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
                   ),
                 ),
                 Center(
@@ -79,28 +63,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     margin: const EdgeInsets.only(top: 2),
                     child: Text(
                       "&UX/UI Developer",
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 12,
-                          color: Colors.grey),
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),
                 ),
                 Center(
                   child: Container(
-                    margin: const EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 20),
                     child: Text(
                       "Existential Crisis",
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 16,
-                          color: Colors.black54),
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                   ),
-                )
+                ),
               ],
             ),
-          ),
+          )
         ],
       ),
       floatingActionButton: FloatingActionButton(

@@ -56,9 +56,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             headline3: GoogleFonts.nunito(
                 color: Colors.white, fontSize: 25, fontWeight: FontWeight.w900),
             headline5: GoogleFonts.nunito(
-                color: Colors.white70,
-                fontSize: 17,
-                fontWeight: FontWeight.w800),
+                color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
             headline4: GoogleFonts.nunito(
               color: Colors.white70,
               fontSize: 18,
@@ -90,16 +88,23 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               color: Colors.white60,
               fontWeight: FontWeight.w800,
             ),
+            caption: GoogleFonts.nunito(
+                fontWeight: FontWeight.w900,
+                color: Colors.white70,
+                fontSize: 20),
+          ),
+          iconTheme: IconThemeData(
+            color: Colors.white,
           ),
           floatingActionButtonTheme: FloatingActionButtonThemeData(
             backgroundColor: Color.fromRGBO(109, 175, 254, 1),
           ),
           buttonColor: Color.fromRGBO(109, 175, 254, 1),
           bottomNavigationBarTheme: BottomNavigationBarThemeData(
-            backgroundColor: Color.fromRGBO(23, 28, 41, 1),
+            backgroundColor: Colors.black,
             type: BottomNavigationBarType.fixed,
             selectedItemColor: Color.fromRGBO(109, 175, 254, 1),
-            unselectedItemColor: Colors.white70,
+            unselectedItemColor: Colors.white,
             selectedLabelStyle: GoogleFonts.nunito(
               fontWeight: FontWeight.bold,
             ),

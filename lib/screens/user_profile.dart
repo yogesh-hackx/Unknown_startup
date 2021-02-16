@@ -1,7 +1,6 @@
 import 'package:application_unknown/call_utilities/call_utilities.dart';
 import 'package:application_unknown/call_utilities/permissions.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class UserProfile extends StatefulWidget {
   final String currentUserUid;
@@ -28,37 +27,20 @@ class _UserProfileState extends State<UserProfile> {
         preferredSize: const Size.fromHeight(65),
         child: AppBar(
           titleSpacing: 30,
-          iconTheme: IconThemeData(color: Colors.black54),
           elevation: 0,
-          title: Text(
-            "Mark's Profile",
-            style: GoogleFonts.nunito(
-                color: Colors.grey[600],
-                fontSize: 20,
-                fontWeight: FontWeight.w900),
-          ),
-          backgroundColor: Colors.white,
+          title: Text("Mark's Profile",
+              style: Theme.of(context).textTheme.caption),
+          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
+      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(-6.0, -6.0),
-                  blurRadius: 16.0,
-                ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(6.0, 6.0),
-                  blurRadius: 16.0,
-                ),
-              ],
-              color: Colors.white,
+              color: const Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -80,11 +62,10 @@ class _UserProfileState extends State<UserProfile> {
                 Center(
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
-                    child: Text("Mark Spencer",
-                        style: GoogleFonts.nunito(
-                            fontWeight: FontWeight.w900,
-                            fontSize: 20,
-                            color: Colors.black87)),
+                    child: Text(
+                      "Mark Spencer",
+                      style: Theme.of(context).textTheme.headline3,
+                    ),
                   ),
                 ),
                 Center(
@@ -92,22 +73,16 @@ class _UserProfileState extends State<UserProfile> {
                     margin: const EdgeInsets.only(top: 2),
                     child: Text(
                       "&UX/UI Developer",
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 12,
-                          color: Colors.grey),
+                      style: Theme.of(context).textTheme.bodyText2,
                     ),
                   ),
                 ),
                 Center(
                   child: Container(
-                    margin: const EdgeInsets.only(top: 5),
+                    margin: const EdgeInsets.only(top: 20),
                     child: Text(
                       "Existential Crisis",
-                      style: GoogleFonts.nunito(
-                          fontWeight: FontWeight.w900,
-                          fontSize: 17,
-                          color: Colors.black54),
+                      style: Theme.of(context).textTheme.headline5,
                     ),
                   ),
                 ),
@@ -123,7 +98,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -132,16 +107,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.chat_bubble,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Message",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -154,7 +127,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -163,16 +136,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.call,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Voice Call",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -197,7 +168,7 @@ class _UserProfileState extends State<UserProfile> {
                                 padding: const EdgeInsets.all(15),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
-                                  gradient: LinearGradient(
+                                  gradient: const LinearGradient(
                                     colors: [
                                       Color.fromRGBO(67, 127, 199, 1),
                                       Color.fromRGBO(109, 175, 254, 1)
@@ -206,16 +177,14 @@ class _UserProfileState extends State<UserProfile> {
                                 ),
                                 child: Icon(
                                   Icons.videocam_rounded,
-                                  color: Colors.white,
+                                  color: Theme.of(context).iconTheme.color,
                                 ),
                               ),
                               Container(
                                 margin: const EdgeInsets.only(top: 10),
                                 child: Text(
                                   "Video Call",
-                                  style: GoogleFonts.nunito(
-                                    fontWeight: FontWeight.w800,
-                                  ),
+                                  style: Theme.of(context).textTheme.subtitle2,
                                 ),
                               )
                             ],
@@ -232,19 +201,7 @@ class _UserProfileState extends State<UserProfile> {
             margin: const EdgeInsets.all(15),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(-6.0, -6.0),
-                  blurRadius: 16.0,
-                ),
-                BoxShadow(
-                  color: Colors.black.withOpacity(0.1),
-                  offset: const Offset(6.0, 6.0),
-                  blurRadius: 16.0,
-                ),
-              ],
-              color: Colors.white,
+              color: const Color.fromRGBO(23, 28, 41, 1),
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -255,10 +212,7 @@ class _UserProfileState extends State<UserProfile> {
                   margin: EdgeInsets.all(10),
                   child: Text(
                     "More Options",
-                    style: GoogleFonts.nunito(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w800,
-                    ),
+                    style: Theme.of(context).textTheme.headline5,
                   ),
                 ),
                 Container(
@@ -273,7 +227,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -282,16 +236,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.share_rounded,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Media Shared",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -304,7 +256,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -313,16 +265,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.volume_off_rounded,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Mute",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -335,7 +285,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -344,16 +294,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.block_rounded,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Block",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
@@ -366,7 +314,7 @@ class _UserProfileState extends State<UserProfile> {
                               padding: const EdgeInsets.all(15),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
-                                gradient: LinearGradient(
+                                gradient: const LinearGradient(
                                   colors: [
                                     Color.fromRGBO(67, 127, 199, 1),
                                     Color.fromRGBO(109, 175, 254, 1)
@@ -375,16 +323,14 @@ class _UserProfileState extends State<UserProfile> {
                               ),
                               child: Icon(
                                 Icons.thumb_down_rounded,
-                                color: Colors.white,
+                                color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                             Container(
                               margin: const EdgeInsets.only(top: 10),
                               child: Text(
                                 "Report",
-                                style: GoogleFonts.nunito(
-                                  fontWeight: FontWeight.w800,
-                                ),
+                                style: Theme.of(context).textTheme.subtitle2,
                               ),
                             )
                           ],
