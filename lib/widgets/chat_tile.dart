@@ -112,6 +112,8 @@ class _ChatListTileState extends State<ChatListTile> {
                 ),
                 title: Text(
                   widget.peerUsername,
+                  overflow: TextOverflow.ellipsis,
+                  maxLines: 1,
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 subtitle: Text(
@@ -148,9 +150,8 @@ class _ChatListTileState extends State<ChatListTile> {
                             Badge(
                               badgeContent: Text(widget.unseenMessagesCount,
                                   style: Theme.of(context).textTheme.button),
-                              badgeColor:
-                                  const Color.fromRGBO(109, 175, 254, 1),
-                              padding: const EdgeInsets.all(7),
+                              badgeColor: const Color.fromRGBO(53, 61, 81, 1),
+                              padding: const EdgeInsets.all(6),
                             )
                         ],
                       )),

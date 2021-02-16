@@ -3,7 +3,6 @@ import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/screens/profile_screen.dart';
 import 'package:application_unknown/screens/settings_screen.dart';
 import 'package:application_unknown/screens/status_screen.dart';
-import 'package:google_fonts/google_fonts.dart';
 import './users_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -75,7 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
             iconSize: 25.0,
             items: [
               const BottomNavigationBarItem(
-                icon: Icon(Icons.mark_chat_unread),
+                icon: Icon(Icons.chat_bubble),
                 label: "Chats",
               ),
               const BottomNavigationBarItem(

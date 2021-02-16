@@ -19,6 +19,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path/path.dart';
@@ -444,7 +445,9 @@ class _ChatScreenState extends State<ChatScreen>
                   senderUid: ds["sentBy"],
                   fileName: ds["fileName"],
                 );
-              }else if(ds["type"]=="image" && ds["isUploading"] == true && ds["sentBy"]==_auth.currentUser.uid){
+              } else if (ds["type"] == "image" &&
+                  ds["isUploading"] == true &&
+                  ds["sentBy"] == _auth.currentUser.uid) {
                 return ImageUploading(
                   path: ds["path"],
                   senderUid: ds["sentBy"],
@@ -452,9 +455,14 @@ class _ChatScreenState extends State<ChatScreen>
                   chatRoomId: ds["chatRoomId"],
                   uid: ds["uid"],
                 );
-              } else if(ds["type"]=="image" && ds["isUploading"] == true && ds["sentBy"]!=_auth.currentUser.uid){
-                return Container(width: 0,height: 0,);
-              }else if (ds["type"] == "deleted") {
+              } else if (ds["type"] == "image" &&
+                  ds["isUploading"] == true &&
+                  ds["sentBy"] != _auth.currentUser.uid) {
+                return Container(
+                  width: 0,
+                  height: 0,
+                );
+              } else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
                 return Gif1(url: ds["url"]);
@@ -532,7 +540,7 @@ class _ChatScreenState extends State<ChatScreen>
         "chatRoomId": widget.chatRoomId,
         "uid": uid,
         "DateTime": messageTime,
-        "receiverId":widget.peerId
+        "receiverId": widget.peerId
       };
 
       await FirebaseMethods().sendInitialAttachMentMessage(
@@ -820,7 +828,10 @@ class _ChatScreenState extends State<ChatScreen>
                         focusNode: focusNode,
                         controller: messageController,
                         textAlignVertical: TextAlignVertical.center,
-                        style: Theme.of(context).textTheme.bodyText1,
+                        style: GoogleFonts.nunito(
+                          fontSize: 17,
+                          fontWeight: FontWeight.bold,
+                        ),
                         onChanged: (String changedMsg) async {
                           if (changedMsg.length > 0) {
                             await updateTypingIndicator(true);
@@ -831,6 +842,7 @@ class _ChatScreenState extends State<ChatScreen>
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
+                          hintText: "Type your message here..",
                           prefixIcon: GestureDetector(
                             onTap: () {
                               unfocus();
