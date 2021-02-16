@@ -151,7 +151,7 @@ class FirebaseMethods {
         .doc(chatRoomId)
         .collection("chats")
         .orderBy("DateTime", descending: true)
-        .snapshots();
+        .snapshots(includeMetadataChanges: true);
   }
 
   Future<Stream<QuerySnapshot>> getChatRooms() async {

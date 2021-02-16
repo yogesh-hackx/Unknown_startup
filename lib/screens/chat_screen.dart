@@ -444,7 +444,7 @@ class _ChatScreenState extends State<ChatScreen>
                   senderUid: ds["sentBy"],
                   fileName: ds["fileName"],
                 );
-              }else if(ds["type"]=="image" && ds["isUploading"] == true){
+              }else if(ds["type"]=="image" && ds["isUploading"] == true&& ds["senderUid"]==_auth.currentUser.uid){
                 return ImageUploading(
                   path: ds["path"],
                   senderUid: ds["sentBy"],
