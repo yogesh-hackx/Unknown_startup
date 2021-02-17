@@ -147,8 +147,12 @@ class _ChatListTileState extends State<ChatListTile> {
                           if (widget.unseenMessagesCount != "0")
                             Badge(
                               badgeContent: Text(widget.unseenMessagesCount,
-                                  style: Theme.of(context).textTheme.button),
-                              badgeColor: const Color.fromRGBO(53, 61, 81, 1),
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .button
+                                      .copyWith(color: Colors.black)),
+                              badgeColor:
+                                  const Color.fromRGBO(109, 175, 254, 1),
                               padding: const EdgeInsets.all(6),
                             )
                         ],

@@ -63,7 +63,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               fontWeight: FontWeight.w800,
             ),
             headline6: GoogleFonts.nunito(
-              color: Color.fromRGBO(109, 175, 254, 1),
+              color: const Color.fromRGBO(109, 175, 254, 1),
               fontSize: 14,
               fontWeight: FontWeight.w800,
             ),
