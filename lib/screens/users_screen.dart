@@ -37,6 +37,34 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
     super.initState();
   }
 
+  profile() {
+    showGeneralDialog(
+        transitionBuilder: (context, a1, a2, widget) {
+          return Transform.scale(
+            scale: a1.value,
+            child: SimpleDialog(
+              contentPadding: EdgeInsets.all(0),
+              backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
+              children: [
+                Container(
+                  child: Image(
+                    image: AssetImage(
+                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                  ),
+                )
+              ],
+            ),
+          );
+        },
+        transitionDuration: Duration(milliseconds: 200),
+        barrierDismissible: true,
+        barrierLabel: '',
+        context: context,
+        pageBuilder: (context, animation1, animation2) {
+          return null;
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -85,6 +113,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
                                     unseenSnapShot.data.docs.length;
                                 print(unseenSnapShot.data.docs);
                                 return ChatListTile(
+                                    profile: profile,
                                     chatRoomId: ds["chatRoomId"],
                                     lastMessage: ds["lastMessage"],
                                     peerUsername: userData["Username"],

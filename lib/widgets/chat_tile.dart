@@ -12,16 +12,19 @@ class ChatListTile extends StatefulWidget {
   final String peerphoneNumber;
   final String unseenMessagesCount;
   final DateTime lastMessageTime;
+  final Function profile;
 
-  ChatListTile(
-      {Key key,
-      this.lastMessage,
-      this.chatRoomId,
-      this.peerUsername,
-      this.peerUid,
-      this.peerphoneNumber,
-      this.unseenMessagesCount,
-      this.lastMessageTime});
+  ChatListTile({
+    Key key,
+    this.lastMessage,
+    this.chatRoomId,
+    this.peerUsername,
+    this.peerUid,
+    this.peerphoneNumber,
+    this.unseenMessagesCount,
+    this.lastMessageTime,
+    this.profile,
+  });
 
   @override
   _ChatListTileState createState() => _ChatListTileState();
@@ -87,17 +90,22 @@ class _ChatListTileState extends State<ChatListTile> {
                 },
                 tileColor: const Color.fromRGBO(23, 28, 41, 1),
                 contentPadding: const EdgeInsets.all(9),
-                leading: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(1000),
-                    border: Border.all(
-                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 20,
-                    backgroundImage: const AssetImage(
-                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                leading: GestureDetector(
+                  onTap: () {
+                    widget.profile();
+                  },
+                  child: Container(
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(1000),
+                      border: Border.all(
+                          color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                    ),
+                    child: const CircleAvatar(
+                      radius: 20,
+                      backgroundImage: const AssetImage(
+                          "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                    ),
                   ),
                 ),
                 title: Text(
