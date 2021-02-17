@@ -240,7 +240,33 @@ updateOnlineIndicator(Map<String,dynamic> onlineIndicatorMap){
 }
 
 Stream<DocumentSnapshot> getOnlineIndicator(String peerId){
-  return firestore.collection("users").doc(peerId).snapshots();
+  return firestore
+  .collection("users")
+  .doc(peerId)
+  .snapshots();
+}
+
+Future<DocumentReference> createStatus(String userUid,Map statusInfoMap)async{
+  return firestore
+    .collection("status")
+    .doc(userUid)
+    .collection("userStatus")
+    .add(statusInfoMap);
+}
+updateLastStatus(String userUid,Map lastStatusMap)async{
+  return firestore
+    .collection("status")
+    .doc(userUid)
+    .set(lastStatusMap);
+}
+
+Future<QuerySnapshot> getStatus(String userId)async{
+  return firestore
+    .collection("status")
+    .doc(userId)
+    .collection("userStatus")
+    .get();
+
 }
 
 }

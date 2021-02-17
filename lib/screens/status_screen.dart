@@ -1,3 +1,5 @@
+import 'package:application_unknown/firebase/FirebaseMethods.dart';
+import 'package:application_unknown/screens/Status.dart';
 import 'package:application_unknown/widgets/image_status.dart';
 import 'package:application_unknown/widgets/status_tag.dart';
 import 'package:application_unknown/widgets/text_status.dart';
@@ -9,6 +11,7 @@ class StatusScreen extends StatefulWidget {
 }
 
 class _StatusScreenState extends State<StatusScreen> {
+  final _auth = FirebaseMethods().auth;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,16 +54,23 @@ class _StatusScreenState extends State<StatusScreen> {
             ),
             child: Column(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1000),
-                      border: Border.all(
-                          color: Color.fromRGBO(231, 233, 240, 1), width: 3)),
-                  child: const CircleAvatar(
-                    radius: 50,
-                    backgroundImage: const AssetImage(
-                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context){
+                      return Status(userId:_auth.currentUser.uid);
+                    }));
+                  },
+                child: Container(
+                    padding: const EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(1000),
+                        border: Border.all(
+                            color: Color.fromRGBO(231, 233, 240, 1), width: 3)),
+                    child: const CircleAvatar(
+                      radius: 50,
+                      backgroundImage: const AssetImage(
+                          "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                    ),
                   ),
                 ),
                 Container(
