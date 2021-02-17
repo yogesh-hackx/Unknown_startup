@@ -79,9 +79,9 @@ class _UserProfileState extends State<UserProfile> {
                 ),
                 Center(
                   child: Container(
-                    margin: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 15),
                     child: Text(
-                      "Existential Crisis",
+                      "Exis",
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),

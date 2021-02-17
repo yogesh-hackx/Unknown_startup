@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
                 Center(
                   child: Container(
-                    margin: const EdgeInsets.only(top: 20),
+                    margin: const EdgeInsets.only(top: 10),
                     child: Text(
                       "Existential Crisis",
                       style: Theme.of(context).textTheme.headline5,

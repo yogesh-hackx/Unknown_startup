@@ -1,4 +1,5 @@
 import 'package:application_unknown/widgets/image_status.dart';
+import 'package:application_unknown/widgets/status_tag.dart';
 import 'package:application_unknown/widgets/text_status.dart';
 import 'package:flutter/material.dart';
 
@@ -22,6 +23,20 @@ class _StatusScreenState extends State<StatusScreen> {
             style: Theme.of(context).textTheme.subtitle1,
           ),
           backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
+          actions: [
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return StatusTag();
+                }));
+              },
+              child: Container(
+                margin: EdgeInsets.only(right: 20),
+                child: Icon(Icons.notifications_on_rounded),
+              ),
+            )
+          ],
         ),
       ),
       backgroundColor: Colors.black,
