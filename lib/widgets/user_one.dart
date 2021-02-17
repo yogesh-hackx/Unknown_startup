@@ -69,7 +69,9 @@ class _UserOneState extends State<UserOne> {
 
   @override
   void dispose() {
-    seenOrUnseen.cancel();
+    if(widget.isSeen == false){
+      seenOrUnseen.cancel();
+    }
     super.dispose();
   }
 
