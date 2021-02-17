@@ -30,7 +30,7 @@ class UserOne extends StatefulWidget {
   _UserOneState createState() => _UserOneState();
 }
 
-class _UserOneState extends State<UserOne> {
+class _UserOneState extends State<UserOne> with AutomaticKeepAliveClientMixin<UserOne> {
   bool isSeen = false;
   StreamSubscription seenOrUnseen;
   bool notSend = false;
@@ -66,6 +66,7 @@ class _UserOneState extends State<UserOne> {
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     print(widget.messageUid);
     return GestureDetector(
       child: UnconstrainedBox(
@@ -186,5 +187,5 @@ class _UserOneState extends State<UserOne> {
   }
 
   @override
-  bool get wantKeepAlive => throw UnimplementedError();
+  bool get wantKeepAlive => true;
 }

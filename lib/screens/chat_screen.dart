@@ -403,7 +403,7 @@ class _ChatScreenState extends State<ChatScreen>
         if (snapShot.hasData && snapShot.data != null) {
           return ListView.builder(
             key: key,
-            addAutomaticKeepAlives: false,
+            addAutomaticKeepAlives: true,
             padding: const EdgeInsets.all(20),
             controller: msgController,
             reverse: true,
