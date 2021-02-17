@@ -150,10 +150,10 @@ class _ChatListTileState extends State<ChatListTile> {
                                   style: Theme.of(context)
                                       .textTheme
                                       .button
-                                      .copyWith(color: Colors.white70)),
+                                      .copyWith(color: Colors.white)),
                               badgeColor:
                                   const Color.fromRGBO(109, 175, 254, 1),
-                              padding: const EdgeInsets.all(5),
+                              padding: const EdgeInsets.all(6),
                             )
                         ],
                       )),
