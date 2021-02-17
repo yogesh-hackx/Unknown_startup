@@ -15,6 +15,7 @@ class UserOne extends StatefulWidget {
   final Function deleteMessage;
   final String chatRoomId;
   final DateTime timeSent;
+  final bool isSeen;
 
   UserOne(
       {Key key,
@@ -24,22 +25,28 @@ class UserOne extends StatefulWidget {
       this.messageUid,
       this.deleteMessage,
       this.chatRoomId,
-      this.timeSent});
+      this.timeSent,this.isSeen});
 
   @override
   _UserOneState createState() => _UserOneState();
 }
 
-class _UserOneState extends State<UserOne> with AutomaticKeepAliveClientMixin<UserOne> {
-  bool isSeen = false;
+class _UserOneState extends State<UserOne> {
+  bool isSeen;
   StreamSubscription seenOrUnseen;
   bool notSend = false;
   var dateFormat = DateFormat.jm();
 
   @override
   void initState() {
+    if(widget.isSeen == true){
+      isSeen = true;
+    }
+    else{
+      isSeen = false;
+      addSubscription();
+    }
     super.initState();
-    addSubscription();
   }
 
   addSubscription() {
@@ -49,9 +56,11 @@ class _UserOneState extends State<UserOne> with AutomaticKeepAliveClientMixin<Us
       if (ds.exists) {
         if (ds.data() != null) {
           if (ds.data()["isSeen"] == true) {
-            setState(() {
+            if(isSeen == false){
+              setState(() {
               isSeen = true;
             });
+            }
           }
         }
       }
@@ -60,13 +69,14 @@ class _UserOneState extends State<UserOne> with AutomaticKeepAliveClientMixin<Us
 
   @override
   void dispose() {
-    seenOrUnseen.cancel();
+    if(widget.isSeen == false){
+      seenOrUnseen.cancel();
+    }
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
-    super.build(context);
     print(widget.messageUid);
     return GestureDetector(
       child: UnconstrainedBox(
@@ -185,7 +195,4 @@ class _UserOneState extends State<UserOne> with AutomaticKeepAliveClientMixin<Us
       ),
     );
   }
-
-  @override
-  bool get wantKeepAlive => true;
 }

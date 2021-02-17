@@ -47,7 +47,7 @@ class _ChatScreenState extends State<ChatScreen>
   bool get wantKeepAlive => true;
 
   firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;
+      firebase_storage.FirebaseStorage.instance;    
 
   Stream messageStream;
   ScrollController msgController = ScrollController();
@@ -396,7 +396,7 @@ class _ChatScreenState extends State<ChatScreen>
   }
 
   Widget chatMessages() {
-    Key key = Key(randomString(5));
+    Key key = Key(randomString(3));
     return StreamBuilder(
       stream: messageStream,
       builder: (context, snapShot) {
@@ -420,6 +420,7 @@ class _ChatScreenState extends State<ChatScreen>
                         deleteMessage: deleteMessage,
                         chatRoomId: widget.chatRoomId,
                         timeSent: (ds["DateTime"] as Timestamp).toDate(),
+                        isSeen: ds["isSeen"],
                       )
                     : User2(
                         msg: ds["message"],
