@@ -73,10 +73,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(53, 61, 81, 1),
+                color: const Color.fromRGBO(53, 61, 81, 1),
               ),
               borderRadius: BorderRadius.circular(5),
-              color: Color.fromRGBO(53, 61, 81, 1),
+              color: const Color.fromRGBO(53, 61, 81, 1),
             ),
             child: TextField(
               style: Theme.of(context).textTheme.subtitle1,

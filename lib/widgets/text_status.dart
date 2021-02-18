@@ -1,6 +1,5 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -12,30 +11,32 @@ class TextStatus extends StatefulWidget {
 class _TextStatusState extends State<TextStatus> {
   final _auth = FirebaseMethods().auth;
 
-  addStatus()async{
+  addStatus() async {
     final statusTime = DateTime.now();
     final statusInfoMap = {
-      "caption":textStatus.text.trim(),
-      "media":"",
-      "duration":"4",
-      "mediaType":"text",
-      "when":statusTime,
+      "caption": textStatus.text.trim(),
+      "media": "",
+      "duration": "4",
+      "mediaType": "text",
+      "when": statusTime,
       "color": "#303f9f"
     };
 
-    DocumentReference ref = await FirebaseMethods().createStatus(_auth.currentUser.uid, statusInfoMap);
-    QuerySnapshot querySnapshot = await FirebaseMethods().getStatus(_auth.currentUser.uid);
+    DocumentReference ref = await FirebaseMethods()
+        .createStatus(_auth.currentUser.uid, statusInfoMap);
+    QuerySnapshot querySnapshot =
+        await FirebaseMethods().getStatus(_auth.currentUser.uid);
 
     int numberOfStatus = querySnapshot.size;
 
     final lastStatusUpdateMap = {
-      "lastStatusTime":statusTime,
-      "lastStatusType":"text",
-      "numberOfStatus":numberOfStatus,
+      "lastStatusTime": statusTime,
+      "lastStatusType": "text",
+      "numberOfStatus": numberOfStatus,
     };
-    
-    return FirebaseMethods().updateLastStatus(_auth.currentUser.uid, lastStatusUpdateMap);
 
+    return FirebaseMethods()
+        .updateLastStatus(_auth.currentUser.uid, lastStatusUpdateMap);
   }
 
   TextEditingController textStatus = TextEditingController();
@@ -106,7 +107,7 @@ class _TextStatusState extends State<TextStatus> {
                   color: Colors.white,
                 ),
               ),
-              onTap: ()async{
+              onTap: () async {
                 await addStatus();
                 Navigator.pop(context);
               },

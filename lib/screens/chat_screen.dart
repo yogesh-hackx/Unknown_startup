@@ -47,7 +47,7 @@ class _ChatScreenState extends State<ChatScreen>
   bool get wantKeepAlive => true;
 
   firebase_storage.FirebaseStorage storage =
-      firebase_storage.FirebaseStorage.instance;    
+      firebase_storage.FirebaseStorage.instance;
 
   Stream messageStream;
   ScrollController msgController = ScrollController();
@@ -794,8 +794,38 @@ class _ChatScreenState extends State<ChatScreen>
             backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
             elevation: 0,
             actions: [
+              InkWell(
+                onTap: () {},
+                child: Container(
+                  margin: EdgeInsets.only(right: 30, top: 10),
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: const Color.fromRGBO(53, 61, 81, 1),
+                  ),
+                  child: Icon(
+                    Icons.call_rounded,
+                  ),
+                ),
+              ),
               Container(
-                margin: const EdgeInsets.only(right: 20, top: 10),
+                margin: EdgeInsets.only(right: 30, top: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: const Color.fromRGBO(53, 61, 81, 1),
+                ),
+                child: Icon(
+                  Icons.videocam_outlined,
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(right: 10, top: 10),
+                padding: EdgeInsets.all(5),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: const Color.fromRGBO(53, 61, 81, 1),
+                ),
                 child: Icon(
                   Icons.more_vert_rounded,
                   size: 22,
@@ -846,7 +876,6 @@ class _ChatScreenState extends State<ChatScreen>
                         maxLines: null,
                         keyboardType: TextInputType.multiline,
                         decoration: InputDecoration(
-                          hintText: "Type your message here..",
                           prefixIcon: GestureDetector(
                             onTap: () {
                               unfocus();
@@ -877,7 +906,7 @@ class _ChatScreenState extends State<ChatScreen>
                               Color.fromRGBO(109, 175, 254, 1)
                             ],
                           ),
-                          borderRadius: BorderRadius.circular(1000),
+                          shape: BoxShape.circle,
                         ),
                         child: Icon(
                           Icons.send,
@@ -888,387 +917,115 @@ class _ChatScreenState extends State<ChatScreen>
                         sendMessage();
                       },
                     ),
-                    GestureDetector(
-                      child: Container(
-                        margin:
-                            const EdgeInsets.only(left: 10, bottom: 15, top: 5),
-                        padding: const EdgeInsets.all(14),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(67, 127, 199, 1),
-                              Color.fromRGBO(109, 175, 254, 1)
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(1000),
+                    Container(
+                      margin:
+                          const EdgeInsets.only(left: 10, bottom: 15, top: 5),
+                      padding: const EdgeInsets.all(14),
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Color.fromRGBO(67, 127, 199, 1),
+                            Color.fromRGBO(109, 175, 254, 1)
+                          ],
                         ),
-                        child: Icon(
-                          Icons.attach_file,
-                          color: Colors.white,
-                        ),
+                        shape: BoxShape.circle,
                       ),
-                      onTap: () {
-                        unfocus();
-                        showModalBottomSheet(
-                            context: context,
-                            builder: (context) {
-                              return Container(
-                                decoration: const BoxDecoration(
-                                  color: Color.fromRGBO(23, 28, 41, 1),
-                                ),
-                                height: 320,
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 30,
-                                              right: 30,
-                                              top: 30,
-                                              bottom: 15),
-                                          child: Text(
-                                            "Attach Media",
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .caption,
-                                          ),
-                                        ),
-                                        Container(
-                                          margin: EdgeInsets.only(
-                                              left: 30,
-                                              right: 30,
-                                              top: 30,
-                                              bottom: 15),
-                                          child: InkWell(
-                                              onTap: () {
-                                                Navigator.pop(context);
-                                              },
-                                              child: Icon(
-                                                Icons.cancel_outlined,
-                                                color: Theme.of(context)
-                                                    .iconTheme
-                                                    .color,
-                                              )),
-                                        ),
-                                      ],
-                                    ),
-                                    Container(
-                                        margin: EdgeInsets.only(
-                                          left: 30,
-                                          right: 30,
-                                        ),
-                                        child: Divider(
-                                          color:
-                                              Theme.of(context).iconTheme.color,
-                                        )),
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 40, right: 40, top: 20),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () {
-                                                    uploadDocuments(context);
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              1000),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromRGBO(
-                                                              67, 127, 199, 1),
-                                                          Color.fromRGBO(
-                                                              109, 175, 254, 1)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.upload_file,
-                                                      color: Theme.of(context)
-                                                          .iconTheme
-                                                          .color,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Documents",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                Container(
-                                                  padding:
-                                                      const EdgeInsets.all(15),
-                                                  decoration: BoxDecoration(
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            1000),
-                                                    gradient: LinearGradient(
-                                                      colors: [
-                                                        Color.fromRGBO(
-                                                            67, 127, 199, 1),
-                                                        Color.fromRGBO(
-                                                            109, 175, 254, 1)
-                                                      ],
-                                                    ),
-                                                  ),
-                                                  child: Icon(
-                                                    Icons.headset_rounded,
-                                                    color: Theme.of(context)
-                                                        .iconTheme
-                                                        .color,
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Audio",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ), //Audio
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    await sendImage(
-                                                        ImageSource.camera,
-                                                        context);
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              1000),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromRGBO(
-                                                              67, 127, 199, 1),
-                                                          Color.fromRGBO(
-                                                              109, 175, 254, 1)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.camera_alt,
-                                                      color: Theme.of(context)
-                                                          .iconTheme
-                                                          .color,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Camera",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Container(
-                                      margin: const EdgeInsets.only(
-                                          left: 40, right: 40, top: 10),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    print("gallery!!!");
-                                                    await sendImage(
-                                                        ImageSource.gallery,
-                                                        context);
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              1000),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromRGBO(
-                                                              67, 127, 199, 1),
-                                                          Color.fromRGBO(
-                                                              109, 175, 254, 1)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.photo_library,
-                                                      color: Theme.of(context)
-                                                          .iconTheme
-                                                          .color,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Image",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    print("gallery!!!");
-                                                    await sendImage(
-                                                        ImageSource.gallery,
-                                                        context);
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              1000),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromRGBO(
-                                                              67, 127, 199, 1),
-                                                          Color.fromRGBO(
-                                                              109, 175, 254, 1)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons.contacts_rounded,
-                                                      color: Theme.of(context)
-                                                          .iconTheme
-                                                          .color,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Contacts",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                          Container(
-                                            child: Column(
-                                              children: [
-                                                GestureDetector(
-                                                  onTap: () async {
-                                                    await sendVideo();
-                                                    Navigator.pop(context);
-                                                  },
-                                                  child: Container(
-                                                    padding:
-                                                        const EdgeInsets.all(
-                                                            15),
-                                                    decoration: BoxDecoration(
-                                                      borderRadius:
-                                                          BorderRadius.circular(
-                                                              1000),
-                                                      gradient: LinearGradient(
-                                                        colors: [
-                                                          Color.fromRGBO(
-                                                              67, 127, 199, 1),
-                                                          Color.fromRGBO(
-                                                              109, 175, 254, 1)
-                                                        ],
-                                                      ),
-                                                    ),
-                                                    child: Icon(
-                                                      Icons
-                                                          .video_library_rounded,
-                                                      color: Theme.of(context)
-                                                          .iconTheme
-                                                          .color,
-                                                    ),
-                                                  ),
-                                                ),
-                                                Container(
-                                                  margin: const EdgeInsets.only(
-                                                      top: 10),
-                                                  child: Text(
-                                                    "Video",
-                                                    style: Theme.of(context)
-                                                        .textTheme
-                                                        .subtitle2,
-                                                  ),
-                                                )
-                                              ],
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              );
-                            });
-                      }, //show modal
+                      child: Icon(
+                        Icons.mic_rounded,
+                        color: Colors.white,
+                      ),
                     ),
                   ],
                 ),
-                Container(height: !_sendEmoji ? 0 : 270, child: sendEmojiGifs())
+                Container(
+                    height: !_sendEmoji ? 0 : 270, child: sendEmojiGifs()),
+                Container(
+                  margin: EdgeInsets.only(left: 10, right: 10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () async {
+                          await uploadDocuments(context);
+                          unfocus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color.fromRGBO(53, 61, 81, 1),
+                          ),
+                          child: Icon(
+                            Icons.upload_file,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await sendImage(ImageSource.gallery, context);
+                          unfocus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color.fromRGBO(53, 61, 81, 1),
+                          ),
+                          child: Icon(
+                            Icons.photo_library,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
+                        ),
+                      ),
+                      GestureDetector(
+                        onTap: () async {
+                          await sendVideo();
+                          unfocus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: const Color.fromRGBO(53, 61, 81, 1),
+                          ),
+                          child: Icon(
+                            Icons.video_library_rounded,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
+                        ),
+                      ),
+                      InkWell(
+                        onTap: () async {
+                          await sendImage(ImageSource.camera, context);
+                          unfocus();
+                        },
+                        child: Container(
+                          padding: const EdgeInsets.all(10),
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Color.fromRGBO(53, 61, 81, 1),
+                          ),
+                          child: Icon(
+                            Icons.camera_alt,
+                            color: Theme.of(context).iconTheme.color,
+                          ),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(10),
+                        decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: const Color.fromRGBO(53, 61, 81, 1),
+                        ),
+                        child: Icon(
+                          Icons.headset_rounded,
+                          color: Theme.of(context).iconTheme.color,
+                        ),
+                      ),
+                    ],
+                  ),
+                ) //Row ends here
               ],
             ),
           ),
