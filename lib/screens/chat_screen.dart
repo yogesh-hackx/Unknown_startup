@@ -69,6 +69,8 @@ class _ChatScreenState extends State<ChatScreen>
 
   bool _sendEmoji = false;
 
+  bool showUpload = false;
+
   requestfocus(context) {
     FocusScope.of(context).unfocus();
     //focusNode.requestFocus();
@@ -652,7 +654,7 @@ class _ChatScreenState extends State<ChatScreen>
     return ChatPickers(
       chatController: messageController,
       emojiPickerConfig: EmojiPickerConfig(
-          bgBarColor: Colors.indigo[700],
+          bgBarColor: const Color.fromRGBO(23, 28, 41, 1),
           bgColor: Colors.white,
           columns: 8,
           numRecommended: 6),
@@ -930,102 +932,116 @@ class _ChatScreenState extends State<ChatScreen>
                         ),
                         shape: BoxShape.circle,
                       ),
-                      child: Icon(
-                        Icons.mic_rounded,
-                        color: Colors.white,
+                      child: GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            showUpload = true;
+                          });
+                        },
+                        onDoubleTap: () {
+                          setState(() {
+                            showUpload = false;
+                          });
+                        },
+                        child: Icon(
+                          Icons.attach_file_outlined,
+                          color: Colors.white,
+                        ),
                       ),
                     ),
                   ],
                 ),
                 Container(
                     height: !_sendEmoji ? 0 : 270, child: sendEmojiGifs()),
-                Container(
-                  margin: EdgeInsets.only(left: 10, right: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      GestureDetector(
-                        onTap: () async {
-                          await uploadDocuments(context);
-                          unfocus();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromRGBO(53, 61, 81, 1),
-                          ),
-                          child: Icon(
-                            Icons.upload_file,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
+                (showUpload
+                    ? Container(
+                        margin: EdgeInsets.only(left: 10, right: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () async {
+                                await uploadDocuments(context);
+                                unfocus();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: const Color.fromRGBO(53, 61, 81, 1),
+                                ),
+                                child: Icon(
+                                  Icons.upload_file,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                await sendImage(ImageSource.gallery, context);
+                                unfocus();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: const Color.fromRGBO(53, 61, 81, 1),
+                                ),
+                                child: Icon(
+                                  Icons.photo_library,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ),
+                            GestureDetector(
+                              onTap: () async {
+                                await sendVideo();
+                                unfocus();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: const Color.fromRGBO(53, 61, 81, 1),
+                                ),
+                                child: Icon(
+                                  Icons.video_library_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                await sendImage(ImageSource.camera, context);
+                                unfocus();
+                              },
+                              child: Container(
+                                padding: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  shape: BoxShape.circle,
+                                  color: Color.fromRGBO(53, 61, 81, 1),
+                                ),
+                                child: Icon(
+                                  Icons.camera_alt,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: const EdgeInsets.all(10),
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(53, 61, 81, 1),
+                              ),
+                              child: Icon(
+                                Icons.headset_rounded,
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          await sendImage(ImageSource.gallery, context);
-                          unfocus();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromRGBO(53, 61, 81, 1),
-                          ),
-                          child: Icon(
-                            Icons.photo_library,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () async {
-                          await sendVideo();
-                          unfocus();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: const Color.fromRGBO(53, 61, 81, 1),
-                          ),
-                          child: Icon(
-                            Icons.video_library_rounded,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                      ),
-                      InkWell(
-                        onTap: () async {
-                          await sendImage(ImageSource.camera, context);
-                          unfocus();
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Color.fromRGBO(53, 61, 81, 1),
-                          ),
-                          child: Icon(
-                            Icons.camera_alt,
-                            color: Theme.of(context).iconTheme.color,
-                          ),
-                        ),
-                      ),
-                      Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          shape: BoxShape.circle,
-                          color: const Color.fromRGBO(53, 61, 81, 1),
-                        ),
-                        child: Icon(
-                          Icons.headset_rounded,
-                          color: Theme.of(context).iconTheme.color,
-                        ),
-                      ),
-                    ],
-                  ),
-                ) //Row ends here
+                      )
+                    : Container())
               ],
             ),
           ),
