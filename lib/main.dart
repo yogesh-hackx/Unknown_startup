@@ -110,6 +110,10 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
               fontWeight: FontWeight.bold,
             ),
           )),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => Helper(),
+      },
     );
   }
 }
