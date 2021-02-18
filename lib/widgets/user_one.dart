@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +24,8 @@ class UserOne extends StatefulWidget {
       this.messageUid,
       this.deleteMessage,
       this.chatRoomId,
-      this.timeSent,this.isSeen});
+      this.timeSent,
+      this.isSeen});
 
   @override
   _UserOneState createState() => _UserOneState();
@@ -39,10 +39,9 @@ class _UserOneState extends State<UserOne> {
 
   @override
   void initState() {
-    if(widget.isSeen == true){
+    if (widget.isSeen == true) {
       isSeen = true;
-    }
-    else{
+    } else {
       isSeen = false;
       addSubscription();
     }
@@ -56,10 +55,10 @@ class _UserOneState extends State<UserOne> {
       if (ds.exists) {
         if (ds.data() != null) {
           if (ds.data()["isSeen"] == true) {
-            if(isSeen == false){
+            if (isSeen == false) {
               setState(() {
-              isSeen = true;
-            });
+                isSeen = true;
+              });
             }
           }
         }
@@ -69,7 +68,7 @@ class _UserOneState extends State<UserOne> {
 
   @override
   void dispose() {
-    if(widget.isSeen == false){
+    if (widget.isSeen == false) {
       seenOrUnseen.cancel();
     }
     super.dispose();
