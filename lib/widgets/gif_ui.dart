@@ -1,23 +1,28 @@
+import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 class Gif1 extends StatefulWidget {
   final String url;
+  final String senderUid;
 
-  Gif1({Key key, this.url});
+  Gif1({Key key, this.url,this.senderUid});
 
   @override
   _Gif1State createState() => _Gif1State();
 }
 
 class _Gif1State extends State<Gif1> {
+
+  final _auth = FirebaseMethods().auth;
+
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: widget.url,
       imageBuilder: (context, imageProvider) {
         return Row(
-          mainAxisAlignment: MainAxisAlignment.end,
+          mainAxisAlignment: _auth.currentUser.uid == widget.senderUid ? MainAxisAlignment.end : MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             Container(
