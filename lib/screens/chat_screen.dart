@@ -772,14 +772,16 @@ class _ChatScreenState extends State<ChatScreen>
                   InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => UserProfile(
-                                    currentUserUid: _auth.currentUser.uid,
-                                    currentUserName: "Ashutosh Singh",
-                                    profileUserUid: widget.peerId,
-                                    profileUserName: widget.peerUsername,
-                                  )));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => UserProfile(
+                            currentUserUid: _auth.currentUser.uid,
+                            currentUserName: "Ashutosh Singh",
+                            profileUserUid: widget.peerId,
+                            profileUserName: widget.peerUsername,
+                          ),
+                        ),
+                      );
                     },
                     child: Text(
                       widget.peerUsername,
@@ -896,42 +898,39 @@ class _ChatScreenState extends State<ChatScreen>
                             },
                             child: Icon(
                               Icons.emoji_emotions_rounded,
-                              color: Color.fromRGBO(109, 175, 254, 1),
+                              color: const Color.fromRGBO(109, 175, 254, 1),
                             ),
                           ),
                           border: InputBorder.none,
                         ),
                       ),
                     ),
-                    GestureDetector(
-                      child: Container(
-                        margin:
-                            const EdgeInsets.only(left: 10, bottom: 15, top: 5),
-                        padding: const EdgeInsets.all(13),
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Color.fromRGBO(67, 127, 199, 1),
-                              Color.fromRGBO(109, 175, 254, 1)
-                            ],
-                          ),
-                          shape: BoxShape.circle,
+                    Container(
+                      margin:
+                          const EdgeInsets.only(left: 10, bottom: 15, top: 5),
+                      decoration: BoxDecoration(
+                        gradient: const LinearGradient(
+                          colors: [
+                            Color.fromRGBO(67, 127, 199, 1),
+                            Color.fromRGBO(109, 175, 254, 1)
+                          ],
                         ),
-                        child: Icon(
-                          Icons.send,
-                          color: Colors.white,
-                        ),
+                        shape: BoxShape.circle,
                       ),
-                      onTap: () {
-                        sendMessage();
-                      },
+                      child: IconButton(
+                        onPressed: () {
+                          sendMessage();
+                        },
+                        icon: Icon(Icons.send),
+                        color: Colors.white,
+                      ),
                     ),
                     Container(
                       margin:
                           const EdgeInsets.only(left: 10, bottom: 15, top: 5),
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        gradient: LinearGradient(
+                        gradient: const LinearGradient(
                           colors: [
                             Color.fromRGBO(67, 127, 199, 1),
                             Color.fromRGBO(109, 175, 254, 1)
@@ -966,89 +965,87 @@ class _ChatScreenState extends State<ChatScreen>
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            GestureDetector(
-                              onTap: () async {
-                                await uploadDocuments(context);
-                                unfocus();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(53, 61, 81, 1),
-                                ),
-                                child: Icon(
-                                  Icons.upload_file,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                await sendImage(ImageSource.gallery, context);
-                                unfocus();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(53, 61, 81, 1),
-                                ),
-                                child: Icon(
-                                  Icons.photo_library,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: () async {
-                                await sendVideo();
-                                unfocus();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: const Color.fromRGBO(53, 61, 81, 1),
-                                ),
-                                child: Icon(
-                                  Icons.video_library_rounded,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                              ),
-                            ),
-                            InkWell(
-                              onTap: () async {
-                                await sendImage(ImageSource.camera, context);
-                                unfocus();
-                              },
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: Color.fromRGBO(53, 61, 81, 1),
-                                ),
-                                child: Icon(
-                                  Icons.camera_alt,
-                                  color: Theme.of(context).iconTheme.color,
-                                ),
-                              ),
-                            ),
                             Container(
-                              padding: const EdgeInsets.all(10),
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: const Color.fromRGBO(53, 61, 81, 1),
                               ),
-                              child: Icon(
-                                Icons.headset_rounded,
+                              child: IconButton(
+                                onPressed: () async {
+                                  await uploadDocuments(context);
+                                  unfocus();
+                                },
+                                icon: Icon(
+                                  Icons.upload_file,
+                                ),
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(53, 61, 81, 1),
+                              ),
+                              child: IconButton(
+                                onPressed: () async {
+                                  await sendImage(ImageSource.gallery, context);
+                                  unfocus();
+                                },
+                                icon: Icon(
+                                  Icons.photo_library,
+                                ),
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(53, 61, 81, 1),
+                              ),
+                              child: IconButton(
+                                onPressed: () async {
+                                  await sendVideo();
+                                  unfocus();
+                                },
+                                icon: Icon(
+                                  Icons.video_library_rounded,
+                                ),
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Color.fromRGBO(53, 61, 81, 1),
+                              ),
+                              child: IconButton(
+                                onPressed: () async {
+                                  await sendImage(ImageSource.camera, context);
+                                  unfocus();
+                                },
+                                icon: Icon(
+                                  Icons.camera_alt,
+                                ),
+                                color: Theme.of(context).iconTheme.color,
+                              ),
+                            ),
+                            Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: const Color.fromRGBO(53, 61, 81, 1),
+                              ),
+                              child: IconButton(
+                                onPressed: () {},
+                                icon: Icon(
+                                  Icons.headset_rounded,
+                                ),
                                 color: Theme.of(context).iconTheme.color,
                               ),
                             ),
                           ],
                         ),
                       )
-                    : Container())
+                    : Container()),
               ],
             ),
           ),
