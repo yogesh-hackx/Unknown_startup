@@ -471,7 +471,10 @@ class _ChatScreenState extends State<ChatScreen>
               } else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
-                return Gif1(url: ds["url"],senderUid: ds["sentBy"],);
+                return Gif1(
+                  url: ds["url"],
+                  senderUid: ds["sentBy"],
+                );
               } else if (ds["type"] == "video") {
                 return Video(
                   url: ds["downloadUrl"],
@@ -796,41 +799,45 @@ class _ChatScreenState extends State<ChatScreen>
             backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
             elevation: 0,
             actions: [
-              InkWell(
-                onTap: () {},
-                child: Container(
-                  margin: EdgeInsets.only(right: 30, top: 10),
-                  padding: EdgeInsets.all(5),
+              Container(
+                  margin: const EdgeInsets.only(right: 10, top: 10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: const Color.fromRGBO(53, 61, 81, 1),
                   ),
-                  child: Icon(
-                    Icons.call_rounded,
+                  child: IconButton(
+                    icon: Icon(
+                      Icons.call_rounded,
+                      size: 20,
+                    ),
+                    onPressed: () {},
+                  )),
+              Container(
+                margin: const EdgeInsets.only(right: 10, top: 10),
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: const Color.fromRGBO(53, 61, 81, 1),
+                ),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.videocam_rounded,
+                    size: 20,
                   ),
+                  onPressed: () {},
                 ),
               ),
               Container(
-                margin: EdgeInsets.only(right: 30, top: 10),
-                padding: EdgeInsets.all(5),
+                margin: const EdgeInsets.only(right: 10, top: 10),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: const Color.fromRGBO(53, 61, 81, 1),
                 ),
-                child: Icon(
-                  Icons.videocam_outlined,
-                ),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 10, top: 10),
-                padding: EdgeInsets.all(5),
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  color: const Color.fromRGBO(53, 61, 81, 1),
-                ),
-                child: Icon(
-                  Icons.more_vert_rounded,
-                  size: 22,
+                child: IconButton(
+                  icon: Icon(
+                    Icons.more_vert_rounded,
+                    size: 20,
+                  ),
+                  onPressed: () {},
                 ),
               ),
             ],

@@ -1,6 +1,7 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/screens/search_bar.dart';
 import 'package:application_unknown/widgets/chat_tile.dart';
+import 'package:application_unknown/widgets/contacts_list.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -80,8 +81,17 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
           backgroundColor: Color.fromRGBO(23, 28, 41, 1),
           actions: [
             IconButton(
+              icon: Icon(Icons.contacts_outlined),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ContactsList();
+                }));
+              },
+              color: Colors.white,
+            ),
+            IconButton(
               icon: const Icon(Icons.logout),
-              color: Colors.purple,
+              color: Colors.white,
               onPressed: FirebaseMethods().logout,
             ),
           ],

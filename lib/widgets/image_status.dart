@@ -2,7 +2,6 @@ import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
@@ -19,38 +18,43 @@ class _ImageStatusState extends State<ImageStatus> {
   TextEditingController imageStatusController = TextEditingController();
   final _auth = FirebaseMethods().auth;
 
-    firebase_storage.FirebaseStorage storage =
+  firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  uploadImageStatus()async{
+  uploadImageStatus() async {
     final statusTime = DateTime.now();
     String fileName = basename(widget.file.path);
 
-    firebase_storage.TaskSnapshot uploadTask = await storage.ref("status"+_auth.currentUser.uid +"/$fileName").putFile(widget.file);
+    firebase_storage.TaskSnapshot uploadTask = await storage
+        .ref("status" + _auth.currentUser.uid + "/$fileName")
+        .putFile(widget.file);
     String url = await uploadTask.ref.getDownloadURL();
 
     final statusInfoMap = {
-      "caption":imageStatusController.text.trim(),
-      "media":url,
-      "duration":"4",
-      "mediaType":"image",
-      "when":statusTime,
+      "caption": imageStatusController.text.trim(),
+      "media": url,
+      "duration": "4",
+      "mediaType": "image",
+      "when": statusTime,
       "color": "#303f9f"
     };
 
-    DocumentReference ref = await FirebaseMethods().createStatus(_auth.currentUser.uid, statusInfoMap);
-    QuerySnapshot querySnapshot = await FirebaseMethods().getStatus(_auth.currentUser.uid);
+    DocumentReference ref = await FirebaseMethods()
+        .createStatus(_auth.currentUser.uid, statusInfoMap);
+    QuerySnapshot querySnapshot =
+        await FirebaseMethods().getStatus(_auth.currentUser.uid);
 
     int numberOfStatus = querySnapshot.size;
 
     final lastStatusUpdateMap = {
-      "lastStatusTime":statusTime,
-      "lastStatusType":"image",
-      "numberOfStatus":numberOfStatus,
-      "imageUrl":url
+      "lastStatusTime": statusTime,
+      "lastStatusType": "image",
+      "numberOfStatus": numberOfStatus,
+      "imageUrl": url
     };
-    
-    return FirebaseMethods().updateLastStatus(_auth.currentUser.uid, lastStatusUpdateMap);
+
+    return FirebaseMethods()
+        .updateLastStatus(_auth.currentUser.uid, lastStatusUpdateMap);
   }
 
   @override
@@ -139,7 +143,7 @@ class _ImageStatusState extends State<ImageStatus> {
                         color: Colors.white,
                       ),
                     ),
-                    onTap: () async{
+                    onTap: () async {
                       await uploadImageStatus();
                       Navigator.pop(context);
                     },
