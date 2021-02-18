@@ -1,3 +1,4 @@
+import 'package:application_unknown/widgets/themes.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -23,6 +24,54 @@ class _SettingsScreenState extends State<SettingsScreen> {
         ),
       ),
       backgroundColor: Colors.black,
+      body: ListView(
+        padding: const EdgeInsets.all(10),
+        children: [
+          InkWell(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return Themes();
+              }));
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 2),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(5),
+                child: ListTile(
+                  tileColor: const Color.fromRGBO(23, 28, 41, 1),
+                  contentPadding: EdgeInsets.all(5),
+                  leading: Container(
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                        color: Color.fromRGBO(109, 175, 254, 1),
+                        width: 2.5,
+                      ),
+                    ),
+                    child: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.colorize_outlined,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                  ),
+                  title: Text(
+                    "Themes",
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  subtitle: Text(
+                    "Try awesome themes",
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
