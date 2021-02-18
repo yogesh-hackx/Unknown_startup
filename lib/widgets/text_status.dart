@@ -2,6 +2,7 @@ import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:toast/toast.dart';
 
 class TextStatus extends StatefulWidget {
   @override
@@ -10,9 +11,12 @@ class TextStatus extends StatefulWidget {
 
 class _TextStatusState extends State<TextStatus> {
   final _auth = FirebaseMethods().auth;
+  FocusNode focusNode = FocusNode();
 
   addStatus() async {
+    focusNode.unfocus();
     final statusTime = DateTime.now();
+    Toast.show("Sending...",context,duration: Toast.LENGTH_LONG,gravity:  Toast.BOTTOM);
     final statusInfoMap = {
       "caption": textStatus.text.trim(),
       "media": "",
@@ -62,6 +66,7 @@ class _TextStatusState extends State<TextStatus> {
         margin: EdgeInsets.all(30),
         child: Center(
           child: TextField(
+            focusNode: focusNode,
             controller: textStatus,
             style: GoogleFonts.nunito(
                 fontSize: 25, fontWeight: FontWeight.bold, color: Colors.white),

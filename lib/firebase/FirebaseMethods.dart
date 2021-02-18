@@ -268,5 +268,8 @@ Future<QuerySnapshot> getStatus(String userId)async{
     .get();
 
 }
+Stream<DocumentSnapshot> checkIfStatusExists(String userId){
+  return firestore.collection("status").doc(userId).snapshots();
+}
 
 }

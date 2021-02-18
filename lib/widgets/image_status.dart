@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:path/path.dart';
+import 'package:toast/toast.dart';
 
 class ImageStatus extends StatefulWidget {
   final File file;
@@ -16,13 +17,34 @@ class ImageStatus extends StatefulWidget {
 
 class _ImageStatusState extends State<ImageStatus> {
   TextEditingController imageStatusController = TextEditingController();
+  FocusNode focusNode = FocusNode();
   final _auth = FirebaseMethods().auth;
 
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  uploadImageStatus() async {
+  Widget toast = Container(
+    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(25.0),
+      color: Colors.greenAccent,
+    ),
+    child: Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Icon(Icons.check),
+        SizedBox(
+          width: 12.0,
+        ),
+        Text("Sending!"),
+      ],
+    ),
+  );
+
+  uploadImageStatus(BuildContext context) async {
+    focusNode.unfocus();
     final statusTime = DateTime.now();
+    Toast.show("Sending...",context,duration: Toast.LENGTH_SHORT,gravity:  Toast.BOTTOM);
     String fileName = basename(widget.file.path);
 
     firebase_storage.TaskSnapshot uploadTask = await storage
@@ -99,6 +121,7 @@ class _ImageStatusState extends State<ImageStatus> {
                     width: 330,
                     padding: const EdgeInsets.all(4),
                     child: TextField(
+                      focusNode: focusNode,
                       controller: imageStatusController,
                       textAlignVertical: TextAlignVertical.center,
                       style: GoogleFonts.nunito(
@@ -144,7 +167,7 @@ class _ImageStatusState extends State<ImageStatus> {
                       ),
                     ),
                     onTap: () async {
-                      await uploadImageStatus();
+                      await uploadImageStatus(context);
                       Navigator.pop(context);
                     },
                   ),
