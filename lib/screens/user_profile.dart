@@ -28,8 +28,7 @@ class _UserProfileState extends State<UserProfile> {
         child: AppBar(
           titleSpacing: 30,
           elevation: 0,
-          title: Text("Mark's Profile",
-              style: Theme.of(context).textTheme.caption),
+          title: Text("Profile", style: Theme.of(context).textTheme.caption),
           backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
@@ -49,9 +48,11 @@ class _UserProfileState extends State<UserProfile> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(1000),
-                        border: Border.all(
-                            color: Color.fromRGBO(109, 175, 254, 1), width: 4)),
+                      borderRadius: BorderRadius.circular(1000),
+                      border: Border.all(
+                          color: const Color.fromRGBO(109, 175, 254, 1),
+                          width: 4),
+                    ),
                     child: const CircleAvatar(
                       radius: 75,
                       backgroundImage: const AssetImage(
@@ -63,7 +64,7 @@ class _UserProfileState extends State<UserProfile> {
                   child: Container(
                     margin: const EdgeInsets.only(top: 10),
                     child: Text(
-                      "Mark Spencer",
+                      widget.currentUserName,
                       style: Theme.of(context).textTheme.headline3,
                     ),
                   ),
@@ -81,7 +82,7 @@ class _UserProfileState extends State<UserProfile> {
                   child: Container(
                     margin: const EdgeInsets.only(top: 15),
                     child: Text(
-                      "Exis",
+                      "Existential Crisis",
                       style: Theme.of(context).textTheme.headline5,
                     ),
                   ),
@@ -95,7 +96,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -105,9 +106,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.chat_bubble,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.chat_bubble_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
@@ -124,7 +128,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -134,9 +138,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.call,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.call_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
@@ -165,7 +172,7 @@ class _UserProfileState extends State<UserProfile> {
                           child: Column(
                             children: [
                               Container(
-                                padding: const EdgeInsets.all(15),
+                                padding: const EdgeInsets.all(4),
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(1000),
                                   gradient: const LinearGradient(
@@ -175,9 +182,12 @@ class _UserProfileState extends State<UserProfile> {
                                     ],
                                   ),
                                 ),
-                                child: Icon(
-                                  Icons.videocam_rounded,
-                                  color: Theme.of(context).iconTheme.color,
+                                child: IconButton(
+                                  icon: Icon(
+                                    Icons.videocam_rounded,
+                                    color: Theme.of(context).iconTheme.color,
+                                  ),
+                                  onPressed: () {},
                                 ),
                               ),
                               Container(
@@ -224,7 +234,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -234,9 +244,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.share_rounded,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.share_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
@@ -253,7 +266,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -263,9 +276,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.volume_off_rounded,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.volume_off_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
@@ -282,7 +298,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -292,9 +308,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.block_rounded,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.block_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
@@ -311,7 +330,7 @@ class _UserProfileState extends State<UserProfile> {
                         child: Column(
                           children: [
                             Container(
-                              padding: const EdgeInsets.all(15),
+                              padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(1000),
                                 gradient: const LinearGradient(
@@ -321,9 +340,12 @@ class _UserProfileState extends State<UserProfile> {
                                   ],
                                 ),
                               ),
-                              child: Icon(
-                                Icons.thumb_down_rounded,
-                                color: Theme.of(context).iconTheme.color,
+                              child: IconButton(
+                                icon: Icon(
+                                  Icons.thumb_down_rounded,
+                                  color: Theme.of(context).iconTheme.color,
+                                ),
+                                onPressed: () {},
                               ),
                             ),
                             Container(
