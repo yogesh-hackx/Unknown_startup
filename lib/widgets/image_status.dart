@@ -1,12 +1,58 @@
+import 'dart:io';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:application_unknown/firebase/FirebaseMethods.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:path/path.dart';
 
 class ImageStatus extends StatefulWidget {
+  final File file;
+
+  ImageStatus({Key key, this.file});
   @override
   _ImageStatusState createState() => _ImageStatusState();
 }
 
 class _ImageStatusState extends State<ImageStatus> {
+  TextEditingController imageStatusController = TextEditingController();
+  final _auth = FirebaseMethods().auth;
+
+    firebase_storage.FirebaseStorage storage =
+      firebase_storage.FirebaseStorage.instance;
+
+  uploadImageStatus()async{
+    final statusTime = DateTime.now();
+    String fileName = basename(widget.file.path);
+
+    firebase_storage.TaskSnapshot uploadTask = await storage.ref("status"+_auth.currentUser.uid +"/$fileName").putFile(widget.file);
+    String url = await uploadTask.ref.getDownloadURL();
+
+    final statusInfoMap = {
+      "caption":imageStatusController.text.trim(),
+      "media":url,
+      "duration":"4",
+      "mediaType":"image",
+      "when":statusTime,
+      "color": "#303f9f"
+    };
+
+    DocumentReference ref = await FirebaseMethods().createStatus(_auth.currentUser.uid, statusInfoMap);
+    QuerySnapshot querySnapshot = await FirebaseMethods().getStatus(_auth.currentUser.uid);
+
+    int numberOfStatus = querySnapshot.size;
+
+    final lastStatusUpdateMap = {
+      "lastStatusTime":statusTime,
+      "lastStatusType":"image",
+      "numberOfStatus":numberOfStatus,
+      "imageUrl":url
+    };
+    
+    return FirebaseMethods().updateLastStatus(_auth.currentUser.uid, lastStatusUpdateMap);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +74,7 @@ class _ImageStatusState extends State<ImageStatus> {
       body: Center(
         child: Container(
           child: Image(
-            image: AssetImage("assets/images/pexels-sindre-strøm-1040880.jpg"),
+            image: FileImage(widget.file),
           ),
         ),
       ),
@@ -49,6 +95,7 @@ class _ImageStatusState extends State<ImageStatus> {
                     width: 330,
                     padding: const EdgeInsets.all(4),
                     child: TextField(
+                      controller: imageStatusController,
                       textAlignVertical: TextAlignVertical.center,
                       style: GoogleFonts.nunito(
                         color: Colors.white,
@@ -92,7 +139,10 @@ class _ImageStatusState extends State<ImageStatus> {
                         color: Colors.white,
                       ),
                     ),
-                    onTap: () {},
+                    onTap: () async{
+                      await uploadImageStatus();
+                      Navigator.pop(context);
+                    },
                   ),
                 ],
               ),

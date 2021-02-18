@@ -471,7 +471,7 @@ class _ChatScreenState extends State<ChatScreen>
               } else if (ds["type"] == "deleted") {
                 return DeleteOne();
               } else if (ds["type"] == "gif") {
-                return Gif1(url: ds["url"]);
+                return Gif1(url: ds["url"],senderUid: ds["sentBy"],);
               } else if (ds["type"] == "video") {
                 return Video(
                   url: ds["downloadUrl"],
