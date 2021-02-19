@@ -759,7 +759,6 @@ class _ChatScreenState extends State<ChatScreen>
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,
       scaffold: Scaffold(
-        backgroundColor: Colors.black,
         appBar: PreferredSize(
           preferredSize: const Size.fromHeight(70),
           child: AppBar(

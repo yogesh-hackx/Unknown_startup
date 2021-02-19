@@ -76,7 +76,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
         color: Colors.white,
       ),
     ),
-    cardColor: const Color.fromRGBO(53, 61, 81, 1),
     cardTheme: CardTheme(
       color: const Color.fromRGBO(53, 61, 81, 1),
     ),
@@ -128,10 +127,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
             debugShowCheckedModeBanner: false,
             title: 'Flutter Demo',
             theme: ThemeProvider.of(context),
-            initialRoute: '/',
-            routes: {
-              '/': (context) => Helper(),
-            },
+            home: Helper(),
           );
         },
       ),

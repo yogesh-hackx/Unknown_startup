@@ -12,7 +12,7 @@ class ChatListTile extends StatefulWidget {
   final String peerphoneNumber;
   final String unseenMessagesCount;
   final DateTime lastMessageTime;
-  final Function profile;
+  //final Function profile;
 
   ChatListTile({
     Key key,
@@ -23,7 +23,7 @@ class ChatListTile extends StatefulWidget {
     this.peerphoneNumber,
     this.unseenMessagesCount,
     this.lastMessageTime,
-    this.profile,
+    //this.profile,
   });
 
   @override
@@ -92,7 +92,7 @@ class _ChatListTileState extends State<ChatListTile> {
                 contentPadding: const EdgeInsets.all(9),
                 leading: GestureDetector(
                   onTap: () {
-                    widget.profile();
+                    // widget.profile();
                   },
                   child: Container(
                     padding: EdgeInsets.all(5),

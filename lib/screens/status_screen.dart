@@ -67,7 +67,6 @@ class _StatusScreenState extends State<StatusScreen> {
             "Status",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
           actions: [
             GestureDetector(
               onTap: () {
@@ -84,14 +83,13 @@ class _StatusScreenState extends State<StatusScreen> {
           ],
         ),
       ),
-      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(23, 28, 41, 1),
+              color: Theme.of(context).appBarTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: StreamBuilder(
@@ -117,7 +115,9 @@ class _StatusScreenState extends State<StatusScreen> {
                               borderRadius: BorderRadius.circular(1000),
                               border: status
                                   ? Border.all(
-                                      color: Color.fromRGBO(109, 175, 254, 1),
+                                      color: Theme.of(context)
+                                          .floatingActionButtonTheme
+                                          .backgroundColor,
                                       width: 2.5)
                                   : Border.all(
                                       color: Color.fromRGBO(231, 233, 240, 1),
@@ -156,8 +156,12 @@ class _StatusScreenState extends State<StatusScreen> {
                                       borderRadius: BorderRadius.circular(1000),
                                       gradient: LinearGradient(
                                         colors: [
-                                          Color.fromRGBO(67, 127, 199, 1),
-                                          Color.fromRGBO(109, 175, 254, 1)
+                                          Theme.of(context)
+                                              .bannerTheme
+                                              .backgroundColor,
+                                          Theme.of(context)
+                                              .floatingActionButtonTheme
+                                              .backgroundColor
                                         ],
                                       ),
                                     ),
@@ -186,10 +190,14 @@ class _StatusScreenState extends State<StatusScreen> {
                                     padding: EdgeInsets.all(15),
                                     decoration: BoxDecoration(
                                       borderRadius: BorderRadius.circular(1000),
-                                      gradient: const LinearGradient(
+                                      gradient: LinearGradient(
                                         colors: [
-                                          Color.fromRGBO(67, 127, 199, 1),
-                                          Color.fromRGBO(109, 175, 254, 1)
+                                          Theme.of(context)
+                                              .bannerTheme
+                                              .backgroundColor,
+                                          Theme.of(context)
+                                              .floatingActionButtonTheme
+                                              .backgroundColor
                                         ],
                                       ),
                                     ),
@@ -227,7 +235,7 @@ class _StatusScreenState extends State<StatusScreen> {
                       child: Container(
                         padding: const EdgeInsets.all(10),
                         decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(1000),
+                            shape: BoxShape.circle,
                             border: Border.all(
                                 color: Color.fromRGBO(109, 175, 254, 1),
                                 width: 2.5)),
@@ -262,11 +270,15 @@ class _StatusScreenState extends State<StatusScreen> {
                                 child: Container(
                                   padding: EdgeInsets.all(15),
                                   decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(1000),
+                                    shape: BoxShape.circle,
                                     gradient: LinearGradient(
                                       colors: [
-                                        Color.fromRGBO(67, 127, 199, 1),
-                                        Color.fromRGBO(109, 175, 254, 1)
+                                        Theme.of(context)
+                                            .bannerTheme
+                                            .backgroundColor,
+                                        Theme.of(context)
+                                            .floatingActionButtonTheme
+                                            .backgroundColor
                                       ],
                                     ),
                                   ),
@@ -295,10 +307,14 @@ class _StatusScreenState extends State<StatusScreen> {
                                   padding: EdgeInsets.all(15),
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(1000),
-                                    gradient: const LinearGradient(
+                                    gradient: LinearGradient(
                                       colors: [
-                                        Color.fromRGBO(67, 127, 199, 1),
-                                        Color.fromRGBO(109, 175, 254, 1)
+                                        Theme.of(context)
+                                            .bannerTheme
+                                            .backgroundColor,
+                                        Theme.of(context)
+                                            .floatingActionButtonTheme
+                                            .backgroundColor
                                       ],
                                     ),
                                   ),
@@ -330,14 +346,17 @@ class _StatusScreenState extends State<StatusScreen> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: ListTile(
-                tileColor: const Color.fromRGBO(23, 28, 41, 1),
+                tileColor: Theme.of(context).appBarTheme.color,
                 contentPadding: EdgeInsets.all(8),
                 leading: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(1000),
+                    shape: BoxShape.circle,
                     border: Border.all(
-                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                        color: Theme.of(context)
+                            .floatingActionButtonTheme
+                            .backgroundColor,
+                        width: 2.5),
                   ),
                   child: const CircleAvatar(
                     radius: 20,
