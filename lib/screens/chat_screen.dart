@@ -499,7 +499,6 @@ class _ChatScreenState extends State<ChatScreen>
     print("Initially : ${File(image.path).lengthSync()}");
 
     if (image != null) {
-      Navigator.pop(context);
       File croppedImage = await ImageCropper.cropImage(
           sourcePath: image.path,
           compressQuality: 100,

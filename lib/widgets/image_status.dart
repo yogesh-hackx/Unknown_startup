@@ -50,7 +50,9 @@ class _ImageStatusState extends State<ImageStatus> {
     firebase_storage.TaskSnapshot uploadTask = await storage
         .ref("status" + _auth.currentUser.uid + "/$fileName")
         .putFile(widget.file);
-    String url = await uploadTask.ref.getDownloadURL();
+    Navigator.pop(context,uploadTask);    
+    String url;
+    url = await uploadTask.storage.ref("status" + _auth.currentUser.uid + "/$fileName").getDownloadURL();
 
     final statusInfoMap = {
       "caption": imageStatusController.text.trim(),
@@ -168,7 +170,6 @@ class _ImageStatusState extends State<ImageStatus> {
                     ),
                     onTap: () async {
                       await uploadImageStatus(context);
-                      Navigator.pop(context);
                     },
                   ),
                 ],

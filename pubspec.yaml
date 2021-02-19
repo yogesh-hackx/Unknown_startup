@@ -54,6 +54,8 @@ dependencies:
   random_string: ^2.1.0
   story_view: ^0.12.8
   toast: ^0.1.5
+  contacts_service: ^0.4.6
+
   animated_theme_switcher: ^1.0.9
   
 dev_dependencies:
