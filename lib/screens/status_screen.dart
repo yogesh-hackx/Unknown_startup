@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/screens/Status.dart';
@@ -5,10 +6,12 @@ import 'package:application_unknown/widgets/image_status.dart';
 import 'package:application_unknown/widgets/status_tag.dart';
 import 'package:application_unknown/widgets/text_status.dart';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_image_compress/flutter_image_compress.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:path/path.dart';
+import 'package:toast/toast.dart';
 
 class StatusScreen extends StatefulWidget {
   @override
@@ -19,6 +22,9 @@ class _StatusScreenState extends State<StatusScreen> {
   final _auth = FirebaseMethods().auth;
   final videoExtensions = ["mp4"];
   final imageExtensions = ["png", "jpeg", "jpg"];
+  bool sending=false;
+
+  StreamSubscription isSending;
 
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
@@ -46,10 +52,16 @@ class _StatusScreenState extends State<StatusScreen> {
       File result = await FlutterImageCompress.compressAndGetFile(
           mediaFile.absolute.path, targetPath,
           quality: 25);
-
-      Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      TaskSnapshot taskSnapshot;
+      taskSnapshot = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return ImageStatus(file: result);
       }));
+
+      if(taskSnapshot.state == TaskState.running){
+        Toast.show("sending...",context);
+      }
+      
+      
     }
   }
 
