@@ -1,3 +1,4 @@
+import 'package:animated_theme_switcher/animated_theme_switcher.dart';
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/helper/helper.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,83 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     WidgetsBinding.instance.addObserver(this);
   }
 
+  ThemeData blue = ThemeData(
+    textTheme: TextTheme(
+      headline1: GoogleFonts.nunito(
+          color: Colors.white, fontSize: 40, fontWeight: FontWeight.w800),
+      headline2: GoogleFonts.nunito(
+          color: Colors.white70, fontSize: 35, fontWeight: FontWeight.w800),
+      headline3: GoogleFonts.nunito(
+          color: Colors.white, fontSize: 25, fontWeight: FontWeight.w900),
+      headline5: GoogleFonts.nunito(
+          color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
+      headline4: GoogleFonts.nunito(
+        color: Colors.white70,
+        fontSize: 18,
+        fontWeight: FontWeight.w800,
+      ),
+      headline6: GoogleFonts.nunito(
+        color: const Color.fromRGBO(109, 175, 254, 1),
+        fontSize: 14,
+        fontWeight: FontWeight.w800,
+      ),
+      subtitle1: GoogleFonts.nunito(
+          color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
+      subtitle2: GoogleFonts.nunito(
+          color: Colors.white70, fontSize: 14, fontWeight: FontWeight.bold),
+      button: GoogleFonts.nunito(
+        fontSize: 15,
+        color: Colors.white,
+        fontWeight: FontWeight.w800,
+      ),
+      bodyText1: GoogleFonts.nunito(
+        fontSize: 15,
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyText2: GoogleFonts.nunito(
+        fontSize: 12,
+        color: Colors.white60,
+        fontWeight: FontWeight.w800,
+      ),
+      caption: GoogleFonts.nunito(
+          fontWeight: FontWeight.w900, color: Colors.white, fontSize: 20),
+    ),
+    iconTheme: IconThemeData(
+      color: Colors.white,
+    ),
+    scaffoldBackgroundColor: Colors.black,
+    appBarTheme: AppBarTheme(
+      color: const Color.fromRGBO(23, 28, 41, 1),
+      iconTheme: IconThemeData(
+        color: Colors.white,
+      ),
+    ),
+    cardColor: const Color.fromRGBO(53, 61, 81, 1),
+    cardTheme: CardTheme(
+      color: const Color.fromRGBO(53, 61, 81, 1),
+    ),
+    bannerTheme: MaterialBannerThemeData(
+      backgroundColor: const Color.fromRGBO(67, 127, 199, 1),
+    ),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: const Color.fromRGBO(109, 175, 254, 1),
+    ),
+    buttonColor: const Color.fromRGBO(109, 175, 254, 1),
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: const Color.fromRGBO(109, 175, 254, 1),
+      unselectedItemColor: Colors.white70,
+      selectedLabelStyle: GoogleFonts.nunito(
+        fontWeight: FontWeight.bold,
+      ),
+      unselectedLabelStyle: GoogleFonts.nunito(
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  );
+
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     if (state == AppLifecycleState.resumed) {
@@ -42,75 +120,21 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        textTheme: TextTheme(
-          headline1: GoogleFonts.nunito(
-              color: Colors.white, fontSize: 40, fontWeight: FontWeight.w800),
-          headline2: GoogleFonts.nunito(
-              color: Colors.white70, fontSize: 35, fontWeight: FontWeight.w800),
-          headline3: GoogleFonts.nunito(
-              color: Colors.white, fontSize: 25, fontWeight: FontWeight.w900),
-          headline5: GoogleFonts.nunito(
-              color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
-          headline4: GoogleFonts.nunito(
-            color: Colors.white70,
-            fontSize: 18,
-            fontWeight: FontWeight.w800,
-          ),
-          headline6: GoogleFonts.nunito(
-            color: const Color.fromRGBO(109, 175, 254, 1),
-            fontSize: 14,
-            fontWeight: FontWeight.w800,
-          ),
-          subtitle1: GoogleFonts.nunito(
-              color: Colors.white, fontSize: 22, fontWeight: FontWeight.w800),
-          subtitle2: GoogleFonts.nunito(
-              color: Colors.white70, fontSize: 14, fontWeight: FontWeight.bold),
-          button: GoogleFonts.nunito(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.w800,
-          ),
-          bodyText1: GoogleFonts.nunito(
-            fontSize: 15,
-            color: Colors.white,
-            fontWeight: FontWeight.bold,
-          ),
-          bodyText2: GoogleFonts.nunito(
-            fontSize: 12,
-            color: Colors.white60,
-            fontWeight: FontWeight.w800,
-          ),
-          caption: GoogleFonts.nunito(
-              fontWeight: FontWeight.w900, color: Colors.white, fontSize: 20),
-        ),
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-        floatingActionButtonTheme: FloatingActionButtonThemeData(
-          backgroundColor: const Color.fromRGBO(109, 175, 254, 1),
-        ),
-        buttonColor: const Color.fromRGBO(109, 175, 254, 1),
-        bottomNavigationBarTheme: BottomNavigationBarThemeData(
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
-          type: BottomNavigationBarType.fixed,
-          selectedItemColor: const Color.fromRGBO(109, 175, 254, 1),
-          unselectedItemColor: Colors.white70,
-          selectedLabelStyle: GoogleFonts.nunito(
-            fontWeight: FontWeight.bold,
-          ),
-          unselectedLabelStyle: GoogleFonts.nunito(
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+    return ThemeProvider(
+      initTheme: blue,
+      child: Builder(
+        builder: (context) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            theme: ThemeProvider.of(context),
+            initialRoute: '/',
+            routes: {
+              '/': (context) => Helper(),
+            },
+          );
+        },
       ),
-      initialRoute: '/',
-      routes: {
-        '/': (context) => Helper(),
-      },
     );
   }
 }

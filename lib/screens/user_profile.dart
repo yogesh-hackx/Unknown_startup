@@ -29,17 +29,15 @@ class _UserProfileState extends State<UserProfile> {
           titleSpacing: 30,
           elevation: 0,
           title: Text("Profile", style: Theme.of(context).textTheme.caption),
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
-      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(23, 28, 41, 1),
+              color: Theme.of(context).appBarTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -48,9 +46,11 @@ class _UserProfileState extends State<UserProfile> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1000),
+                      shape: BoxShape.circle,
                       border: Border.all(
-                          color: const Color.fromRGBO(109, 175, 254, 1),
+                          color: Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
                           width: 4),
                     ),
                     child: const CircleAvatar(
@@ -98,11 +98,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor
                                   ],
                                 ),
                               ),
@@ -130,11 +134,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor
                                   ],
                                 ),
                               ),
@@ -174,11 +182,15 @@ class _UserProfileState extends State<UserProfile> {
                               Container(
                                 padding: const EdgeInsets.all(4),
                                 decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(1000),
-                                  gradient: const LinearGradient(
+                                  shape: BoxShape.circle,
+                                  gradient: LinearGradient(
                                     colors: [
-                                      Color.fromRGBO(67, 127, 199, 1),
-                                      Color.fromRGBO(109, 175, 254, 1)
+                                      Theme.of(context)
+                                          .bannerTheme
+                                          .backgroundColor,
+                                      Theme.of(context)
+                                          .floatingActionButtonTheme
+                                          .backgroundColor
                                     ],
                                   ),
                                 ),
@@ -211,7 +223,7 @@ class _UserProfileState extends State<UserProfile> {
             margin: const EdgeInsets.all(15),
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(23, 28, 41, 1),
+              color: Theme.of(context).appBarTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -236,11 +248,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor,
                                   ],
                                 ),
                               ),
@@ -268,11 +284,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor
                                   ],
                                 ),
                               ),
@@ -300,11 +320,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor
                                   ],
                                 ),
                               ),
@@ -332,11 +356,15 @@ class _UserProfileState extends State<UserProfile> {
                             Container(
                               padding: const EdgeInsets.all(4),
                               decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(1000),
-                                gradient: const LinearGradient(
+                                shape: BoxShape.circle,
+                                gradient: LinearGradient(
                                   colors: [
-                                    Color.fromRGBO(67, 127, 199, 1),
-                                    Color.fromRGBO(109, 175, 254, 1)
+                                    Theme.of(context)
+                                        .bannerTheme
+                                        .backgroundColor,
+                                    Theme.of(context)
+                                        .floatingActionButtonTheme
+                                        .backgroundColor
                                   ],
                                 ),
                               ),

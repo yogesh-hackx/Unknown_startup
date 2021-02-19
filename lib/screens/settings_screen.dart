@@ -20,10 +20,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             "Settings",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
-      backgroundColor: Colors.black,
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [
@@ -38,13 +36,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: ListTile(
-                  tileColor: const Color.fromRGBO(23, 28, 41, 1),
+                  tileColor: Theme.of(context).appBarTheme.color,
                   contentPadding: EdgeInsets.all(5),
                   leading: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Color.fromRGBO(109, 175, 254, 1),
+                        color: Theme.of(context)
+                            .floatingActionButtonTheme
+                            .backgroundColor,
                         width: 2.5,
                       ),
                     ),

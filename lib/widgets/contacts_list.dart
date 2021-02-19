@@ -24,10 +24,8 @@ class _ContactsListState extends State<ContactsList> {
               onPressed: () {},
             ),
           ],
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
-      backgroundColor: Colors.black,
       body: ListView(
         padding: const EdgeInsets.all(10),
         children: [
@@ -36,18 +34,21 @@ class _ContactsListState extends State<ContactsList> {
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: ListTile(
-                tileColor: const Color.fromRGBO(23, 28, 41, 1),
-                contentPadding: EdgeInsets.all(5),
+                tileColor: Theme.of(context).appBarTheme.color,
+                contentPadding: const EdgeInsets.all(5),
                 leading: Container(
-                  padding: EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(1000),
+                    shape: BoxShape.circle,
                     border: Border.all(
-                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                        color: Theme.of(context)
+                            .floatingActionButtonTheme
+                            .backgroundColor,
+                        width: 2.5),
                   ),
                   child: const CircleAvatar(
                     radius: 20,
-                    backgroundImage: const AssetImage(
+                    backgroundImage: AssetImage(
                         "assets/images/pexels-sindre-strøm-1040880.jpg"),
                   ),
                 ),
@@ -59,37 +60,6 @@ class _ContactsListState extends State<ContactsList> {
                   "EveryTruth will unwrap at some point of time just wait my love..",
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-              ),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(vertical: 2),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(5),
-              child: ListTile(
-                tileColor: const Color.fromRGBO(23, 28, 41, 1),
-                contentPadding: EdgeInsets.all(5),
-                leading: Container(
-                  padding: EdgeInsets.all(5),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(1000),
-                    border: Border.all(
-                        color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
-                  ),
-                  child: const CircleAvatar(
-                    radius: 20,
-                    backgroundImage: const AssetImage(
-                        "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                  ),
-                ),
-                title: Text(
-                  "Ashutosh",
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                subtitle: Text(
-                  "Existential Crisis",
                   style: Theme.of(context).textTheme.headline6,
                 ),
               ),

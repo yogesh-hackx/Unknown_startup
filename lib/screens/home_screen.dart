@@ -69,7 +69,7 @@ class _HomeScreenState extends State<HomeScreen> {
           onPageChanged: onPageChanged,
         ),
         bottomNavigationBar: SizedBox(
-          height: 85,
+          height: 70,
           child: BottomNavigationBar(
             iconSize: 25.0,
             items: [
