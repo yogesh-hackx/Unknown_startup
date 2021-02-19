@@ -23,7 +23,6 @@ class _EditProfileState extends State<EditProfile> {
                 fontSize: 23,
                 fontWeight: FontWeight.w900),
           ),
-          backgroundColor: Colors.white,
         ),
       ),
       body: ListView(

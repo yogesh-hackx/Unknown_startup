@@ -798,14 +798,13 @@ class _ChatScreenState extends State<ChatScreen>
                 ],
               ),
             ),
-            backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
             elevation: 0,
             actions: [
               Container(
                   margin: const EdgeInsets.only(right: 10, top: 10),
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: const Color.fromRGBO(53, 61, 81, 1),
+                    color: Theme.of(context).cardTheme.color,
                   ),
                   child: IconButton(
                     icon: Icon(
@@ -818,7 +817,7 @@ class _ChatScreenState extends State<ChatScreen>
                 margin: const EdgeInsets.only(right: 10, top: 10),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color.fromRGBO(53, 61, 81, 1),
+                  color: Theme.of(context).cardTheme.color,
                 ),
                 child: IconButton(
                   icon: Icon(
@@ -832,7 +831,7 @@ class _ChatScreenState extends State<ChatScreen>
                 margin: const EdgeInsets.only(right: 10, top: 10),
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: const Color.fromRGBO(53, 61, 81, 1),
+                  color: Theme.of(context).cardTheme.color,
                 ),
                 child: IconButton(
                   icon: Icon(
@@ -864,10 +863,10 @@ class _ChatScreenState extends State<ChatScreen>
                       padding: const EdgeInsets.all(2),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Color.fromRGBO(53, 61, 81, 1),
+                          color: Theme.of(context).cardTheme.color,
                         ),
                         borderRadius: BorderRadius.circular(5),
-                        color: Color.fromRGBO(53, 61, 81, 1),
+                        color: Theme.of(context).cardTheme.color,
                       ),
                       child: TextField(
                         focusNode: focusNode,
@@ -896,10 +895,10 @@ class _ChatScreenState extends State<ChatScreen>
                               });
                               unfocus();
                             },
-                            child: Icon(
-                              Icons.emoji_emotions_rounded,
-                              color: const Color.fromRGBO(109, 175, 254, 1),
-                            ),
+                            child: Icon(Icons.emoji_emotions_rounded,
+                                color: Theme.of(context)
+                                    .floatingActionButtonTheme
+                                    .backgroundColor),
                           ),
                           border: InputBorder.none,
                         ),
@@ -909,10 +908,12 @@ class _ChatScreenState extends State<ChatScreen>
                       margin:
                           const EdgeInsets.only(left: 10, bottom: 15, top: 5),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           colors: [
-                            Color.fromRGBO(67, 127, 199, 1),
-                            Color.fromRGBO(109, 175, 254, 1)
+                            Theme.of(context).bannerTheme.backgroundColor,
+                            Theme.of(context)
+                                .floatingActionButtonTheme
+                                .backgroundColor
                           ],
                         ),
                         shape: BoxShape.circle,
@@ -930,10 +931,12 @@ class _ChatScreenState extends State<ChatScreen>
                           const EdgeInsets.only(left: 10, bottom: 15, top: 5),
                       padding: const EdgeInsets.all(14),
                       decoration: BoxDecoration(
-                        gradient: const LinearGradient(
+                        gradient: LinearGradient(
                           colors: [
-                            Color.fromRGBO(67, 127, 199, 1),
-                            Color.fromRGBO(109, 175, 254, 1)
+                            Theme.of(context).bannerTheme.backgroundColor,
+                            Theme.of(context)
+                                .floatingActionButtonTheme
+                                .backgroundColor
                           ],
                         ),
                         shape: BoxShape.circle,
@@ -951,7 +954,7 @@ class _ChatScreenState extends State<ChatScreen>
                         },
                         child: Icon(
                           Icons.attach_file_outlined,
-                          color: Colors.white,
+                          color: Theme.of(context).appBarTheme.iconTheme.color,
                         ),
                       ),
                     ),
@@ -968,7 +971,7 @@ class _ChatScreenState extends State<ChatScreen>
                             Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color.fromRGBO(53, 61, 81, 1),
+                                color: Theme.of(context).cardTheme.color,
                               ),
                               child: IconButton(
                                 onPressed: () async {
@@ -984,7 +987,7 @@ class _ChatScreenState extends State<ChatScreen>
                             Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color.fromRGBO(53, 61, 81, 1),
+                                color: Theme.of(context).cardTheme.color,
                               ),
                               child: IconButton(
                                 onPressed: () async {
@@ -1000,7 +1003,7 @@ class _ChatScreenState extends State<ChatScreen>
                             Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color.fromRGBO(53, 61, 81, 1),
+                                color: Theme.of(context).cardTheme.color,
                               ),
                               child: IconButton(
                                 onPressed: () async {
@@ -1016,7 +1019,7 @@ class _ChatScreenState extends State<ChatScreen>
                             Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: Color.fromRGBO(53, 61, 81, 1),
+                                color: Theme.of(context).cardTheme.color,
                               ),
                               child: IconButton(
                                 onPressed: () async {
@@ -1032,7 +1035,7 @@ class _ChatScreenState extends State<ChatScreen>
                             Container(
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
-                                color: const Color.fromRGBO(53, 61, 81, 1),
+                                color: Theme.of(context).cardTheme.color,
                               ),
                               child: IconButton(
                                 onPressed: () {},

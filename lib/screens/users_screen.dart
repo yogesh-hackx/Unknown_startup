@@ -78,7 +78,6 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
             "Chats",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: Color.fromRGBO(23, 28, 41, 1),
           actions: [
             IconButton(
               icon: Icon(Icons.contacts_outlined),
@@ -87,17 +86,14 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
                   return ContactsList();
                 }));
               },
-              color: Colors.white,
             ),
             IconButton(
               icon: const Icon(Icons.logout),
-              color: Colors.white,
               onPressed: FirebaseMethods().logout,
             ),
           ],
         ),
       ),
-      backgroundColor: Colors.black,
       body: StreamBuilder(
         stream: chatRoomStream,
         builder: (context, snapShot) {

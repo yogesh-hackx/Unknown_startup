@@ -88,7 +88,7 @@ class _ChatListTileState extends State<ChatListTile> {
                     islongPress = true;
                   });
                 },
-                tileColor: const Color.fromRGBO(23, 28, 41, 1),
+                tileColor: Theme.of(context).appBarTheme.color,
                 contentPadding: const EdgeInsets.all(9),
                 leading: GestureDetector(
                   onTap: () {
@@ -99,7 +99,10 @@ class _ChatListTileState extends State<ChatListTile> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(1000),
                       border: Border.all(
-                          color: Color.fromRGBO(109, 175, 254, 1), width: 2.5),
+                          color: Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
+                          width: 2.5),
                     ),
                     child: const CircleAvatar(
                       radius: 20,
@@ -151,8 +154,9 @@ class _ChatListTileState extends State<ChatListTile> {
                                       .textTheme
                                       .button
                                       .copyWith(color: Colors.white)),
-                              badgeColor:
-                                  const Color.fromRGBO(109, 175, 254, 1),
+                              badgeColor: Theme.of(context)
+                                  .floatingActionButtonTheme
+                                  .backgroundColor,
                               padding: const EdgeInsets.all(6),
                             )
                         ],

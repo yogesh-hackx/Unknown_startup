@@ -156,14 +156,14 @@ class _UserOneState extends State<UserOne> {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     border: Border.all(
-                      color: Color.fromRGBO(53, 61, 81, 1),
+                      color: Theme.of(context).cardTheme.color,
                     ),
                     borderRadius: BorderRadius.only(
                       topRight: Radius.circular(8),
                       bottomLeft: Radius.circular(8),
                       topLeft: Radius.circular(8),
                     ),
-                    color: Color.fromRGBO(53, 61, 81, 1),
+                    color: Theme.of(context).cardTheme.color,
                   ),
                   child: Text(
                     widget.msg,
@@ -179,7 +179,8 @@ class _UserOneState extends State<UserOne> {
                     ? Icons.check_circle_outline
                     : Icons.check_circle_rounded,
                 size: 15,
-                color: Color.fromRGBO(109, 175, 254, 1),
+                color:
+                    Theme.of(context).floatingActionButtonTheme.backgroundColor,
               ),
             ),
             Container(

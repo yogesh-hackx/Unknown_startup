@@ -20,17 +20,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             "Profile",
             style: Theme.of(context).textTheme.subtitle1,
           ),
-          backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
         ),
       ),
-      backgroundColor: Colors.black,
       body: ListView(
         children: [
           Container(
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              color: const Color.fromRGBO(23, 28, 41, 1),
+              color: Theme.of(context).appBarTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(
@@ -39,9 +37,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   child: Container(
                     padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(1000),
-                        border: Border.all(
-                            color: Color.fromRGBO(109, 175, 254, 1), width: 4)),
+                      shape: BoxShape.circle,
+                      border: Border.all(
+                          color: Theme.of(context)
+                              .floatingActionButtonTheme
+                              .backgroundColor,
+                          width: 4),
+                    ),
                     child: const CircleAvatar(
                       radius: 75,
                       backgroundImage: const AssetImage(
@@ -82,12 +84,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromRGBO(109, 175, 254, 1),
         child: Icon(Icons.edit_rounded),
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) {
-            return EditProfile();
-          }));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) {
+                return EditProfile();
+              },
+            ),
+          );
         },
       ),
     );

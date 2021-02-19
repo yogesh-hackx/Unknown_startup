@@ -46,7 +46,8 @@ class _DeleteOneState extends State<DeleteOne> {
             child: Icon(
               Icons.check_circle_rounded,
               size: 15,
-              color: Color.fromRGBO(109, 175, 254, 1),
+              color:
+                  Theme.of(context).floatingActionButtonTheme.backgroundColor,
             ),
           ),
           Container(

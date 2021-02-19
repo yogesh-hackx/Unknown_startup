@@ -26,7 +26,8 @@ class _User2State extends State<User2> {
             padding: const EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border.all(
-                color: Color.fromRGBO(109, 175, 254, 1),
+                color:
+                    Theme.of(context).floatingActionButtonTheme.backgroundColor,
               ),
               borderRadius: BorderRadius.only(
                 bottomLeft: Radius.circular(8),
@@ -35,8 +36,8 @@ class _User2State extends State<User2> {
               ),
               gradient: LinearGradient(
                 colors: [
-                  Color.fromRGBO(67, 127, 199, 1),
-                  Color.fromRGBO(109, 175, 254, 1)
+                  Theme.of(context).bannerTheme.backgroundColor,
+                  Theme.of(context).floatingActionButtonTheme.backgroundColor
                 ],
               ),
             ),
