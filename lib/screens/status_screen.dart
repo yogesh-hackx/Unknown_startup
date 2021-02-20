@@ -59,6 +59,7 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
       taskSnapshot = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return ImageStatus(file: result);
       }));
+      Toast.show("sending..", context);
       isSending = taskSnapshot.snapshotEvents.listen((event) {
         print(event.state);
         if(event.state == TaskState.running){
