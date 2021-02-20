@@ -158,10 +158,6 @@ class _StoryViewDelegateState extends State<StoryViewDelegate> {
           onStoryShow: (storyItem) {
             int pos = storyItems.indexOf(storyItem);
 
-            // the reason for doing setState only after the first
-            // position is becuase by the first iteration, the layout
-            // hasn't been laid yet, thus raising some exception
-            // (each child need to be laid exactly once)
             if (pos > 0) {
               setState(() {
                 when = widget.stories[pos].when;

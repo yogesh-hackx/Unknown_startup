@@ -78,7 +78,8 @@ class _ImageStatusState extends State<ImageStatus> {
       "lastStatusTime": statusTime,
       "lastStatusType": "image",
       "numberOfStatus": numberOfStatus,
-      "imageUrl": url
+      "imageUrl": url,
+      "user":_auth.currentUser.uid
     };
 
     return FirebaseMethods()

@@ -24,7 +24,8 @@ class _TextStatusState extends State<TextStatus> {
       "duration": "4",
       "mediaType": "text",
       "when": statusTime,
-      "color": "#303f9f"
+      "color": "#303f9f",
+      "user":_auth.currentUser.uid
     };
 
     Navigator.pop(context);
@@ -40,6 +41,7 @@ class _TextStatusState extends State<TextStatus> {
       "lastStatusTime": statusTime,
       "lastStatusType": "text",
       "numberOfStatus": numberOfStatus,
+      "user":_auth.currentUser.uid
     };
 
     return FirebaseMethods()
