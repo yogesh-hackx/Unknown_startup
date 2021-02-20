@@ -64,20 +64,19 @@ class _ContactsListState extends State<ContactsList> {
       ),
       body: FutureBuilder(
             future: getContacts(),
-            builder: (context,snapShot){
-          if(snapShot.hasData && snapShot.data != null){
+            builder: (context,contacts){
+          if(contacts.hasData && contacts.data != null){
             return ListView.builder(
-          itemCount: snapShot.data.length,
+          itemCount: contacts.data.length,
           padding: const EdgeInsets.all(10),
           itemBuilder: (context,index){
-            Contact c =  snapShot.data[index];
+            Contact c =  contacts.data[index];
             String contactName = c.displayName;
             String contactNumber = c.phones.first.value;
-            print(contactNumber);
-            return StreamBuilder<Object>(
+            return StreamBuilder<QuerySnapshot>(
               stream: FirebaseMethods().getUser(contactNumber),
               builder: (context, snapshot) {
-                if(snapshot.hasData && snapshot.data != null){
+                if(snapshot.hasData && snapshot.data.docs.isEmpty==false){
                   QuerySnapshot querySnapshot = snapshot.data;
                   String peerUserName = querySnapshot.docs[0]["Username"];
                   String peerPhoneNumber = querySnapshot.docs[0]["phoneNumber"];
