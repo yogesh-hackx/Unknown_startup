@@ -25,7 +25,7 @@ class _ThemesState extends State<Themes> {
         fontWeight: FontWeight.w800,
       ),
       headline6: GoogleFonts.nunito(
-        color: const Color.fromRGBO(23, 221, 200, 1),
+        color: const Color.fromRGBO(252, 69, 69, 1),
         fontSize: 14,
         fontWeight: FontWeight.w800,
       ),
@@ -54,27 +54,27 @@ class _ThemesState extends State<Themes> {
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
-    scaffoldBackgroundColor: Color.fromRGBO(37, 41, 54, 1),
+    scaffoldBackgroundColor: Color.fromRGBO(27, 34, 46, 1),
     appBarTheme: AppBarTheme(
-      color: const Color.fromRGBO(44, 48, 64, 1),
+      color: const Color.fromRGBO(27, 34, 46, 1),
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
     ),
     cardTheme: CardTheme(
-      color: const Color.fromRGBO(53, 61, 81, 1),
+      color: const Color.fromRGBO(43, 53, 71, 1),
     ),
     bannerTheme: MaterialBannerThemeData(
-      backgroundColor: const Color.fromRGBO(15, 177, 164, 1),
+      backgroundColor: const Color.fromRGBO(131, 35, 35, 1),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: const Color.fromRGBO(24, 223, 200, 1),
+      backgroundColor: const Color.fromRGBO(252, 69, 69, 1),
     ),
-    buttonColor: const Color.fromRGBO(255, 196, 145, 1),
+    buttonColor: const Color.fromRGBO(252, 69, 69, 1),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: const Color.fromRGBO(37, 41, 54, 1),
+      backgroundColor: const Color.fromRGBO(27, 34, 46, 1),
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color.fromRGBO(24, 223, 200, 1),
+      selectedItemColor: const Color.fromRGBO(252, 69, 69, 1),
       unselectedItemColor: Colors.white70,
       selectedLabelStyle: GoogleFonts.nunito(
         fontWeight: FontWeight.bold,

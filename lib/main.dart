@@ -80,7 +80,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       color: const Color.fromRGBO(64, 72, 92, 1),
     ),
     bannerTheme: MaterialBannerThemeData(
-      backgroundColor: const Color.fromRGBO(21, 118, 255, 1),
+      backgroundColor: const Color.fromRGBO(76, 147, 241, 1),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: const Color.fromRGBO(7, 159, 236, 1),
