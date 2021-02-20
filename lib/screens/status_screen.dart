@@ -113,7 +113,6 @@ class _StatusScreenState extends State<StatusScreen>
         ),
       ),
       body: Column(
-        
         children: [
           Container(
             margin: const EdgeInsets.all(20),
@@ -123,35 +122,162 @@ class _StatusScreenState extends State<StatusScreen>
               borderRadius: BorderRadius.circular(10),
             ),
             child: StreamBuilder(
-              stream:
-                  FirebaseMethods().checkIfStatusExists(_auth.currentUser.uid),
-              builder: (context, snapShot) {
-                if (snapShot.hasData) {
-                  bool status = snapShot.data.data() == null ? false : true;
+                stream: FirebaseMethods()
+                    .checkIfStatusExists(_auth.currentUser.uid),
+                builder: (context, snapShot) {
+                  if (snapShot.hasData) {
+                    bool status = snapShot.data.data() == null ? false : true;
+                    return Column(
+                      children: [
+                        GestureDetector(
+                          onTap: status
+                              ? () {
+                                  Navigator.push(context,
+                                      MaterialPageRoute(builder: (context) {
+                                    return Status(
+                                        userId: _auth.currentUser.uid);
+                                  }));
+                                }
+                              : () {},
+                          child: Container(
+                            padding: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(1000),
+                                border: status
+                                    ? Border.all(
+                                        color: Theme.of(context)
+                                            .floatingActionButtonTheme
+                                            .backgroundColor,
+                                        width: 2.5)
+                                    : Border.all(
+                                        color: Color.fromRGBO(231, 233, 240, 1),
+                                        width: 3)),
+                            child: const CircleAvatar(
+                              radius: 50,
+                              backgroundImage: const AssetImage(
+                                  "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                            ),
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(top: 10),
+                          child: Text(
+                            "Your Status",
+                            style: Theme.of(context).textTheme.caption,
+                          ),
+                        ),
+                        sending
+                            ? Text("sending...")
+                            : Container(
+                                width: 0,
+                                height: 0,
+                              ),
+                        Container(
+                          margin: EdgeInsets.only(left: 40, right: 40, top: 20),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(context,
+                                          MaterialPageRoute(builder: (context) {
+                                        return TextStatus();
+                                      }));
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(1000),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Theme.of(context)
+                                                .bannerTheme
+                                                .backgroundColor,
+                                            Theme.of(context)
+                                                .floatingActionButtonTheme
+                                                .backgroundColor
+                                          ],
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.create_rounded,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      " Add Text",
+                                      style: Theme.of(context).textTheme.button,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                              Column(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () async {
+                                      await chooseMedia(context);
+                                    },
+                                    child: Container(
+                                      padding: EdgeInsets.all(15),
+                                      decoration: BoxDecoration(
+                                        borderRadius:
+                                            BorderRadius.circular(1000),
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Theme.of(context)
+                                                .bannerTheme
+                                                .backgroundColor,
+                                            Theme.of(context)
+                                                .floatingActionButtonTheme
+                                                .backgroundColor
+                                          ],
+                                        ),
+                                      ),
+                                      child: Icon(
+                                        Icons.camera_alt_rounded,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                  Container(
+                                    margin: const EdgeInsets.only(top: 10),
+                                    child: Text(
+                                      "Add Media",
+                                      style: Theme.of(context).textTheme.button,
+                                    ),
+                                  ),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    );
+                  }
                   return Column(
                     children: [
                       GestureDetector(
-                        onTap: status
-                            ? () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Status(userId: _auth.currentUser.uid);
-                                }));
-                              }
-                            : () {},
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) {
+                            return Status(userId: _auth.currentUser.uid);
+                          }));
+                        },
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(1000),
-                              border: status
-                                  ? Border.all(
-                                      color: Theme.of(context)
-                                          .floatingActionButtonTheme
-                                          .backgroundColor,
-                                      width: 2.5)
-                                  : Border.all(
-                                      color: Color.fromRGBO(231, 233, 240, 1),
-                                      width: 3)),
+                              border: Border.all(
+                                  color: Theme.of(context)
+                                      .floatingActionButtonTheme
+                                      .backgroundColor,
+                                  width: 2.5)),
                           child: const CircleAvatar(
                             radius: 50,
                             backgroundImage: const AssetImage(
@@ -257,136 +383,7 @@ class _StatusScreenState extends State<StatusScreen>
                       )
                     ],
                   );
-                }
-                return Column(
-                    children: [
-                      GestureDetector(
-                        onTap: 
-                             () {
-                                Navigator.push(context,
-                                    MaterialPageRoute(builder: (context) {
-                                  return Status(userId: _auth.currentUser.uid);
-                                }));
-                              }
-                            ,
-                        child: Container(
-                          padding: const EdgeInsets.all(10),
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              border: 
-                                  Border.all(
-                                      color: Theme.of(context)
-                                          .floatingActionButtonTheme
-                                          .backgroundColor,
-                                      width: 2.5)
-                                  ),
-                          child: const CircleAvatar(
-                            radius: 50,
-                            backgroundImage: const AssetImage(
-                                "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                          ),
-                        ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(top: 10),
-                        child: Text(
-                          "Your Status",
-                          style: Theme.of(context).textTheme.caption,
-                        ),
-                      ),
-                      sending
-                          ? Text("sending...")
-                          : Container(
-                              width: 0,
-                              height: 0,
-                            ),
-                      Container(
-                        margin: EdgeInsets.only(left: 40, right: 40, top: 20),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(context,
-                                        MaterialPageRoute(builder: (context) {
-                                      return TextStatus();
-                                    }));
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(1000),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Theme.of(context)
-                                              .bannerTheme
-                                              .backgroundColor,
-                                          Theme.of(context)
-                                              .floatingActionButtonTheme
-                                              .backgroundColor
-                                        ],
-                                      ),
-                                    ),
-                                    child: Icon(
-                                      Icons.create_rounded,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: EdgeInsets.only(top: 10),
-                                  child: Text(
-                                    " Add Text",
-                                    style: Theme.of(context).textTheme.button,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () async {
-                                    await chooseMedia(context);
-                                  },
-                                  child: Container(
-                                    padding: EdgeInsets.all(15),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(1000),
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          Theme.of(context)
-                                              .bannerTheme
-                                              .backgroundColor,
-                                          Theme.of(context)
-                                              .floatingActionButtonTheme
-                                              .backgroundColor
-                                        ],
-                                      ),
-                                    ),
-                                    child: Icon(
-                                      Icons.camera_alt_rounded,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                ),
-                                Container(
-                                  margin: const EdgeInsets.only(top: 10),
-                                  child: Text(
-                                    "Add Media",
-                                    style: Theme.of(context).textTheme.button,
-                                  ),
-                                ),
-                              ],
-                            )
-                          ],
-                        ),
-                      )
-                    ],
-                  );
-                }
-            ),
+                }),
           ),
           Container(
             margin: const EdgeInsets.all(20),

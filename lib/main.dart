@@ -69,25 +69,25 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
-    scaffoldBackgroundColor: Color.fromRGBO(28, 30, 33, 1),
+    scaffoldBackgroundColor: Color.fromRGBO(14, 14, 14, 1),
     appBarTheme: AppBarTheme(
-      color: const Color.fromRGBO(28, 30, 33, 1),
+      color: const Color.fromRGBO(14, 14, 14, 1),
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
     ),
     cardTheme: CardTheme(
-      color: const Color.fromRGBO(64, 72, 92, 1),
+      color: const Color.fromRGBO(29, 30, 34, 1),
     ),
     bannerTheme: MaterialBannerThemeData(
-      backgroundColor: const Color.fromRGBO(76, 147, 241, 1),
+      backgroundColor: const Color.fromRGBO(71, 211, 255, 1),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
       backgroundColor: const Color.fromRGBO(7, 159, 236, 1),
     ),
     buttonColor: const Color.fromRGBO(7, 159, 236, 1),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
+      backgroundColor: const Color.fromRGBO(14, 14, 14, 1),
       type: BottomNavigationBarType.fixed,
       selectedItemColor: const Color.fromRGBO(7, 159, 236, 1),
       unselectedItemColor: Colors.white,
