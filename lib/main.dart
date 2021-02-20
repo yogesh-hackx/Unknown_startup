@@ -35,12 +35,12 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       headline5: GoogleFonts.nunito(
           color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
       headline4: GoogleFonts.nunito(
-        color: Colors.white70,
+        color: Color.fromRGBO(7, 159, 236, 1),
         fontSize: 18,
         fontWeight: FontWeight.w800,
       ),
       headline6: GoogleFonts.nunito(
-        color: const Color.fromRGBO(109, 175, 254, 1),
+        color: const Color.fromRGBO(7, 159, 236, 1),
         fontSize: 14,
         fontWeight: FontWeight.w800,
       ),
@@ -69,27 +69,27 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
     iconTheme: IconThemeData(
       color: Colors.white,
     ),
-    scaffoldBackgroundColor: Colors.black,
+    scaffoldBackgroundColor: Color.fromRGBO(28, 30, 33, 1),
     appBarTheme: AppBarTheme(
-      color: const Color.fromRGBO(23, 28, 41, 1),
+      color: const Color.fromRGBO(28, 30, 33, 1),
       iconTheme: IconThemeData(
         color: Colors.white,
       ),
     ),
     cardTheme: CardTheme(
-      color: const Color.fromRGBO(53, 61, 81, 1),
+      color: const Color.fromRGBO(64, 72, 92, 1),
     ),
     bannerTheme: MaterialBannerThemeData(
-      backgroundColor: const Color.fromRGBO(67, 127, 199, 1),
+      backgroundColor: const Color.fromRGBO(21, 118, 255, 1),
     ),
     floatingActionButtonTheme: FloatingActionButtonThemeData(
-      backgroundColor: const Color.fromRGBO(109, 175, 254, 1),
+      backgroundColor: const Color.fromRGBO(7, 159, 236, 1),
     ),
-    buttonColor: const Color.fromRGBO(109, 175, 254, 1),
+    buttonColor: const Color.fromRGBO(7, 159, 236, 1),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
-      backgroundColor: const Color.fromRGBO(23, 28, 41, 1),
+      backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
       type: BottomNavigationBarType.fixed,
-      selectedItemColor: const Color.fromRGBO(109, 175, 254, 1),
+      selectedItemColor: const Color.fromRGBO(7, 159, 236, 1),
       unselectedItemColor: Colors.white70,
       selectedLabelStyle: GoogleFonts.nunito(
         fontWeight: FontWeight.bold,

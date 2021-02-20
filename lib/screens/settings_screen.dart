@@ -36,7 +36,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(5),
                 child: ListTile(
-                  tileColor: Theme.of(context).appBarTheme.color,
+                  tileColor: Theme.of(context).cardTheme.color,
                   contentPadding: EdgeInsets.all(5),
                   leading: Container(
                     decoration: BoxDecoration(

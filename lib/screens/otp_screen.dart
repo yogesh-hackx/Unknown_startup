@@ -33,7 +33,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
           flexibleSpace: Container(
             height: double.infinity,
             decoration: BoxDecoration(
-              color: Color.fromRGBO(23, 28, 41, 1),
+              color: const Color.fromRGBO(28, 30, 33, 1),
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
             ),
             child: Column(
@@ -55,7 +55,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
           ),
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
       body: ListView(
         children: [
           Container(
@@ -88,9 +88,7 @@ class _OneTimePasswordState extends State<OneTimePassword> {
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(53, 61, 81, 1),
                     borderRadius: BorderRadius.circular(5),
-                    border: Border.all(
-                      color: Color.fromRGBO(53, 61, 81, 1),
-                    ),
+                    border: Border.all(),
                   ),
                   child: TextField(
                     textAlign: TextAlign.center,

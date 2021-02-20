@@ -48,119 +48,107 @@ class _ChatListTileState extends State<ChatListTile> {
       child: Column(
         children: [
           Container(
-            decoration: BoxDecoration(
-              boxShadow: (islongPress
-                  ? [
-                      BoxShadow(
-                        color: Colors.white.withOpacity(0.1),
-                        offset: Offset(-6.0, -6.0),
-                        blurRadius: 16.0,
-                      ),
-                      BoxShadow(
-                        color: Colors.white.withOpacity(0.1),
-                        offset: Offset(6.0, 6.0),
-                        blurRadius: 16.0,
-                      ),
-                    ]
-                  : []),
-            ),
+            decoration: BoxDecoration(),
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) {
-                      return ChatScreen(
-                        peerUsername: widget.peerUsername,
-                        peerId: widget.peerUid,
-                        peerphoneNumber: widget.peerphoneNumber,
-                        chatRoomId: widget.chatRoomId,
-                      );
-                    }),
-                  );
-                  setState(() {
-                    islongPress = false;
-                  });
-                },
-                onLongPress: () {
-                  setState(() {
-                    islongPress = true;
-                  });
-                },
-                tileColor: Theme.of(context).appBarTheme.color,
-                contentPadding: const EdgeInsets.all(9),
-                leading: GestureDetector(
+              child: InkWell(
+                onTap: () {},
+                child: ListTile(
                   onTap: () {
-                    // widget.profile();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) {
+                        return ChatScreen(
+                          peerUsername: widget.peerUsername,
+                          peerId: widget.peerUid,
+                          peerphoneNumber: widget.peerphoneNumber,
+                          chatRoomId: widget.chatRoomId,
+                        );
+                      }),
+                    );
+                    setState(() {
+                      islongPress = false;
+                    });
                   },
-                  child: Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(1000),
-                      border: Border.all(
-                          color: Theme.of(context)
-                              .floatingActionButtonTheme
-                              .backgroundColor,
-                          width: 2.5),
-                    ),
-                    child: const CircleAvatar(
-                      radius: 20,
-                      backgroundImage: const AssetImage(
-                          "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                  onLongPress: () {
+                    setState(() {
+                      islongPress = true;
+                    });
+                  },
+                  tileColor: Theme.of(context).cardTheme.color,
+                  contentPadding: const EdgeInsets.all(9),
+                  leading: GestureDetector(
+                    onTap: () {
+                      // widget.profile();
+                    },
+                    child: Container(
+                      padding: EdgeInsets.all(5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(1000),
+                        border: Border.all(
+                            color: Theme.of(context)
+                                .floatingActionButtonTheme
+                                .backgroundColor,
+                            width: 2.5),
+                      ),
+                      child: const CircleAvatar(
+                        radius: 20,
+                        backgroundImage: const AssetImage(
+                            "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                      ),
                     ),
                   ),
-                ),
-                title: Text(
-                  widget.peerUsername,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline5,
-                ),
-                subtitle: Text(
-                  widget.lastMessage,
-                  overflow: TextOverflow.ellipsis,
-                  maxLines: 1,
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                trailing: (islongPress
-                    ? InkWell(
-                        onTap: () {
-                          setState(() {
-                            showModalBottomSheet(
-                                context: context,
-                                builder: (context) {
-                                  return DeleteModal();
-                                });
-                            islongPress = false;
-                          });
-                        },
-                        child: Icon(
-                          Icons.delete,
-                          color: Colors.red,
-                        ),
-                      )
-                    : Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Text(
-                            dateFormat.format(widget.lastMessageTime),
-                            style: Theme.of(context).textTheme.bodyText2,
+                  title: Text(
+                    widget.peerUsername,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline5,
+                  ),
+                  subtitle: Text(
+                    widget.lastMessage,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.headline6,
+                  ),
+                  trailing: (islongPress
+                      ? InkWell(
+                          onTap: () {
+                            setState(() {
+                              showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) {
+                                    return DeleteModal();
+                                  });
+                              islongPress = false;
+                            });
+                          },
+                          child: Icon(
+                            Icons.delete,
+                            color: Colors.red,
                           ),
-                          if (widget.unseenMessagesCount != "0")
-                            Badge(
-                              badgeContent: Text(widget.unseenMessagesCount,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .button
-                                      .copyWith(color: Colors.white)),
-                              badgeColor: Theme.of(context)
-                                  .floatingActionButtonTheme
-                                  .backgroundColor,
-                              padding: const EdgeInsets.all(6),
-                            )
-                        ],
-                      )),
+                        )
+                      : Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Text(
+                              dateFormat.format(widget.lastMessageTime),
+                              style: Theme.of(context).textTheme.bodyText2,
+                            ),
+                            if (widget.unseenMessagesCount != "0")
+                              Badge(
+                                badgeContent: Text(widget.unseenMessagesCount,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .button
+                                        .copyWith(color: Colors.white)),
+                                badgeColor: Theme.of(context)
+                                    .floatingActionButtonTheme
+                                    .backgroundColor,
+                                padding: const EdgeInsets.all(6),
+                              )
+                          ],
+                        )),
+                ),
               ),
             ),
           ),

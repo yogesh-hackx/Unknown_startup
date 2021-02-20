@@ -20,7 +20,7 @@ class _ThemesState extends State<Themes> {
       headline5: GoogleFonts.nunito(
           color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
       headline4: GoogleFonts.nunito(
-        color: Colors.white70,
+        color: Color.fromRGBO(255, 196, 145, 1),
         fontSize: 18,
         fontWeight: FontWeight.w800,
       ),
@@ -113,9 +113,8 @@ class _ThemesState extends State<Themes> {
                       setState(() {
                         isSelected = newValue;
                         ThemeSwitcher.of(context).changeTheme(
-                            theme: color,
-                            reverseAnimation: true // default: false
-                            );
+                          theme: color,
+                        );
                       });
                     },
                     title: Text(

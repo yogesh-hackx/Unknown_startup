@@ -28,7 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(30),
             decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.color,
+              color: Theme.of(context).cardTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: Column(

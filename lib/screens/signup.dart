@@ -1,5 +1,6 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -20,14 +21,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
           automaticallyImplyLeading: false,
           shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.vertical(
-            bottom: Radius.circular(60),
+            bottom: Radius.circular(30),
           )),
+          backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
           flexibleSpace: Container(
-            height: double.infinity,
-            decoration: BoxDecoration(
-              color: Color.fromRGBO(23, 28, 41, 1),
-              borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
-            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,7 +44,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
           ),
         ),
       ),
-      backgroundColor: Colors.black,
+      backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
       body: ListView(
         children: [
           Container(
@@ -62,10 +59,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
           ),
           Container(
-            margin: const EdgeInsets.only(left: 30, top: 20),
+            margin: const EdgeInsets.only(left: 30, top: 20, right: 30),
             child: Text(
-                "A six digit code will be sent to verify your phone number ",
-                style: Theme.of(context).textTheme.headline4),
+              "A six digit code will be sent to verify your phone number ",
+              style: GoogleFonts.nunito(
+                fontWeight: FontWeight.bold,
+                color: Colors.white70,
+                fontSize: 17,
+              ),
+            ),
           ),
           Container(
             margin: const EdgeInsets.only(left: 30, top: 10, right: 50),
@@ -73,10 +75,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
               border: Border.all(
-                color: const Color.fromRGBO(53, 61, 81, 1),
+                color: Colors.white54,
               ),
               borderRadius: BorderRadius.circular(5),
-              color: const Color.fromRGBO(53, 61, 81, 1),
             ),
             child: TextField(
               style: Theme.of(context).textTheme.subtitle1,
@@ -87,7 +88,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 counterText: '',
                 prefixIcon: Icon(
                   Icons.call_rounded,
-                  color: Theme.of(context).buttonColor,
+                  color: Colors.white,
                 ),
                 border: InputBorder.none,
               ),
@@ -102,8 +103,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               },
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(3)),
-              color: Theme.of(context).buttonColor,
-              textColor: Colors.white,
+              color: Color.fromRGBO(82, 104, 244, 1),
               padding: EdgeInsets.all(18),
               child: Text(
                 "Get OTP",
@@ -116,7 +116,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
       bottomNavigationBar: Container(
         height: 50,
         decoration: BoxDecoration(
-          color: Color.fromRGBO(23, 28, 41, 1),
           borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
         ),
       ),
