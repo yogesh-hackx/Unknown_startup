@@ -115,7 +115,7 @@ class _ChatListTileState extends State<ChatListTile> {
                   overflow: TextOverflow.ellipsis,
                   maxLines: 1,
                   style: (widget.unseenMessagesCount != "0"
-                      ? Theme.of(context).textTheme.button
+                      ? Theme.of(context).textTheme.subtitle2
                       : Theme.of(context).textTheme.headline6),
                 ),
                 trailing: (islongPress

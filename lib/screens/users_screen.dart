@@ -74,6 +74,7 @@ class _ChatScreenUsersState extends State<ChatScreenUsers> {
         child: AppBar(
           automaticallyImplyLeading: false,
           titleSpacing: 30,
+          elevation: 0,
           title: Text(
             "Chats",
             style: Theme.of(context).textTheme.subtitle1,
