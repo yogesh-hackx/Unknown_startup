@@ -18,7 +18,10 @@ class StatusScreen extends StatefulWidget {
   _StatusScreenState createState() => _StatusScreenState();
 }
 
-class _StatusScreenState extends State<StatusScreen> {
+class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClientMixin{
+
+  bool get wantKeepAlive => true;
+
   final _auth = FirebaseMethods().auth;
   final videoExtensions = ["mp4"];
   final imageExtensions = ["png", "jpeg", "jpg"];
@@ -52,21 +55,36 @@ class _StatusScreenState extends State<StatusScreen> {
       File result = await FlutterImageCompress.compressAndGetFile(
           mediaFile.absolute.path, targetPath,
           quality: 25);
-      TaskSnapshot taskSnapshot;
+      UploadTask taskSnapshot;
       taskSnapshot = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
         return ImageStatus(file: result);
       }));
+      Toast.show("sending..", context);
+      isSending = taskSnapshot.snapshotEvents.listen((event) {
+        print(event.state);
+        if(event.state == TaskState.running){
+          setState(() {
+            sending = true;
+          });
+        }
+        else if(event.state == TaskState.success){
+          setState(() {
+            sending= false;
+          });  
+        }
+        else if(event.state == TaskState.error){
+          setState(() {
+            sending = false;
+          });
+        }
+      });
 
-      if(taskSnapshot.state == TaskState.running){
-        Toast.show("sending...",context);
-      }
-      
-      
+      }  
     }
-  }
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Scaffold(
       key: _scaffoldKey,
       appBar: PreferredSize(
@@ -148,6 +166,7 @@ class _StatusScreenState extends State<StatusScreen> {
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
+                      sending?Text("sending..."):Container(width: 0,height: 0,),
                       Container(
                         margin: EdgeInsets.only(left: 40, right: 40, top: 20),
                         child: Row(
@@ -265,6 +284,7 @@ class _StatusScreenState extends State<StatusScreen> {
                         style: Theme.of(context).textTheme.caption,
                       ),
                     ),
+                    sending?Text("sending..."):Container(width: 0,height: 0,),
                     Container(
                       margin: EdgeInsets.only(left: 40, right: 40, top: 20),
                       child: Row(

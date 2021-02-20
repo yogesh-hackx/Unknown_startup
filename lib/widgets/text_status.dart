@@ -1,5 +1,6 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toast/toast.dart';
@@ -26,10 +27,14 @@ class _TextStatusState extends State<TextStatus> {
       "color": "#303f9f"
     };
 
+    Navigator.pop(context);
+
     DocumentReference ref = await FirebaseMethods()
         .createStatus(_auth.currentUser.uid, statusInfoMap);
     QuerySnapshot querySnapshot =
         await FirebaseMethods().getStatus(_auth.currentUser.uid);
+
+    
 
     int numberOfStatus = querySnapshot.size;
 
@@ -114,7 +119,6 @@ class _TextStatusState extends State<TextStatus> {
               ),
               onTap: () async {
                 await addStatus();
-                Navigator.pop(context);
               },
             ),
           ],
