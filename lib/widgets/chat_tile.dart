@@ -76,7 +76,7 @@ class _ChatListTileState extends State<ChatListTile> {
                     });
                   },
                   tileColor: Theme.of(context).cardTheme.color,
-                  contentPadding: const EdgeInsets.all(9),
+                  contentPadding: const EdgeInsets.all(6),
                   leading: GestureDetector(
                     onTap: () {
                       // widget.profile();
