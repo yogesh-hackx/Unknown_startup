@@ -1,6 +1,5 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toast/toast.dart';
@@ -17,7 +16,8 @@ class _TextStatusState extends State<TextStatus> {
   addStatus() async {
     focusNode.unfocus();
     final statusTime = DateTime.now();
-    Toast.show("Sending...",context,duration: Toast.LENGTH_LONG,gravity:  Toast.BOTTOM);
+    Toast.show("Sending...", context,
+        duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
     final statusInfoMap = {
       "caption": textStatus.text.trim(),
       "media": "",
@@ -33,8 +33,6 @@ class _TextStatusState extends State<TextStatus> {
         .createStatus(_auth.currentUser.uid, statusInfoMap);
     QuerySnapshot querySnapshot =
         await FirebaseMethods().getStatus(_auth.currentUser.uid);
-
-    
 
     int numberOfStatus = querySnapshot.size;
 

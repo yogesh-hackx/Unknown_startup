@@ -18,14 +18,14 @@ class StatusScreen extends StatefulWidget {
   _StatusScreenState createState() => _StatusScreenState();
 }
 
-class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClientMixin{
-
+class _StatusScreenState extends State<StatusScreen>
+    with AutomaticKeepAliveClientMixin {
   bool get wantKeepAlive => true;
 
   final _auth = FirebaseMethods().auth;
   final videoExtensions = ["mp4"];
   final imageExtensions = ["png", "jpeg", "jpg"];
-  bool sending=false;
+  bool sending = false;
 
   StreamSubscription isSending;
 
@@ -56,31 +56,29 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
           mediaFile.absolute.path, targetPath,
           quality: 25);
       UploadTask taskSnapshot;
-      taskSnapshot = await Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+      taskSnapshot = await Navigator.of(context)
+          .push(MaterialPageRoute(builder: (context) {
         return ImageStatus(file: result);
       }));
       Toast.show("sending..", context);
       isSending = taskSnapshot.snapshotEvents.listen((event) {
         print(event.state);
-        if(event.state == TaskState.running){
+        if (event.state == TaskState.running) {
           setState(() {
             sending = true;
           });
-        }
-        else if(event.state == TaskState.success){
+        } else if (event.state == TaskState.success) {
           setState(() {
-            sending= false;
-          });  
-        }
-        else if(event.state == TaskState.error){
+            sending = false;
+          });
+        } else if (event.state == TaskState.error) {
           setState(() {
             sending = false;
           });
         }
       });
-
-      }  
     }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -119,7 +117,7 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
             margin: const EdgeInsets.all(20),
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: Theme.of(context).appBarTheme.color,
+              color: Theme.of(context).cardTheme.color,
               borderRadius: BorderRadius.circular(10),
             ),
             child: StreamBuilder(
@@ -166,7 +164,12 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
                           style: Theme.of(context).textTheme.caption,
                         ),
                       ),
-                      sending?Text("sending..."):Container(width: 0,height: 0,),
+                      sending
+                          ? Text("sending...")
+                          : Container(
+                              width: 0,
+                              height: 0,
+                            ),
                       Container(
                         margin: EdgeInsets.only(left: 40, right: 40, top: 20),
                         child: Row(
@@ -253,123 +256,6 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
                     ],
                   );
                 }
-
-                return Column(
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) {
-                          return Status(userId: _auth.currentUser.uid);
-                        }));
-                      },
-                      child: Container(
-                        padding: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Color.fromRGBO(109, 175, 254, 1),
-                                width: 2.5)),
-                        child: const CircleAvatar(
-                          radius: 50,
-                          backgroundImage: const AssetImage(
-                              "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                        ),
-                      ),
-                    ),
-                    Container(
-                      margin: EdgeInsets.only(top: 10),
-                      child: Text(
-                        "Your Status",
-                        style: Theme.of(context).textTheme.caption,
-                      ),
-                    ),
-                    sending?Text("sending..."):Container(width: 0,height: 0,),
-                    Container(
-                      margin: EdgeInsets.only(left: 40, right: 40, top: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () {
-                                  Navigator.push(context,
-                                      MaterialPageRoute(builder: (context) {
-                                    return TextStatus();
-                                  }));
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Theme.of(context)
-                                            .bannerTheme
-                                            .backgroundColor,
-                                        Theme.of(context)
-                                            .floatingActionButtonTheme
-                                            .backgroundColor
-                                      ],
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    Icons.create_rounded,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: EdgeInsets.only(top: 10),
-                                child: Text(
-                                  " Add Text",
-                                  style: Theme.of(context).textTheme.button,
-                                ),
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              GestureDetector(
-                                onTap: () async {
-                                  await chooseMedia(context);
-                                },
-                                child: Container(
-                                  padding: EdgeInsets.all(15),
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(1000),
-                                    gradient: LinearGradient(
-                                      colors: [
-                                        Theme.of(context)
-                                            .bannerTheme
-                                            .backgroundColor,
-                                        Theme.of(context)
-                                            .floatingActionButtonTheme
-                                            .backgroundColor
-                                      ],
-                                    ),
-                                  ),
-                                  child: Icon(
-                                    Icons.camera_alt_rounded,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              Container(
-                                margin: const EdgeInsets.only(top: 10),
-                                child: Text(
-                                  "Add Media",
-                                  style: Theme.of(context).textTheme.button,
-                                ),
-                              ),
-                            ],
-                          )
-                        ],
-                      ),
-                    )
-                  ],
-                );
               },
             ),
           ),
@@ -378,7 +264,7 @@ class _StatusScreenState extends State<StatusScreen> with AutomaticKeepAliveClie
             child: ClipRRect(
               borderRadius: BorderRadius.circular(5),
               child: ListTile(
-                tileColor: Theme.of(context).appBarTheme.color,
+                tileColor: Theme.of(context).cardTheme.color,
                 contentPadding: EdgeInsets.all(8),
                 leading: Container(
                   padding: const EdgeInsets.all(5),
