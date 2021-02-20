@@ -47,12 +47,16 @@ class _ImageStatusState extends State<ImageStatus> {
     Toast.show("Sending...",context,duration: Toast.LENGTH_SHORT,gravity:  Toast.BOTTOM);
     String fileName = basename(widget.file.path);
 
-    firebase_storage.TaskSnapshot uploadTask = await storage
-        .ref("status" + _auth.currentUser.uid + "/$fileName")
-        .putFile(widget.file);
-    Navigator.pop(context,uploadTask);    
+    firebase_storage.Reference ref = storage
+        .ref("status" + _auth.currentUser.uid + "/$fileName");
+
+    firebase_storage.UploadTask uploadTask = ref.putFile(widget.file);
+    Navigator.pop(context,uploadTask);
     String url;
-    url = await uploadTask.storage.ref("status" + _auth.currentUser.uid + "/$fileName").getDownloadURL();
+    await uploadTask.whenComplete(()async{
+      url = await ref.getDownloadURL();
+    }); 
+    
 
     final statusInfoMap = {
       "caption": imageStatusController.text.trim(),
@@ -63,7 +67,7 @@ class _ImageStatusState extends State<ImageStatus> {
       "color": "#303f9f"
     };
 
-    DocumentReference ref = await FirebaseMethods()
+    DocumentReference reference = await FirebaseMethods()
         .createStatus(_auth.currentUser.uid, statusInfoMap);
     QuerySnapshot querySnapshot =
         await FirebaseMethods().getStatus(_auth.currentUser.uid);
