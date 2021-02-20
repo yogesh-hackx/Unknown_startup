@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:contacts_service/contacts_service.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -23,23 +24,17 @@ class _ImageStatusState extends State<ImageStatus> {
   firebase_storage.FirebaseStorage storage =
       firebase_storage.FirebaseStorage.instance;
 
-  Widget toast = Container(
-    padding: const EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(25.0),
-      color: Colors.greenAccent,
-    ),
-    child: Row(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Icon(Icons.check),
-        SizedBox(
-          width: 12.0,
-        ),
-        Text("Sending!"),
-      ],
-    ),
-  );
+  Future<List> getContacts()async{
+    Iterable<Contact> contacts  = await ContactsService.getContacts();
+    List fullContacts = [];
+    contacts.forEach((element) async{
+        QuerySnapshot qs = await FirebaseMethods().getUserFuture(element.phones.first.value);
+        if(qs.docs.isEmpty == false){
+          fullContacts.add(element.phones.first.value);
+        }
+      });
+    return fullContacts;
+    }
 
   uploadImageStatus(BuildContext context) async {
     focusNode.unfocus();
@@ -51,6 +46,9 @@ class _ImageStatusState extends State<ImageStatus> {
         .ref("status" + _auth.currentUser.uid + "/$fileName");
 
     firebase_storage.UploadTask uploadTask = ref.putFile(widget.file);
+
+    List contacts = await getContacts();
+
     Navigator.pop(context,uploadTask);
     String url;
     await uploadTask.whenComplete(()async{
@@ -79,7 +77,8 @@ class _ImageStatusState extends State<ImageStatus> {
       "lastStatusType": "image",
       "numberOfStatus": numberOfStatus,
       "imageUrl": url,
-      "user":_auth.currentUser.uid
+      "user":_auth.currentUser.uid,
+      "canSee":contacts
     };
 
     return FirebaseMethods()
