@@ -22,7 +22,7 @@ class _SearchBarState extends State<SearchBar> {
   Stream usersStream;
 
   onsearch(String phoneNumber) async {
-    usersStream = await FirebaseMethods().getUser(phoneNumber);
+    usersStream = FirebaseMethods().getUser(phoneNumber);
   }
 
   getChatThreadId(String userUid1, String userUid2) {

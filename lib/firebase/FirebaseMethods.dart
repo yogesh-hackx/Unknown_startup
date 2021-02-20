@@ -90,7 +90,7 @@ class FirebaseMethods {
     );
   }
 
-  getUser(String phoneNumber) async {
+  Stream<QuerySnapshot>getUser(String phoneNumber)  {
     return firestore
         .collection('users')
         .where("phoneNumber", isEqualTo: phoneNumber)
@@ -270,6 +270,17 @@ Future<QuerySnapshot> getStatus(String userId)async{
 }
 Stream<DocumentSnapshot> checkIfStatusExists(String userId){
   return firestore.collection("status").doc(userId).snapshots();
+}
+
+Stream<QuerySnapshot> statusUserCanSee(){
+  return firestore
+    .collection("status")
+    .where("canSee",arrayContains: auth.currentUser.uid)
+    .snapshots();
+}
+
+Future<DocumentSnapshot>getUserWithUid(String uid){
+  return firestore.collection("users").doc(uid).get();
 }
 
 }

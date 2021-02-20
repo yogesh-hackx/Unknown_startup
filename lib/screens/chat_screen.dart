@@ -750,11 +750,6 @@ class _ChatScreenState extends State<ChatScreen>
   @override
   Widget build(BuildContext context) {
     super.build(context);
-
-    print(widget.chatRoomId +
-        widget.peerId +
-        widget.peerUsername +
-        widget.peerphoneNumber);
     return UnseenMessage(
       chatRoomId: widget.chatRoomId,
       uid: _auth.currentUser.uid,
