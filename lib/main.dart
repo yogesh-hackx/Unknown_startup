@@ -90,7 +90,7 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
       backgroundColor: const Color.fromRGBO(28, 30, 33, 1),
       type: BottomNavigationBarType.fixed,
       selectedItemColor: const Color.fromRGBO(7, 159, 236, 1),
-      unselectedItemColor: Colors.white70,
+      unselectedItemColor: Colors.white,
       selectedLabelStyle: GoogleFonts.nunito(
         fontWeight: FontWeight.bold,
       ),
