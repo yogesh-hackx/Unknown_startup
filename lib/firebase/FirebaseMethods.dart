@@ -97,6 +97,13 @@ class FirebaseMethods {
         .snapshots();
   }
 
+  Future<QuerySnapshot> getUserFuture(String phoneNumber)  {
+    return firestore
+        .collection('users')
+        .where("phoneNumber", isEqualTo: phoneNumber)
+        .get();
+  }
+
   sendMessage(String chatRoomId, Map messageInfoMap) async {
     return firestore
         .collection("userChats")
@@ -278,6 +285,15 @@ Stream<QuerySnapshot> statusUserCanSee(){
     .where("canSee",arrayContains: auth.currentUser.uid)
     .snapshots();
 }
+
+Stream<QuerySnapshot> statusUserCanSeewithNumber(){
+  return firestore
+    .collection("status")
+    .where("canSee",arrayContains: auth.currentUser.phoneNumber)
+    .snapshots();
+}
+
+
 
 Future<DocumentSnapshot>getUserWithUid(String uid){
   return firestore.collection("users").doc(uid).get();

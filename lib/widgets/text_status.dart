@@ -1,5 +1,7 @@
 import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:contacts_service/contacts_service.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:toast/toast.dart';
@@ -13,11 +15,25 @@ class _TextStatusState extends State<TextStatus> {
   final _auth = FirebaseMethods().auth;
   FocusNode focusNode = FocusNode();
 
+
+  Future<List> getContacts()async{
+    Iterable<Contact> contacts  = await ContactsService.getContacts();
+    List fullContacts = [];
+    contacts.forEach((element) async{
+        QuerySnapshot qs = await FirebaseMethods().getUserFuture(element.phones.first.value);
+        if(qs.docs.isEmpty == false){
+          fullContacts.add(element.phones.first.value);
+        }
+      });
+    return fullContacts;
+    }
+
   addStatus() async {
     focusNode.unfocus();
     final statusTime = DateTime.now();
     Toast.show("Sending...", context,
         duration: Toast.LENGTH_LONG, gravity: Toast.BOTTOM);
+
     final statusInfoMap = {
       "caption": textStatus.text.trim(),
       "media": "",
@@ -27,6 +43,8 @@ class _TextStatusState extends State<TextStatus> {
       "color": "#303f9f",
       "user":_auth.currentUser.uid
     };
+
+    List contacts = await getContacts();
 
     Navigator.pop(context);
 
@@ -41,7 +59,8 @@ class _TextStatusState extends State<TextStatus> {
       "lastStatusTime": statusTime,
       "lastStatusType": "text",
       "numberOfStatus": numberOfStatus,
-      "user":_auth.currentUser.uid
+      "user":_auth.currentUser.uid,
+      "canSee": contacts
     };
 
     return FirebaseMethods()

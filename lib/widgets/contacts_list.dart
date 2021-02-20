@@ -13,10 +13,14 @@ class ContactsList extends StatefulWidget {
 class _ContactsListState extends State<ContactsList> {
 
   final _auth = FirebaseMethods().auth;
+  PermissionStatus gotPermission;
 
   doOnLoad()async{
     PermissionStatus permission = await Permission.contacts.request();
-  }
+    setState(() {
+      gotPermission = permission;
+    });
+    }
 
   Future<List> getContacts()async{
     Iterable<Contact> contacts  = await ContactsService.getContacts();
@@ -62,7 +66,7 @@ class _ContactsListState extends State<ContactsList> {
           ],
         ),
       ),
-      body: FutureBuilder(
+      body: gotPermission == PermissionStatus.granted?FutureBuilder(
             future: getContacts(),
             builder: (context,contacts){
           if(contacts.hasData && contacts.data != null){
@@ -120,7 +124,7 @@ class _ContactsListState extends State<ContactsList> {
                           style: Theme.of(context).textTheme.headline5,
                         ),
                         subtitle: Text(
-                          "EveryTruth will unwrap at some point of time just wait my love..",
+                          querySnapshot.docs[0]["bio"],
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context).textTheme.headline6,
@@ -136,10 +140,11 @@ class _ContactsListState extends State<ContactsList> {
           },
         );
               }
+              return Center(child: CircularProgressIndicator());
           
             },
           
-      ),
+      ):CircularProgressIndicator(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
         },

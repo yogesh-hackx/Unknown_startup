@@ -392,7 +392,7 @@ class _StatusScreenState extends State<StatusScreen>
             margin: const EdgeInsets.all(20),
             height: 50,
                       child: StreamBuilder(
-              stream: FirebaseMethods().statusUserCanSee(),
+              stream: FirebaseMethods().statusUserCanSeewithNumber(),
               builder: (context, snapshot) {
                 if(snapshot.hasData && snapshot.data != null){
                   return ListView.builder(
