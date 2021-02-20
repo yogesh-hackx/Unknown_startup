@@ -3,6 +3,7 @@ import 'package:application_unknown/firebase/FirebaseMethods.dart';
 import 'package:application_unknown/screens/profile_screen.dart';
 import 'package:application_unknown/screens/settings_screen.dart';
 import 'package:application_unknown/screens/status_screen.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import './users_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -21,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   onLoad() async {
     Map<String, dynamic> onlineIndicator = {"isOnline": true};
     await FirebaseMethods().updateOnlineIndicator(onlineIndicator);
+    await FirebaseFirestore.instance.waitForPendingWrites();
   }
 
   @override

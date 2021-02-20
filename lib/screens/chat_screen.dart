@@ -414,7 +414,8 @@ class _ChatScreenState extends State<ChatScreen>
               DocumentSnapshot ds = snapShot.data.docs[index];
               if (ds["type"] == "text") {
                 return _auth.currentUser.uid == ds["sentBy"]
-                    ? UserOne(
+                    ?
+                    UserOne(
                         msg: ds["message"],
                         requestfocus: requestfocus,
                         swipeleft: swipeleft,

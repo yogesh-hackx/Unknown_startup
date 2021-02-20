@@ -15,6 +15,7 @@ class UserOne extends StatefulWidget {
   final String chatRoomId;
   final DateTime timeSent;
   final bool isSeen;
+  final bool notSend;
 
   UserOne(
       {Key key,
@@ -25,7 +26,8 @@ class UserOne extends StatefulWidget {
       this.deleteMessage,
       this.chatRoomId,
       this.timeSent,
-      this.isSeen});
+      this.isSeen,
+      this.notSend});
 
   @override
   _UserOneState createState() => _UserOneState();
@@ -34,7 +36,7 @@ class UserOne extends StatefulWidget {
 class _UserOneState extends State<UserOne> {
   bool isSeen;
   StreamSubscription seenOrUnseen;
-  bool notSend = false;
+  bool notSend;
   var dateFormat = DateFormat.jm();
 
   @override
@@ -48,7 +50,7 @@ class _UserOneState extends State<UserOne> {
     super.initState();
   }
 
-  addSubscription() {
+  addSubscription()async{
     seenOrUnseen = FirebaseMethods()
         .getMsgSeenOrUnseen(widget.chatRoomId, widget.messageUid)
         .listen((DocumentSnapshot ds) {
