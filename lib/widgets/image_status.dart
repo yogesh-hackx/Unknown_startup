@@ -47,9 +47,8 @@ class _ImageStatusState extends State<ImageStatus> {
 
     firebase_storage.UploadTask uploadTask = ref.putFile(widget.file);
 
-    List contacts = await getContacts();
-
     Navigator.pop(context,uploadTask);
+    List contacts = await getContacts();
     String url;
     await uploadTask.whenComplete(()async{
       url = await ref.getDownloadURL();

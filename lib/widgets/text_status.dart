@@ -24,6 +24,9 @@ class _TextStatusState extends State<TextStatus> {
         if(qs.docs.isEmpty == false){
           fullContacts.add(element.phones.first.value);
         }
+        else{
+          print("No Match!!");
+        }
       });
     return fullContacts;
     }
@@ -44,9 +47,8 @@ class _TextStatusState extends State<TextStatus> {
       "user":_auth.currentUser.uid
     };
 
-    List contacts = await getContacts();
-
     Navigator.pop(context);
+    List contacts = await getContacts();
 
     DocumentReference ref = await FirebaseMethods()
         .createStatus(_auth.currentUser.uid, statusInfoMap);
