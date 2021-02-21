@@ -61,6 +61,8 @@ class _ChatScreenState extends State<ChatScreen>
   StreamSubscription online;
   String lastSeen;
 
+  bool showReplyTextField = false;
+
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   TextEditingController messageController = TextEditingController();
@@ -69,12 +71,22 @@ class _ChatScreenState extends State<ChatScreen>
 
   bool _sendEmoji = false;
 
-  bool showUpload = false;
-
   requestfocus(context) {
     FocusScope.of(context).unfocus();
     //focusNode.requestFocus();
     focusNode.requestFocus();
+  }
+
+  functionShowReplyTextField() {
+    setState(() {
+      showReplyTextField = true;
+    });
+  }
+
+  showNormalTextField() {
+    setState(() {
+      showReplyTextField = false;
+    });
   }
 
   unfocus() {
@@ -414,11 +426,11 @@ class _ChatScreenState extends State<ChatScreen>
               DocumentSnapshot ds = snapShot.data.docs[index];
               if (ds["type"] == "text") {
                 return _auth.currentUser.uid == ds["sentBy"]
-                    ?
-                    UserOne(
+                    ? UserOne(
                         msg: ds["message"],
                         requestfocus: requestfocus,
                         swipeleft: swipeleft,
+                        functionShowReplyTextField: functionShowReplyTextField,
                         messageUid: snapShot.data.docs[index].id,
                         deleteMessage: deleteMessage,
                         chatRoomId: widget.chatRoomId,
@@ -840,7 +852,7 @@ class _ChatScreenState extends State<ChatScreen>
         ),
         body: chatMessages(),
         bottomNavigationBar: SizedBox(
-          child: Container(
+          child: (Container(
             margin: EdgeInsets.only(
               bottom: MediaQuery.of(context).viewInsets.bottom,
             ),
@@ -849,55 +861,159 @@ class _ChatScreenState extends State<ChatScreen>
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 Row(
+                  crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Container(
-                      margin:
-                          const EdgeInsets.only(left: 15, bottom: 15, top: 5),
-                      width: 270,
-                      padding: const EdgeInsets.all(2),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Theme.of(context).cardTheme.color,
-                        ),
-                        borderRadius: BorderRadius.circular(5),
-                        color: Theme.of(context).cardTheme.color,
-                      ),
-                      child: TextField(
-                        focusNode: focusNode,
-                        controller: messageController,
-                        textAlignVertical: TextAlignVertical.center,
-                        style: GoogleFonts.nunito(
-                          fontSize: 17,
-                          fontWeight: FontWeight.bold,
-                        ),
-                        onChanged: (String changedMsg) async {
-                          if (changedMsg.length > 0) {
-                            await updateTypingIndicator(true);
-                          } else {
-                            await updateTypingIndicator(false);
-                          }
-                        },
-                        maxLines: null,
-                        keyboardType: TextInputType.multiline,
-                        decoration: InputDecoration(
-                          prefixIcon: GestureDetector(
-                            onTap: () {
-                              unfocus();
-                              focusNode.canRequestFocus = false;
-                              setState(() {
-                                _sendEmoji = !_sendEmoji;
-                              });
-                              unfocus();
-                            },
-                            child: Icon(Icons.emoji_emotions_rounded,
-                                color: Theme.of(context)
-                                    .floatingActionButtonTheme
-                                    .backgroundColor),
-                          ),
-                          border: InputBorder.none,
-                        ),
-                      ),
-                    ),
+                    (showReplyTextField
+                        ? UnconstrainedBox(
+                            child: Container(
+                              margin: const EdgeInsets.only(
+                                  left: 15, bottom: 15, top: 5),
+                              decoration: BoxDecoration(
+                                color: Theme.of(context).cardTheme.color,
+                                borderRadius: BorderRadius.circular(5),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Container(
+                                    width: 260,
+                                    margin: EdgeInsets.all(5),
+                                    decoration: BoxDecoration(
+                                      color: Theme.of(context)
+                                          .scaffoldBackgroundColor,
+                                      borderRadius: BorderRadius.circular(5),
+                                    ),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.start,
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.start,
+                                      children: [
+                                        Expanded(
+                                          child: Container(
+                                            padding: EdgeInsets.all(10),
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  child: Text(
+                                                    "You",
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .button,
+                                                  ),
+                                                ),
+                                                Container(
+                                                  child: Text(
+                                                    "you good?",
+                                                    maxLines: 4,
+                                                    overflow:
+                                                        TextOverflow.ellipsis,
+                                                    style: Theme.of(context)
+                                                        .textTheme
+                                                        .bodyText2,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                        Container(
+                                          margin: EdgeInsets.all(5),
+                                          child: GestureDetector(
+                                            onTap: () {
+                                              showNormalTextField();
+                                            },
+                                            child: Icon(
+                                              Icons.clear_rounded,
+                                              size: 15,
+                                            ),
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 270,
+                                    padding: const EdgeInsets.all(2),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(5),
+                                      color: Theme.of(context).cardTheme.color,
+                                    ),
+                                    child: TextField(
+                                      focusNode: focusNode,
+                                      textAlignVertical:
+                                          TextAlignVertical.center,
+                                      style: GoogleFonts.nunito(
+                                        fontSize: 17,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                      onChanged: (String changedMsg) async {},
+                                      maxLines: null,
+                                      keyboardType: TextInputType.multiline,
+                                      decoration: InputDecoration(
+                                        prefixIcon: GestureDetector(
+                                          onTap: () {},
+                                          child: Icon(
+                                              Icons.emoji_emotions_rounded,
+                                              color: Theme.of(context)
+                                                  .iconTheme
+                                                  .color),
+                                        ),
+                                        border: InputBorder.none,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          )
+                        : Container(
+                            margin: const EdgeInsets.only(
+                                left: 15, bottom: 15, top: 5),
+                            width: 270,
+                            padding: const EdgeInsets.all(2),
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Theme.of(context).cardTheme.color,
+                              ),
+                              borderRadius: BorderRadius.circular(5),
+                              color: Theme.of(context).cardTheme.color,
+                            ),
+                            child: TextField(
+                              controller: messageController,
+                              textAlignVertical: TextAlignVertical.center,
+                              style: GoogleFonts.nunito(
+                                fontSize: 17,
+                                fontWeight: FontWeight.bold,
+                              ),
+                              onChanged: (String changedMsg) async {
+                                if (changedMsg.length > 0) {
+                                  await updateTypingIndicator(true);
+                                } else {
+                                  await updateTypingIndicator(false);
+                                }
+                              },
+                              maxLines: null,
+                              keyboardType: TextInputType.multiline,
+                              decoration: InputDecoration(
+                                prefixIcon: GestureDetector(
+                                  onTap: () {
+                                    unfocus();
+                                    focusNode.canRequestFocus = false;
+                                    setState(() {
+                                      _sendEmoji = !_sendEmoji;
+                                    });
+                                    unfocus();
+                                  },
+                                  child: Icon(Icons.emoji_emotions_rounded,
+                                      color: Theme.of(context).iconTheme.color),
+                                ),
+                                border: InputBorder.none,
+                              ),
+                            ),
+                          )),
                     Container(
                       margin:
                           const EdgeInsets.only(left: 10, bottom: 15, top: 5),
@@ -935,117 +1051,20 @@ class _ChatScreenState extends State<ChatScreen>
                         ),
                         shape: BoxShape.circle,
                       ),
-                      child: GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            showUpload = true;
-                          });
-                        },
-                        onDoubleTap: () {
-                          setState(() {
-                            showUpload = false;
-                          });
-                        },
-                        child: Icon(
-                          Icons.attach_file_outlined,
-                          color: Theme.of(context).appBarTheme.iconTheme.color,
-                        ),
+                      child: Icon(
+                        Icons.attach_file_outlined,
+                        color: Theme.of(context).appBarTheme.iconTheme.color,
                       ),
                     ),
                   ],
                 ),
                 Container(
-                    height: !_sendEmoji ? 0 : 270, child: sendEmojiGifs()),
-                (showUpload
-                    ? Container(
-                        margin: EdgeInsets.only(left: 10, right: 10),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).cardTheme.color,
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  await uploadDocuments(context);
-                                  unfocus();
-                                },
-                                icon: Icon(
-                                  Icons.upload_file,
-                                ),
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).cardTheme.color,
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  await sendImage(ImageSource.gallery, context);
-                                  unfocus();
-                                },
-                                icon: Icon(
-                                  Icons.photo_library,
-                                ),
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).cardTheme.color,
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  await sendVideo();
-                                  unfocus();
-                                },
-                                icon: Icon(
-                                  Icons.video_library_rounded,
-                                ),
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).cardTheme.color,
-                              ),
-                              child: IconButton(
-                                onPressed: () async {
-                                  await sendImage(ImageSource.camera, context);
-                                  unfocus();
-                                },
-                                icon: Icon(
-                                  Icons.camera_alt,
-                                ),
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle,
-                                color: Theme.of(context).cardTheme.color,
-                              ),
-                              child: IconButton(
-                                onPressed: () {},
-                                icon: Icon(
-                                  Icons.headset_rounded,
-                                ),
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                            ),
-                          ],
-                        ),
-                      )
-                    : Container()),
+                  height: !_sendEmoji ? 0 : 270,
+                  child: sendEmojiGifs(),
+                ),
               ],
             ),
-          ),
+          )),
         ),
       ),
     );

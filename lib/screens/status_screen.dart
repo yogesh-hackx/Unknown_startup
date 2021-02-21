@@ -272,12 +272,13 @@ class _StatusScreenState extends State<StatusScreen>
                         child: Container(
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(1000),
-                              border: Border.all(
-                                  color: Theme.of(context)
-                                      .floatingActionButtonTheme
-                                      .backgroundColor,
-                                  width: 2.5)),
+                            shape: BoxShape.circle,
+                            border: Border.all(
+                                color: Theme.of(context)
+                                    .floatingActionButtonTheme
+                                    .backgroundColor,
+                                width: 2.5),
+                          ),
                           child: const CircleAvatar(
                             radius: 50,
                             backgroundImage: const AssetImage(
@@ -388,68 +389,74 @@ class _StatusScreenState extends State<StatusScreen>
           Container(
             margin: const EdgeInsets.all(20),
             height: 50,
-                      child: StreamBuilder(
-              stream: FirebaseMethods().statusUserCanSeewithNumber(),
-              builder: (context, snapshot) {
-                if(snapshot.hasData && snapshot.data != null){
-                  return ListView.builder(
-                    itemCount:snapshot.data.docs.length,
-                    scrollDirection: Axis.horizontal,
-                    padding: const EdgeInsets.all(20),
-                    itemBuilder: (context,index){
-                     DocumentSnapshot ds = snapshot.data.docs[index];
-                     return FutureBuilder(
-                       future: FirebaseMethods().getUserWithUid(ds["user"]),
-                       builder:(context,snap){
-                         if(snap.hasData && snap.data != null){
-                           DocumentSnapshot docSnap = snap.data;
-                           return GestureDetector(
-                       onTap:()async{
-                         await FirebaseMethods().getStatus(docSnap["Id"]);
-                       },
-                      child: Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 20),
-                  child: ClipRRect(
-                    borderRadius: BorderRadius.circular(5),
-                    child: ListTile(
-                        tileColor: Theme.of(context).cardTheme.color,
-                        contentPadding: EdgeInsets.all(8),
-                        leading: Container(
-                          padding: const EdgeInsets.all(5),
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            border: Border.all(
-                                color: Theme.of(context)
-                                    .floatingActionButtonTheme
-                                    .backgroundColor,
-                                width: 2.5),
-                          ),
-                          child: const CircleAvatar(
-                            radius: 20,
-                            backgroundImage: const AssetImage(
-                                "assets/images/pexels-sindre-strøm-1040880.jpg"),
-                          ),
-                        ),
-                        title: Text(
-                          docSnap["Username"],
-                          style: Theme.of(context).textTheme.headline5,
-                        ),
-                        subtitle: Text(
-                          ds["lastStatusTime"],
-                          style: Theme.of(context).textTheme.headline6,
-                        ),
-                    ),
-                  ),
-                  ),
-                     );
-
-                         }
-                     });
-                    });
-                }
-                return Center(child:CircularProgressIndicator());
-              }
-            ),
+            child: StreamBuilder(
+                stream: FirebaseMethods().statusUserCanSeewithNumber(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData && snapshot.data != null) {
+                    return ListView.builder(
+                        itemCount: snapshot.data.docs.length,
+                        scrollDirection: Axis.horizontal,
+                        padding: const EdgeInsets.all(20),
+                        itemBuilder: (context, index) {
+                          DocumentSnapshot ds = snapshot.data.docs[index];
+                          return FutureBuilder(
+                              future:
+                                  FirebaseMethods().getUserWithUid(ds["user"]),
+                              builder: (context, snap) {
+                                if (snap.hasData && snap.data != null) {
+                                  DocumentSnapshot docSnap = snap.data;
+                                  return GestureDetector(
+                                    onTap: () async {
+                                      await FirebaseMethods()
+                                          .getStatus(docSnap["Id"]);
+                                    },
+                                    child: Container(
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 20),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(5),
+                                        child: ListTile(
+                                          tileColor:
+                                              Theme.of(context).cardTheme.color,
+                                          contentPadding: EdgeInsets.all(8),
+                                          leading: Container(
+                                            padding: const EdgeInsets.all(5),
+                                            decoration: BoxDecoration(
+                                              shape: BoxShape.circle,
+                                              border: Border.all(
+                                                  color: Theme.of(context)
+                                                      .floatingActionButtonTheme
+                                                      .backgroundColor,
+                                                  width: 2.5),
+                                            ),
+                                            child: const CircleAvatar(
+                                              radius: 20,
+                                              backgroundImage: const AssetImage(
+                                                  "assets/images/pexels-sindre-strøm-1040880.jpg"),
+                                            ),
+                                          ),
+                                          title: Text(
+                                            docSnap["Username"],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline5,
+                                          ),
+                                          subtitle: Text(
+                                            ds["lastStatusTime"],
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline6,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  );
+                                }
+                              });
+                        });
+                  }
+                  return Center(child: CircularProgressIndicator());
+                }),
           ),
         ],
       ),

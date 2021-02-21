@@ -16,18 +16,21 @@ class UserOne extends StatefulWidget {
   final DateTime timeSent;
   final bool isSeen;
   final bool notSend;
+  final Function functionShowReplyTextField;
 
-  UserOne(
-      {Key key,
-      this.msg,
-      this.requestfocus,
-      this.swipeleft,
-      this.messageUid,
-      this.deleteMessage,
-      this.chatRoomId,
-      this.timeSent,
-      this.isSeen,
-      this.notSend});
+  UserOne({
+    Key key,
+    this.msg,
+    this.requestfocus,
+    this.swipeleft,
+    this.messageUid,
+    this.deleteMessage,
+    this.chatRoomId,
+    this.timeSent,
+    this.isSeen,
+    this.notSend,
+    this.functionShowReplyTextField,
+  });
 
   @override
   _UserOneState createState() => _UserOneState();
@@ -50,7 +53,7 @@ class _UserOneState extends State<UserOne> {
     super.initState();
   }
 
-  addSubscription()async{
+  addSubscription() async {
     seenOrUnseen = FirebaseMethods()
         .getMsgSeenOrUnseen(widget.chatRoomId, widget.messageUid)
         .listen((DocumentSnapshot ds) {
@@ -88,6 +91,7 @@ class _UserOneState extends State<UserOne> {
             SwipeTo(
               onRightSwipe: () {
                 widget.requestfocus(context);
+                widget.functionShowReplyTextField();
               },
               onLeftSwipe: () {
                 widget.swipeleft(context, widget.messageUid);
@@ -118,16 +122,19 @@ class _UserOneState extends State<UserOne> {
                                   Container(
                                     margin: const EdgeInsets.only(right: 20),
                                     child: OutlineButton(
-                                        onPressed: () {
-                                          Navigator.pop(context);
-                                        },
-                                        child: Text("No",
-                                            style: GoogleFonts.nunito(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.w800,
-                                                color: Colors.indigo)),
-                                        borderSide: BorderSide(
-                                            color: Colors.indigo, width: 2)),
+                                      onPressed: () {
+                                        Navigator.pop(context);
+                                      },
+                                      child: Text(
+                                        "No",
+                                        style: GoogleFonts.nunito(
+                                            fontSize: 15,
+                                            fontWeight: FontWeight.w800,
+                                            color: Colors.indigo),
+                                      ),
+                                      borderSide: BorderSide(
+                                          color: Colors.indigo, width: 2),
+                                    ),
                                   ),
                                   Container(
                                     margin: const EdgeInsets.only(right: 20),
