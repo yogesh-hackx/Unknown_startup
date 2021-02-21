@@ -953,6 +953,10 @@ class _ChatScreenState extends State<ChatScreen>
                                       maxLines: null,
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
+                                        hintText: "Type your message here",
+                                        hintStyle: GoogleFonts.nunito(
+                                            color: Colors.white60,
+                                            fontSize: 16),
                                         prefixIcon: GestureDetector(
                                           onTap: () {},
                                           child: Icon(
@@ -998,6 +1002,9 @@ class _ChatScreenState extends State<ChatScreen>
                               maxLines: null,
                               keyboardType: TextInputType.multiline,
                               decoration: InputDecoration(
+                                hintText: "Type your message here...",
+                                hintStyle:
+                                    Theme.of(context).textTheme.headline4,
                                 prefixIcon: GestureDetector(
                                   onTap: () {
                                     unfocus();

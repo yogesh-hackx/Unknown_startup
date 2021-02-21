@@ -21,9 +21,9 @@ class _ThemesState extends State<Themes> {
       headline5: GoogleFonts.nunito(
           color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
       headline4: GoogleFonts.nunito(
-        color: Color.fromRGBO(255, 196, 145, 1),
-        fontSize: 18,
-        fontWeight: FontWeight.w800,
+        color: Colors.white54,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
       ),
       headline6: GoogleFonts.nunito(
         color: const Color.fromRGBO(252, 69, 69, 1),
@@ -97,12 +97,12 @@ class _ThemesState extends State<Themes> {
       headline5: GoogleFonts.nunito(
           color: Colors.white, fontSize: 17, fontWeight: FontWeight.w800),
       headline4: GoogleFonts.nunito(
-        color: Color.fromRGBO(255, 196, 145, 1),
-        fontSize: 18,
-        fontWeight: FontWeight.w800,
+        color: Colors.white54,
+        fontWeight: FontWeight.bold,
+        fontSize: 16,
       ),
       headline6: GoogleFonts.nunito(
-        color: const Color.fromRGBO(84, 152, 251, 1),
+        color: const Color.fromRGBO(99, 133, 239, 1),
         fontSize: 14,
         fontWeight: FontWeight.w800,
       ),
