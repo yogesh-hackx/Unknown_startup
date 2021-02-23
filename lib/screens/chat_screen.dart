@@ -10,6 +10,7 @@ import 'package:application_unknown/widgets/gif_ui.dart';
 import 'package:application_unknown/widgets/image_ui.dart';
 import 'package:application_unknown/widgets/image_ui_uploading.dart';
 import 'package:application_unknown/widgets/user_one.dart';
+import 'package:application_unknown/widgets/user_one_reply.dart';
 import 'package:application_unknown/widgets/user_two.dart';
 import 'package:application_unknown/widgets/video_ui.dart';
 import 'package:chat_pickers/chat_pickers.dart';
@@ -65,6 +66,9 @@ class _ChatScreenState extends State<ChatScreen>
 
   FirebaseAuth _auth = FirebaseAuth.instance;
 
+  String replyMessage;
+  String replyIndex;
+
   TextEditingController messageController = TextEditingController();
 
   FocusNode focusNode = FocusNode();
@@ -77,9 +81,11 @@ class _ChatScreenState extends State<ChatScreen>
     focusNode.requestFocus();
   }
 
-  functionShowReplyTextField() {
+  functionShowReplyTextField(String msg,String index) {
     setState(() {
       showReplyTextField = true;
+      replyMessage = msg;
+      replyIndex = index;
     });
   }
 
@@ -290,8 +296,12 @@ class _ChatScreenState extends State<ChatScreen>
     }
   }
 
-  sendMessage() {
+  sendMessage({String index,String reply}) {
     if (messageController.text != "") {
+      if(reply != null){
+        showNormalTextField();
+      }
+
       Map<String, dynamic> typingIndicatorMap = {
         _auth.currentUser.uid: {"isTyping": false}
       };
@@ -310,8 +320,12 @@ class _ChatScreenState extends State<ChatScreen>
         "DateTime": lastMessageTs,
         "isSeen": false,
         "receiverId": widget.peerId,
-        "type": "text"
+        "type": "text",
+        "index":index,
+        "reply":reply
       };
+
+      bool isReply = reply==null?false:true;
 
       FirebaseMethods().sendMessage(chatRoomId, messageInfoMap);
       Map<String, dynamic> lastMessageInfoMap = {
@@ -319,6 +333,8 @@ class _ChatScreenState extends State<ChatScreen>
         "lastMessageSendTimeDate": lastMessageTs,
         "lastMessageSendBy": _auth.currentUser.uid,
         "chatRoomId": chatRoomId,
+        "reply":isReply,
+        "replyIndex":index
       };
       msgController.jumpTo(msgController.position.minScrollExtent);
 
@@ -424,7 +440,7 @@ class _ChatScreenState extends State<ChatScreen>
             itemCount: snapShot.data.docs.length,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapShot.data.docs[index];
-              if (ds["type"] == "text") {
+              if (ds["type"] == "text" && ds["reply"]==null) {
                 return _auth.currentUser.uid == ds["sentBy"]
                     ? UserOne(
                         msg: ds["message"],
@@ -436,11 +452,16 @@ class _ChatScreenState extends State<ChatScreen>
                         chatRoomId: widget.chatRoomId,
                         timeSent: (ds["DateTime"] as Timestamp).toDate(),
                         isSeen: ds["isSeen"],
+                        index: index.toString(),
+                        sentBy:ds["sentBy"]
                       )
                     : User2(
                         msg: ds["message"],
                         timeSent: (ds["DateTime"] as Timestamp).toDate(),
                       );
+              }else if(ds["type"]=="text" && ds["reply"] != null){
+                return UserOneReply(message: ds["reply"],reply:ds["message"]);
+
               } else if (ds["type"] == "doc") {
                 return _auth.currentUser.uid == ds["sentBy"]
                     ? Document(
@@ -906,7 +927,7 @@ class _ChatScreenState extends State<ChatScreen>
                                                 ),
                                                 Container(
                                                   child: Text(
-                                                    "you good?",
+                                                    replyMessage,
                                                     maxLines: 4,
                                                     overflow:
                                                         TextOverflow.ellipsis,
@@ -943,13 +964,14 @@ class _ChatScreenState extends State<ChatScreen>
                                     ),
                                     child: TextField(
                                       focusNode: focusNode,
+                                      controller: messageController,
                                       textAlignVertical:
                                           TextAlignVertical.center,
                                       style: GoogleFonts.nunito(
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                      onChanged: (String changedMsg) async {},
+                                  
                                       maxLines: null,
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
@@ -1037,7 +1059,8 @@ class _ChatScreenState extends State<ChatScreen>
                       ),
                       child: IconButton(
                         onPressed: () {
-                          sendMessage();
+                          print("hit");
+                          sendMessage(reply: replyMessage,index: replyIndex);
                         },
                         icon: Icon(Icons.send),
                         color: Colors.white,

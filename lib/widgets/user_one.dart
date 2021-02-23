@@ -17,6 +17,8 @@ class UserOne extends StatefulWidget {
   final bool isSeen;
   final bool notSend;
   final Function functionShowReplyTextField;
+  final String index;
+  final String sentBy;
 
   UserOne({
     Key key,
@@ -30,6 +32,8 @@ class UserOne extends StatefulWidget {
     this.isSeen,
     this.notSend,
     this.functionShowReplyTextField,
+    this.index,
+    this.sentBy
   });
 
   @override
@@ -91,7 +95,7 @@ class _UserOneState extends State<UserOne> {
             SwipeTo(
               onRightSwipe: () {
                 widget.requestfocus(context);
-                widget.functionShowReplyTextField();
+                widget.functionShowReplyTextField(widget.msg, widget.index);
               },
               onLeftSwipe: () {
                 widget.swipeleft(context, widget.messageUid);

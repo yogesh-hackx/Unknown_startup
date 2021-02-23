@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class UserOneReply extends StatefulWidget {
+
+  final String message;
+  final String reply;
+
+  UserOneReply({Key key, this.message,this.reply});
+
   @override
   _UserOneReplyState createState() => _UserOneReplyState();
 }
@@ -44,7 +50,7 @@ class _UserOneReplyState extends State<UserOneReply> {
                           ),
                           Container(
                             child: Text(
-                              "you good?",
+                              widget.message,
                               maxLines: 4,
                               overflow: TextOverflow.ellipsis,
                               style: Theme.of(context).textTheme.bodyText2,
@@ -61,7 +67,7 @@ class _UserOneReplyState extends State<UserOneReply> {
               margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
               alignment: Alignment.centerLeft,
               child: Text(
-                "What the fuck dude What the fuck dude What the fuck dude",
+                widget.reply,
                 style: Theme.of(context).textTheme.bodyText1,
               ),
             ),
