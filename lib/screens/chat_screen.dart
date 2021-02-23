@@ -81,7 +81,7 @@ class _ChatScreenState extends State<ChatScreen>
     focusNode.requestFocus();
   }
 
-  functionShowReplyTextField(String msg,String index) {
+  functionShowReplyTextField(String msg, String index) {
     setState(() {
       showReplyTextField = true;
       replyMessage = msg;
@@ -296,9 +296,9 @@ class _ChatScreenState extends State<ChatScreen>
     }
   }
 
-  sendMessage({String index,String reply}) {
+  sendMessage({String index, String reply}) {
     if (messageController.text != "") {
-      if(reply != null){
+      if (reply != null) {
         showNormalTextField();
       }
 
@@ -321,11 +321,11 @@ class _ChatScreenState extends State<ChatScreen>
         "isSeen": false,
         "receiverId": widget.peerId,
         "type": "text",
-        "index":index,
-        "reply":reply
+        "index": index,
+        "reply": reply
       };
 
-      bool isReply = reply==null?false:true;
+      bool isReply = reply == null ? false : true;
 
       FirebaseMethods().sendMessage(chatRoomId, messageInfoMap);
       Map<String, dynamic> lastMessageInfoMap = {
@@ -333,8 +333,8 @@ class _ChatScreenState extends State<ChatScreen>
         "lastMessageSendTimeDate": lastMessageTs,
         "lastMessageSendBy": _auth.currentUser.uid,
         "chatRoomId": chatRoomId,
-        "reply":isReply,
-        "replyIndex":index
+        "reply": isReply,
+        "replyIndex": index
       };
       msgController.jumpTo(msgController.position.minScrollExtent);
 
@@ -440,7 +440,7 @@ class _ChatScreenState extends State<ChatScreen>
             itemCount: snapShot.data.docs.length,
             itemBuilder: (context, index) {
               DocumentSnapshot ds = snapShot.data.docs[index];
-              if (ds["type"] == "text" && ds["reply"]==null) {
+              if (ds["type"] == "text" && ds["reply"] == null) {
                 return _auth.currentUser.uid == ds["sentBy"]
                     ? UserOne(
                         msg: ds["message"],
@@ -453,15 +453,13 @@ class _ChatScreenState extends State<ChatScreen>
                         timeSent: (ds["DateTime"] as Timestamp).toDate(),
                         isSeen: ds["isSeen"],
                         index: index.toString(),
-                        sentBy:ds["sentBy"]
-                      )
+                        sentBy: ds["sentBy"])
                     : User2(
                         msg: ds["message"],
                         timeSent: (ds["DateTime"] as Timestamp).toDate(),
                       );
-              }else if(ds["type"]=="text" && ds["reply"] != null){
-                return UserOneReply(message: ds["reply"],reply:ds["message"]);
-
+              } else if (ds["type"] == "text" && ds["reply"] != null) {
+                return UserOneReply(message: ds["reply"], reply: ds["message"]);
               } else if (ds["type"] == "doc") {
                 return _auth.currentUser.uid == ds["sentBy"]
                     ? Document(
@@ -971,11 +969,10 @@ class _ChatScreenState extends State<ChatScreen>
                                         fontSize: 17,
                                         fontWeight: FontWeight.bold,
                                       ),
-                                  
                                       maxLines: null,
                                       keyboardType: TextInputType.multiline,
                                       decoration: InputDecoration(
-                                        hintText: "Type your message here",
+                                        hintText: "Message...",
                                         hintStyle: GoogleFonts.nunito(
                                             color: Colors.white60,
                                             fontSize: 16),
@@ -1024,7 +1021,7 @@ class _ChatScreenState extends State<ChatScreen>
                               maxLines: null,
                               keyboardType: TextInputType.multiline,
                               decoration: InputDecoration(
-                                hintText: "Type your message here...",
+                                hintText: "Message...",
                                 hintStyle:
                                     Theme.of(context).textTheme.headline4,
                                 prefixIcon: GestureDetector(
@@ -1060,7 +1057,7 @@ class _ChatScreenState extends State<ChatScreen>
                       child: IconButton(
                         onPressed: () {
                           print("hit");
-                          sendMessage(reply: replyMessage,index: replyIndex);
+                          sendMessage(reply: replyMessage, index: replyIndex);
                         },
                         icon: Icon(Icons.send),
                         color: Colors.white,

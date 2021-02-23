@@ -14,13 +14,13 @@ class _UserOneReplyState extends State<UserOneReply> {
   @override
   Widget build(BuildContext context) {
     return UnconstrainedBox(
-      alignment: Alignment.centerRight,
       child: Container(
+        alignment: Alignment.centerLeft,
         width: 200,
         margin: const EdgeInsets.symmetric(vertical: 5),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(5),
-          color: Theme.of(context).cardTheme.color,
+          color: Theme.of(context).floatingActionButtonTheme.backgroundColor,
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
